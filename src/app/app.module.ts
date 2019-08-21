@@ -1,11 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CharacterTrackerComponent } from './home/character-tracker/character-tracker.component';
-import { CheatsheetComponent } from './home/cheatsheet/cheatsheet.component';
+import { CheatsheetComponent } from './home/screen/cheatsheet/cheatsheet.component';
+import { CharacterCardComponent } from './home/character-tracker/character-card/character-card.component';
+import { ScreenComponent } from './home/screen/screen.component';
+import { ResourcesListComponent } from './admin/resources-list/resources-list.component';
+import { ResourceEditorComponent } from './admin/resource-editor/resource-editor.component';
+import { MaterialModule } from './material';
+
 
 
 @NgModule({
@@ -13,11 +23,19 @@ import { CheatsheetComponent } from './home/cheatsheet/cheatsheet.component';
     AppComponent,
     HomeComponent,
     CharacterTrackerComponent,
-    CheatsheetComponent
+    CheatsheetComponent,
+    CharacterCardComponent,
+    ScreenComponent,
+    ResourcesListComponent,
+    ResourceEditorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

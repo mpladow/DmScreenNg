@@ -1,0 +1,9 @@
+.fixed-bottom{
+    height: 80vh;
+}
+.overflow-row {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  overflow-x: scroll;
+}

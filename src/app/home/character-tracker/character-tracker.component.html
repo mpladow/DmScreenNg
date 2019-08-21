@@ -1,1 +1,7 @@
-<p>character-tracker works!</p>
+<div class="fixed-top">
+    <div class="row-maxwidth" 
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    >
+<app-character-card *ngFor let card in characterCards></app-character-card>
+</div>
