@@ -1,0 +1,19 @@
+.mat-card{
+  margin: 12px;
+}
+.form-vertical {
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  form {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 80vh;
+  max-height: 80vh;
+  max-width: 600px;
+
+}

@@ -1,36 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Cheatsheet } from '../_models/cheatsheet.model';
+import { Resource } from '../_models/resource.model';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CheatsheetService {
- cheatsheetArray = [];
+ resourceArray = [];
 
   constructor(private http: HttpClient) { }
 
 
   generateDummyData() {
-    let cheatsheetArray: Cheatsheet[] = [];
+    let _resourceArray: Resource[] = [];
     for (let i = 1; i < 6; i++) {
-      let sheet: Cheatsheet;
-      sheet.PageName = `name ${i} `;
-      sheet.CheatsheetId = i;
-      sheet.Html = `dsfdsf dsfds fds misdchds f${i}${i}${i}${i}${i}`;
-      cheatsheetArray.push(sheet);
+      let _resource: Resource;
+      _resource.Id = i;  
+      _resource.Html = `dsfdsf dsfds fds misdchds f${i}${i}${i}${i}${i}`;
+      _resource.Category = "Test"
+      this.resourceArray.push(_resource);
     }
-    this.cheatsheetArray = cheatsheetArray;
+    this.resourceArray = _resourceArray;
   }
   
   getCheatsheetList() {
-    return this.cheatsheetArray;
+    return this.resourceArray;
   }
   getCheatSheetById(id: number) {
 
   }
-  saveCheatSheet(cheatsheet: Cheatsheet) {
+  saveCheatSheet(cheatsheet: Resource) {
 
   }
 

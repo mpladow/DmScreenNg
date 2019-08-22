@@ -1,4 +1,21 @@
-<h1>Resource Editor</h1>
-<label>Id: </label>
-<p>{{this.id}}</p>>
-<textarea></textarea>
+<div class="container">
+    <mat-card>
+        <mat-card-title>{{this.id >= 0? 'Edit': 'New'}} Resource</mat-card-title>
+        <mat-card-content>
+            <div class="form-vertical">
+                <form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="Category" placeholder="Category" value="Cheatsheet">
+                    </mat-form-field>
+                    <label class="form-label">Content</label>
+                    <ckeditor [editor]="Editor" formControlName="Html"></ckeditor>
+                    <div class=form-vertical>
+                        <button mat-raised-button color="primary">Save</button>
+                        <button mat-button color="primary">Clear</button>
+                        <button (click)="onBackClick()" mat-button>Back to Resource list</button>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
