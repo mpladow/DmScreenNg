@@ -7,21 +7,21 @@ import { Resource } from '../_models/resource.model';
 })
 export class ResourcesService {
 
-  baseUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl + '/resources';
 
   constructor(private http: HttpClient) { }
 
   getResourcesList() {
-    return this.http.get<Resource[]>(this.baseUrl + '/resources');
+    return this.http.get<Resource[]>(this.baseUrl);
   }
   getResource(id: Number) {
-    return this.http.get<Resource>(this.baseUrl + '/resources/edit' + id);
+    return this.http.get<Resource>(this.baseUrl + '/edit/' + id);
   }
   createNewResource(model: Resource) {
-    return this.http.post(this.baseUrl + '/resources/edit', model);
+    var url = this.baseUrl + '/edit';
+    return this.http.post<Resource>(this.baseUrl + '/edit', model);
   }
   deleteResource(id: number){
-    return this.http.get<Resource>(this.baseUrl + '/resources/delete' + id);
-
+    return this.http.get<Resource>(this.baseUrl + '/delete/' + id);
   }
 }
