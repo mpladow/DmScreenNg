@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Resource } from 'src/app/_models/resource.model';
 import { ResourcesService } from 'src/app/_services/resources.service';
@@ -30,7 +30,8 @@ export class ResourceEditorComponent implements OnInit {
   resourceList: Resource[] = [];
   constructor(private route: ActivatedRoute,
               private resourceService: ResourcesService,
-              private alertify: AlertifyService
+              private alertify: AlertifyService,
+              private router: Router
   ) { }
 
   ngOnInit() {
@@ -56,11 +57,13 @@ export class ResourceEditorComponent implements OnInit {
     // else, open a new 
   }
   onGetResourcesClick() {
-    this.resourceService.getResourcesList()
-      .subscribe((data) => {
-        this.resourceList = data;
-        console.log(this.resourceList);
-      });
+    // this.resourceService.getResourcesList()
+    //   .subscribe((data) => {
+    //     this.resourceList = data;
+    //     console.log(this.resourceList);
+    //   });
+    this.alertify.error("error teset alertify");
+    console.log("test");
   }
   onSubmit() {
     this.resource.id = +this.resourceForm.value['Id'] !== null ? +this.resourceForm.value['Id'] : 0 ;
@@ -72,6 +75,9 @@ export class ResourceEditorComponent implements OnInit {
       }, error => {
         console.log('error');
       });
+  }
+  onResourceListClick() {
+this.router.navigate([`/resources-list`]);
   }
 
 }
