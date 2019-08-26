@@ -1,8 +1,7 @@
 <div class="fixed-bottom">
     <div class="overflow-row">
-        <app-cheatsheet></app-cheatsheet>
-        <app-cheatsheet></app-cheatsheet>
-        <app-cheatsheet></app-cheatsheet>
-        <app-cheatsheet></app-cheatsheet>
+        <app-cheatsheet *ngFor="let resource of resourceList;"
+        [Resource]=resource
+        ></app-cheatsheet>
     </div>
 </div>

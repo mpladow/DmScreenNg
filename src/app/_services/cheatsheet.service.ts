@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Resource } from '../_models/resource.model';
+import { ResourcesService } from './resources.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CheatsheetService {
- resourceArray = [];
+ resourceArray: Resource[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private resourceService: ResourcesService) { }
 
 
   // generateDummyData() {
@@ -25,7 +27,9 @@ export class CheatsheetService {
   // }
   
   getCheatsheetList() {
-    return this.resourceArray;
+    return this.resourceService.getResourcesList().subscribe((data) =>{
+      this.resourceArray = data;
+    });
   }
   getCheatSheetById(id: number) {
 

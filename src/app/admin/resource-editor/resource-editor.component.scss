@@ -1,4 +1,4 @@
-.mat-card{
+.mat-card {
   margin: 12px;
 }
 .form-vertical {
@@ -11,9 +11,23 @@
     flex-direction: column;
   }
 }
+.ck-content .ck-editor__editable  {
+  margin: 0 auto;
+}
 :host ::ng-deep .ck-editor__editable_inline {
   min-height: 80vh;
   max-height: 80vh;
-  max-width: 600px;
-
+  max-width: 300px;
+  font-size: 0.7em;
+  h2.fancy, .ck-heading_heading2_fancy {
+    color: #fff;
+    background: #000;
+    font-size: 1.25em;
+    padding: .25em;
+  }
+  p{
+    margin-bottom: 0.25em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+  }
 }

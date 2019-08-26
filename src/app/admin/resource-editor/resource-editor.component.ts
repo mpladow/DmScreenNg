@@ -29,17 +29,26 @@ export class ResourceEditorComponent implements OnInit {
   //test
   resourceList: Resource[] = [];
   constructor(private route: ActivatedRoute,
-    private resourceService: ResourcesService,
-    private alertify: AlertifyService
+              private resourceService: ResourcesService,
+              private alertify: AlertifyService
   ) { }
 
   ngOnInit() {
-    this.resource.Id = 0;
-    this.resource.Html = "";
-    this.resource.Category = "";
+    this.resource.id = 0;
+    this.resource.html = "";
+    this.resource.category = "";
     this.route.params.subscribe(params => {
+      this.resourceForm.value['Id'] = params['id'] > 0 ? params['id'] : 0;
       this.id = params['id'];
     });
+    if (this.id > 0) {
+      this.resourceService.getResource(this.id).subscribe(data =>{
+        this.resource = data;
+        this.resourceForm.controls['Id'].setValue(data.id);
+        this.resourceForm.controls['Category'].setValue(data.category);
+        this.resourceForm.controls['Html'].setValue(data.html);
+      });
+    }
 
     // set config values to the DKEditor
 
@@ -54,14 +63,14 @@ export class ResourceEditorComponent implements OnInit {
       });
   }
   onSubmit() {
-    this.resource.Id = +this.resourceForm.value['Id'] !== null ? +this.resourceForm.value['Id'] : 0 ;
-    this.resource.Category = this.resourceForm.value['Category'];
-    this.resource.Html = this.resourceForm.value['Html'];
+    this.resource.id = +this.resourceForm.value['Id'] !== null ? +this.resourceForm.value['Id'] : 0 ;
+    this.resource.category = this.resourceForm.value['Category'];
+    this.resource.html = this.resourceForm.value['Html'];
     this.resourceService.createNewResource(this.resource)
       .subscribe((data) => {
         console.log('success');
       }, error => {
-        console.log("error");
+        console.log('error');
       });
   }
 

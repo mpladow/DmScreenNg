@@ -1,6 +1,38 @@
-.resource-container{
-    width:600px;
-    height: 100%;
-    background-color: #eaeaea;
-    margin: 0px 12px;
+div.resource-container {
+  width: 300px;
+  height: 100%;
+  background-color: #eaeaea;
+  margin: 0px 6px;
+
+  h2.fancy {
+      color: #fff;
+      background: #000;
+      font-size: 1em;
+      padding: .25em;
+      margin-bottom: 0px;
+
+      &:not(:first-child){
+        margin-bottom: .5em;
+      }
+  }
+  p{
+    margin-bottom: 0.25em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    font-size: 0.7em;
+  }
+  figure{
+    margin-bottom: .5em;
+  }
+  .table{
+    td{
+      font-size: 0.7em;
+      padding: .25em;
+      border: 1px solid #ddd;
+      margin-bottom: .5em;
+    }
+    th{
+      font-weight: bold;
+    }
+  }
 }

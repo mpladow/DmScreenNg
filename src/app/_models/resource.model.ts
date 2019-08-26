@@ -1,5 +1,5 @@
 export class Resource {
-    Id?: number;
-    Category?: string;
-    Html?: string;
+    id?: number;
+    category?: string;
+    html?: string;
 };

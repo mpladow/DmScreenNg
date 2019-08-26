@@ -15,7 +15,7 @@ export class ResourcesService {
     return this.http.get<Resource[]>(this.baseUrl);
   }
   getResource(id: Number) {
-    return this.http.get<Resource>(this.baseUrl + '/edit/' + id);
+    return this.http.get<Resource>(this.baseUrl + '/' + id);
   }
   createNewResource(model: Resource) {
     var url = this.baseUrl + '/edit';
