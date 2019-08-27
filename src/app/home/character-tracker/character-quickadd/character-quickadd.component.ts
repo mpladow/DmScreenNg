@@ -15,9 +15,9 @@ export class CharacterQuickaddComponent implements OnInit {
   characterForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<CharacterQuickaddComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CharacterCard,
-    private fb: FormBuilder,
-    private characterCardService: CharactercardService) { }
+              @Inject(MAT_DIALOG_DATA) public data: CharacterCard,
+              private fb: FormBuilder,
+              private characterCardService: CharactercardService) { }
 
   ngOnInit() {
     this.characterForm = this.fb.group({
@@ -30,18 +30,17 @@ export class CharacterQuickaddComponent implements OnInit {
       PPerception: 10,
       PInvestigation: 10,
       PInsight: 10,
-      Notes: "",
+      Notes: '',
       isHostile: false
-    })
+    });
   }
   onCancelClick() {
     this.dialogRef.close();
   }
   onSaveCharacterClick() {
-    //add validation
-    console.log(this.characterForm.value)
-    this.characterForm.controls['CurrentHP'].setValue(this.characterForm.value['MaxHP']);
+    this.characterForm.controls.CurrentHP.setValue(this.characterForm.value.MaxHP);
     this.dialogRef.close(this.characterForm.value);
     this.characterCardService.addCharacterCard(this.characterForm.value);
+    console.log(this.characterCardService.getCharacterCards())
   }
 }

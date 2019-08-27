@@ -3,6 +3,7 @@ import { ResourcesService } from '../_services/resources.service';
 import { Resource } from '../_models/resource.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CharacterQuickaddComponent } from './character-tracker/character-quickadd/character-quickadd.component';
+import { CharactercardService } from '../_services/charactercard.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   resourceList: Resource[] = [];
   constructor(
     private resourceService: ResourcesService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private characterCardService: CharactercardService) { }
 
   ngOnInit() {
   }

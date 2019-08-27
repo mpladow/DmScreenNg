@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/core';
+import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__, OnChanges, SimpleChanges } from '@angular/core';
 import { CharacterService } from 'src/app/_services/character.service';
 import { CharacterCard } from 'src/app/_models/charactercard.model';
 import { CharacterQuickaddComponent } from './character-quickadd/character-quickadd.component';
@@ -22,8 +22,9 @@ export class CharacterTrackerComponent implements OnInit {
     public dialog: MatDialog,
     private characterCardService: CharactercardService) { }
 
-  ngOnInit() { }
-
+  ngOnInit() {
+    this.characterCards = this.characterCardService.getCharacterCards();
+  }
 
   onAddCreatureClick() {
     const dialogConfig = new MatDialogConfig();
@@ -31,23 +32,20 @@ export class CharacterTrackerComponent implements OnInit {
     const dialogRef = this.dialog.open(CharacterQuickaddComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined)
-        // this.characterCards.push(result);
+      if (result !== undefined) {
         this.characterCards = this.characterCardService.getCharacterCards();
+      }
     });
   }
   onInitiateEncounterClick() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(EncounterInitiativeDialogComponent, dialogConfig)
+    const dialogRef = this.dialog.open(EncounterInitiativeDialogComponent, dialogConfig);
   }
-  
+
   onCharacterDeleted(character: CharacterCard) {
-    console.log('character is in the parent and is being deleted.');
-    // this.characterCards = this.characterCards.filter((obj) => {
-    //   return obj.Name !== character.Name;
-    // });
     this.characterCardService.removeCharacterCard(character);
+    this.characterCards = this.characterCardService.getCharacterCards();
   }
 
   drop(event: CdkDragDrop<string[]>) {
