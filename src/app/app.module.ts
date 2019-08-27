@@ -20,6 +20,8 @@ import { MaterialModule } from './material';
 import { AlertifyService } from './_services/alertify.service';
 import { ResourcesService } from './_services/resources.service';
 import { CharacterQuickaddComponent } from './home/character-tracker/character-quickadd/character-quickadd.component';
+import { EncounterInitiativeDialogComponent } from './home/character-tracker/encounter-initiative-dialog/encounter-initiative-dialog.component';
+import { CharactercardService } from './_services/charactercard.service';
 
 
 
@@ -34,7 +36,8 @@ import { CharacterQuickaddComponent } from './home/character-tracker/character-q
     ScreenComponent,
     ResourcesListComponent,
     ResourceEditorComponent,
-    CharacterQuickaddComponent
+    CharacterQuickaddComponent,
+    EncounterInitiativeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,10 +50,12 @@ import { CharacterQuickaddComponent } from './home/character-tracker/character-q
     FormsModule, 
     ReactiveFormsModule
   ],
-  entryComponents: [CharacterQuickaddComponent],
+  entryComponents: [CharacterQuickaddComponent,
+  EncounterInitiativeDialogComponent],
   providers: [
     AlertifyService,
-    ResourcesService
+    ResourcesService,
+    CharactercardService
   ],
   bootstrap: [AppComponent]
 })

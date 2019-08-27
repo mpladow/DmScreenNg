@@ -4,6 +4,8 @@ import { CharacterCard } from 'src/app/_models/charactercard.model';
 import { CharacterQuickaddComponent } from './character-quickadd/character-quickadd.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { EncounterInitiativeDialogComponent } from './encounter-initiative-dialog/encounter-initiative-dialog.component';
+import { CharactercardService } from 'src/app/_services/charactercard.service';
 
 @Component({
   selector: 'app-character-tracker',
@@ -17,33 +19,35 @@ export class CharacterTrackerComponent implements OnInit {
   encounterMode = false;
 
   constructor(private characterService: CharacterService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private characterCardService: CharactercardService) { }
 
   ngOnInit() { }
 
 
   onAddCreatureClick() {
-    console.log("Test");
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     const dialogRef = this.dialog.open(CharacterQuickaddComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined)
-        this.characterCards.push(result);
-
+        // this.characterCards.push(result);
+        this.characterCards = this.characterCardService.getCharacterCards();
     });
   }
   onInitiateEncounterClick() {
-    console.log('initiate encounter');
-    //for each character car
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    const dialogRef = this.dialog.open(EncounterInitiativeDialogComponent, dialogConfig)
   }
   
   onCharacterDeleted(character: CharacterCard) {
     console.log('character is in the parent and is being deleted.');
-    this.characterCards = this.characterCards.filter((obj) => {
-      return obj.Name !== character.Name;
-    });
+    // this.characterCards = this.characterCards.filter((obj) => {
+    //   return obj.Name !== character.Name;
+    // });
+    this.characterCardService.removeCharacterCard(character);
   }
 
   drop(event: CdkDragDrop<string[]>) {

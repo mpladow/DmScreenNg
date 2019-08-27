@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CharacterCard } from 'src/app/_models/charactercard.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CharactercardService } from 'src/app/_services/charactercard.service';
 
 @Component({
   selector: 'app-character-quickadd',
@@ -15,7 +16,8 @@ export class CharacterQuickaddComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<CharacterQuickaddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CharacterCard,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private characterCardService: CharactercardService) { }
 
   ngOnInit() {
     this.characterForm = this.fb.group({
@@ -40,5 +42,6 @@ export class CharacterQuickaddComponent implements OnInit {
     console.log(this.characterForm.value)
     this.characterForm.controls['CurrentHP'].setValue(this.characterForm.value['MaxHP']);
     this.dialogRef.close(this.characterForm.value);
+    this.characterCardService.addCharacterCard(this.characterForm.value);
   }
 }

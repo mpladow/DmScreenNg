@@ -41,21 +41,15 @@
             </svg>
         </div>
         <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Options
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div [formGroup]='characterModifyForm'>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Additional Notes
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+            
                 <mat-form-field>
-                    <mat-label>Notes</mat-label>
-                    <textarea matInput formControlName='Notes'></textarea>
+                  <input matInput placeholder="notes">
                 </mat-form-field>
-            </div>
-            <button mat-raised-button (click)='onRemoveCreatureClick()'>
-                <span>Remove creature</span>
-            </button>
-        </mat-expansion-panel>
+              </mat-expansion-panel>
     </mat-card>
 </div>
