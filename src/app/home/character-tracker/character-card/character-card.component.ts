@@ -22,7 +22,6 @@ export class CharacterCardComponent implements OnInit, OnChanges {
   }
   onRemoveCreatureClick() {
     this.deleted.emit(this.character);
-    console.log('delete clicked');
   }
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);

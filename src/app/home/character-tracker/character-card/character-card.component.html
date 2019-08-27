@@ -48,7 +48,13 @@
                 </mat-expansion-panel-header>
             
                 <mat-form-field>
-                  <textarea matInput placeholder="notes" [(ngModel)]='character.Notes' (ngModelChange)="onUpdateNotes($event)">{{character.Notes}}</textarea>
+                  <textarea matInput 
+                  cdkTextareaAutosize
+                  #autosize='cdkTextareaAutosize'
+                  cdkAutosizeMinRows='1'
+                  placeholder="notes" 
+                  [(ngModel)]='character.Notes' 
+                  (ngModelChange)="onUpdateNotes($event)">{{character.Notes}}</textarea>
                 </mat-form-field>
                 <button mat-button (click)="onRemoveCreatureClick()" cdkFocusInitial>Delete</button>
               </mat-expansion-panel>

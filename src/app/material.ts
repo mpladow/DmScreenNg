@@ -9,6 +9,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {TextFieldModule} from '@angular/cdk/text-field';
+
 
 
 @NgModule({
@@ -21,7 +23,8 @@ imports: [MatCardModule,
     MatDialogModule, 
     MatFormFieldModule,
     MatExpansionModule,
-    MatCheckboxModule],
+    MatCheckboxModule,
+    TextFieldModule],
 exports: [MatCardModule, 
     MatGridListModule, 
     DragDropModule, 
@@ -31,6 +34,7 @@ exports: [MatCardModule,
     MatFormFieldModule,
     MatDialogModule,
     MatExpansionModule,
-    MatCheckboxModule]
+    MatCheckboxModule,
+    TextFieldModule]
 })
 export class MaterialModule { }

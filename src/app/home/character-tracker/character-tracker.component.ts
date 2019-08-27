@@ -40,6 +40,9 @@ export class CharacterTrackerComponent implements OnInit {
   onInitiateEncounterClick() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      dataKey: this.characterCards
+    }
     const dialogRef = this.dialog.open(EncounterInitiativeDialogComponent, dialogConfig);
   }
 

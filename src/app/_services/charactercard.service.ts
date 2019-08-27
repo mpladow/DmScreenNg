@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
 import { CharacterCard } from '../_models/charactercard.model';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { CharacterCard } from '../_models/charactercard.model';
 export class CharactercardService {
 
   characterCards: CharacterCard[] = [];
+  @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize
   constructor() { }
 
   getCharacterCards() {
@@ -30,7 +32,7 @@ export class CharactercardService {
 
   }
   updateCharacterCard(characterToUpdate) {
-    let index = this.characterCards.findIndex((obj => obj.Name == characterToUpdate.Name))
+    let index = this.characterCards.findIndex((obj => obj.Name == characterToUpdate.Name));
     // update the array
     console.log(index);
     this.characterCards[index].Notes = characterToUpdate.Notes;
