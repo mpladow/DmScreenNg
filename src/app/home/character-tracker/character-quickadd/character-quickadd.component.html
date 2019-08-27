@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Add Creature</h1>
+<div mat-dialog-content>
+    <div class="form-column" [formGroup]='characterForm'>
+        <mat-form-field>
+            <mat-label>Character Name</mat-label>
+            <input matInput formControlName='Name' placeholder="input">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Initiative</mat-label>
+            <input matInput formControlName='Initiative'>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>AC</mat-label>
+            <input matInput formControlName='AC'>
+        </mat-form-field>
+        <mat-checkbox formControlName='isHostile' [ngModel]=this.characterForm.isHostile><mat-label>Is Hostile</mat-label></mat-checkbox>
+        <mat-form-field>
+            <mat-label>HP</mat-label>
+            <input matInput formControlName='MaxHP'>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Passive Perception</mat-label>
+            <input matInput formControlName='PPerception'>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Passive Investigation</mat-label>
+            <input matInput formControlName='PInvestigation'>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Passive Insight</mat-label>
+            <input matInput formControlName='PInsight'>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Notes</mat-label>
+            <input matInput formControlName='Notes'>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onCancelClick()">cancel</button>
+    <button mat-button (click)="onSaveCharacterClick()" cdkFocusInitial>Add Creature</button>
+</div>

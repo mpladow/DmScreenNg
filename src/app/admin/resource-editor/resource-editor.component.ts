@@ -29,9 +29,9 @@ export class ResourceEditorComponent implements OnInit {
   //test
   resourceList: Resource[] = [];
   constructor(private route: ActivatedRoute,
-              private resourceService: ResourcesService,
-              private alertify: AlertifyService,
-              private router: Router
+    private resourceService: ResourcesService,
+    private alertify: AlertifyService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class ResourceEditorComponent implements OnInit {
       this.id = params['id'];
     });
     if (this.id > 0) {
-      this.resourceService.getResource(this.id).subscribe(data =>{
+      this.resourceService.getResource(this.id).subscribe(data => {
         this.resource = data;
         this.resourceForm.controls['Id'].setValue(data.id);
         this.resourceForm.controls['Category'].setValue(data.category);
@@ -66,18 +66,18 @@ export class ResourceEditorComponent implements OnInit {
     console.log("test");
   }
   onSubmit() {
-    this.resource.id = +this.resourceForm.value['Id'] !== null ? +this.resourceForm.value['Id'] : 0 ;
+    this.resource.id = +this.resourceForm.value['Id'] !== null ? +this.resourceForm.value['Id'] : 0;
     this.resource.category = this.resourceForm.value['Category'];
     this.resource.html = this.resourceForm.value['Html'];
     this.resourceService.createNewResource(this.resource)
       .subscribe((data) => {
-        console.log('success');
+        this.alertify.success("You resource has been saved");
       }, error => {
-        console.log('error');
+        this.alertify.error('An error has occurred');
       });
   }
   onResourceListClick() {
-this.router.navigate([`/resources-list`]);
+    this.router.navigate([`/resources-list`]);
   }
 
 }

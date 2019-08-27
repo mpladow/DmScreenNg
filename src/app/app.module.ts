@@ -19,6 +19,8 @@ import { ResourceEditorComponent } from './admin/resource-editor/resource-editor
 import { MaterialModule } from './material';
 import { AlertifyService } from './_services/alertify.service';
 import { ResourcesService } from './_services/resources.service';
+import { CharacterQuickaddComponent } from './home/character-tracker/character-quickadd/character-quickadd.component';
+
 
 
 
@@ -31,7 +33,8 @@ import { ResourcesService } from './_services/resources.service';
     CharacterCardComponent,
     ScreenComponent,
     ResourcesListComponent,
-    ResourceEditorComponent
+    ResourceEditorComponent,
+    CharacterQuickaddComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { ResourcesService } from './_services/resources.service';
     FormsModule, 
     ReactiveFormsModule
   ],
+  entryComponents: [CharacterQuickaddComponent],
   providers: [
     AlertifyService,
     ResourcesService

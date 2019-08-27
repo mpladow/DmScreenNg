@@ -1,7 +1,20 @@
 <div class="fixed-top">
-    <div class="row-maxwidth" 
-    cdkDropList
-    cdkDropListOrientation="horizontal"
-    >
-<app-character-card *ngFor let card in characterCards></app-character-card>
+    <div class="row-maxwidth example-list" 
+    cdkDropList 
+    (cdkDropListDropped)='drop($event)' 
+    cdkDropListOrientation="horizontal">
+            <app-character-card *ngFor='let card of characterCards' 
+            [character]='card'
+            (deleted)='onCharacterDeleted($event)' cdkDrag cdkDragLockAxis="x">
+        </app-character-card>
+    </div>
+
+    <div class='menu-container-top'>
+        <button mat-raised-button (click)='onAddCreatureClick()'>
+            <span>+ Add Creature</span>
+        </button>
+        <button mat-raised-button (click)='onInitiateEncounterClick()'>
+            <span>Initate Encounter</span>
+        </button>
+    </div>
 </div>
