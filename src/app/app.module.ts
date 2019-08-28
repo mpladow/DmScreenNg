@@ -15,13 +15,16 @@ import { CheatsheetComponent } from './home/screen/cheatsheet/cheatsheet.compone
 import { CharacterCardComponent } from './home/character-tracker/character-card/character-card.component';
 import { ScreenComponent } from './home/screen/screen.component';
 import { ResourcesListComponent } from './admin/resources-list/resources-list.component';
-import { ResourceEditorComponent } from './admin/resource-editor/resource-editor.component';
+import { ResourceEditorComponent } from './admin/resources-list/resource-editor/resource-editor.component';
 import { MaterialModule } from './material';
 import { AlertifyService } from './_services/alertify.service';
 import { ResourcesService } from './_services/resources.service';
 import { CharacterQuickaddComponent } from './home/character-tracker/character-quickadd/character-quickadd.component';
 import { EncounterInitiativeDialogComponent } from './home/character-tracker/encounter-initiative-dialog/encounter-initiative-dialog.component';
 import { CharactercardService } from './_services/charactercard.service';
+import { CreatureEditorComponent } from './admin/creature-list/creature-editor/creature-editor.component';
+import { CreatureListComponent } from './admin/creature-list/creature-list.component';
+
 
 
 
@@ -37,7 +40,9 @@ import { CharactercardService } from './_services/charactercard.service';
     ResourcesListComponent,
     ResourceEditorComponent,
     CharacterQuickaddComponent,
-    EncounterInitiativeDialogComponent
+    EncounterInitiativeDialogComponent,
+    CreatureEditorComponent,
+    CreatureListComponent
   ],
   imports: [
     BrowserModule,

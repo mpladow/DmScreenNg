@@ -1,0 +1,7 @@
+{
+    "appService.deploySubpath": "dist",
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/a3fea7e7-4e37-42ff-a784-38f84384332f/resourceGroups/AzureResources/providers/Microsoft.Web/sites/dmscreen5e"
+}

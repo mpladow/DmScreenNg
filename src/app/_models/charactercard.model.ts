@@ -8,7 +8,7 @@ export class CharacterCard {
     MaxHP?: number = 10;
     PPerception?: number = 10;
     PInvestigation?: number = 10;
-    pInsight?: number = 10;
+    PInsight?: number = 10;
     Notes?: string = "";
     isHostile?: boolean = false;
 }

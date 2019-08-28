@@ -10,7 +10,7 @@ import { Resource } from 'src/app/_models/resource.model';
 })
 export class ResourcesListComponent implements OnInit {
 
-  private resources: Resource[] = [];
+  resources: Resource[] = [];
   displayedColumns: string[] = ['id', 'category', 'actions'];
 
   constructor(private resourceService: ResourcesService,

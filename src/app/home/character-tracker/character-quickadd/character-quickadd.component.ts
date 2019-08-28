@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CharacterCard } from 'src/app/_models/charactercard.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CharactercardService } from 'src/app/_services/charactercard.service';
 
 @Component({
@@ -11,36 +11,48 @@ import { CharactercardService } from 'src/app/_services/charactercard.service';
 })
 export class CharacterQuickaddComponent implements OnInit {
 
+  isHostile: boolean = false;
   private charactercard: CharacterCard;
   characterForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<CharacterQuickaddComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: CharacterCard,
-              private fb: FormBuilder,
-              private characterCardService: CharactercardService) { }
+    @Inject(MAT_DIALOG_DATA) public data: CharacterCard,
+    private fb: FormBuilder,
+    private characterCardService: CharactercardService) { }
 
   ngOnInit() {
     this.characterForm = this.fb.group({
-      Name: '',
-      Level: 0,
-      AC: 10,
-      MaxHP: 10,
+      Name: new FormControl("Blorgon", [Validators.required]),
+      Level: new FormControl(0),
+      AC: new FormControl(10),
+      MaxHP: new FormControl(10, [Validators.required]),
       CurrentHP: 0,
-      Initiative: 7,
-      PPerception: 10,
-      PInvestigation: 10,
-      PInsight: 10,
-      Notes: '',
-      isHostile: false
+      Initiative: new FormControl(10, [Validators.required]),
+      PPerception: new FormControl(10, [Validators.required]),
+      PInvestigation: new FormControl(10, [Validators.required]),
+      PInsight: new FormControl(10, [Validators.required]),
+      Strength: new FormControl(10, [Validators.required]),
+      Dexterity: new FormControl(10, [Validators.required]),
+      Constitution: new FormControl(10, [Validators.required]),
+      Wisdom: new FormControl(10, [Validators.required]),
+      Intelligence: new FormControl(10, [Validators.required]),
+      Charisma: new FormControl(10, [Validators.required]),
+      Notes: new FormControl(''),
+      isHostile: new FormControl(this.isHostile)
     });
   }
   onCancelClick() {
     this.dialogRef.close();
   }
   onSaveCharacterClick() {
-    this.characterForm.controls.CurrentHP.setValue(this.characterForm.value.MaxHP);
-    this.dialogRef.close(this.characterForm.value);
-    this.characterCardService.addCharacterCard(this.characterForm.value);
-    console.log(this.characterCardService.getCharacterCards())
+    if (this.characterForm.valid) {
+      this.characterForm.controls.CurrentHP.setValue(this.characterForm.value.MaxHP);
+      this.dialogRef.close(this.characterForm.value);
+      this.characterCardService.addCharacterCard(this.characterForm.value);
+      console.log(this.characterCardService.getCharacterCards())
+    }
+    else {
+      console.log('invalid')
+    }
   }
 }

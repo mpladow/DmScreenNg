@@ -20,6 +20,7 @@ export class CharactercardService {
     return this.characterCards;
   }
   addCharacterCard(character: CharacterCard) {
+    // find the highest id of the previous 
     this.characterCards.push(character);
     localStorage.setItem('characterCards', JSON.stringify(this.characterCards));
 
