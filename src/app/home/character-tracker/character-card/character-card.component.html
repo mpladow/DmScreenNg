@@ -1,62 +1,59 @@
 <div class="draggable example-box">
-    <mat-card class="character-card"[class.isHostile]='character.isHostile' >
-        <mat-card-title>{{character.Name}} <span
-                style='border-radius: 20px; border: 2px solid #eaeaea; padding: 6px; margin-right: 1em'>{{character.Initiative}}</span>
-        </mat-card-title>
-        <mat-card-content>
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 stat-flex">
-                        <label class="stat-label-top">Armour</label>
-                        <span class="stat-value">{{character.AC}}</span>
-                        <label class="stat-label-bottom">Class</label>
-                    </div>
-                    <div class="col-6 stat-flex">
-                        <label class="stat-label-top">HP</label>
-                        <span class="stat-value">{{character.CurrentHP}}/{{character.MaxHP}}</span>
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class="col-4 stat-flex">
-                        <label class="stat-label-top">Perception</label>
-                        <span class="stat-value">{{character.PPerception}}</span>
-                    </div>
-                    <div class="col-4 stat-flex">
-                        <label class="stat-label-top">Investigaton</label>
-                        <span class="stat-value">{{character.PInvestigation}}</span>
-                    </div>
-                    <div class="col-4 stat-flex">
-                        <label class="stat-label-top">Insight</label>
-                        <span class=" stat-value">{{character.PInsight}}</span>
-                    </div>
-                </div>
-            </div>
-        </mat-card-content>
-        <div class="example-handle" cdkDragHandle>
-            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                    d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
-                </path>
-                <path d="M0 0h24v24H0z" fill="none"></path>
-            </svg>
+  <mat-card class="character-card" [class.isHostile]='character.isHostile'>
+    <mat-card-title class='mat-title'>{{character.Name}} <span
+        style='border-radius: 20px; border: 2px solid #eaeaea; padding: 6px; margin-right: 1em'>{{character.Initiative}}</span>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <div class="row">
+          <div class="col-6 stat-flex">
+            <label class="stat-label-top">Armour</label>
+            <span class="stat-value">{{character.AC}}</span>
+            <label class="stat-label-bottom">Class</label>
+          </div>
+          <div class="col-6 stat-flex">
+            <label class="stat-label-top">HP</label>
+            <span class="stat-value">{{character.CurrentHP}}/{{character.MaxHP}}</span>
+          </div>
         </div>
-        <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Additional Notes
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-            
-                <mat-form-field>
-                  <textarea matInput 
-                  cdkTextareaAutosize
-                  #autosize='cdkTextareaAutosize'
-                  cdkAutosizeMinRows='1'
-                  placeholder="notes" 
-                  [(ngModel)]='character.Notes' 
-                  (ngModelChange)="onUpdateNotes($event)">{{character.Notes}}</textarea>
-                </mat-form-field>
-                <button mat-button (click)="onRemoveCreatureClick()" cdkFocusInitial>Delete</button>
-              </mat-expansion-panel>
-    </mat-card>
+        <div class='row'>
+          <div class="col-4 stat-flex">
+            <label class="stat-label-top">Perception</label>
+            <span class="stat-value">{{character.PPerception}}</span>
+          </div>
+          <div class="col-4 stat-flex">
+            <label class="stat-label-top">Investigaton</label>
+            <span class="stat-value">{{character.PInvestigation}}</span>
+          </div>
+          <div class="col-4 stat-flex">
+            <label class="stat-label-top">Insight</label>
+            <span class=" stat-value">{{character.PInsight}}</span>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <div class="example-handle" cdkDragHandle>
+      <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+        </path>
+        <path d="M0 0h24v24H0z" fill="none"></path>
+      </svg>
+    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header [collapsedHeight]="'32px'" [expandedHeight]="'32px'">
+        <mat-panel-title>
+          Additional Notes
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class='form-column'>
+        <mat-form-field>
+          <textarea matInput cdkTextareaAutosize #autosize='cdkTextareaAutosize' cdkAutosizeMinRows='1'
+            placeholder="notes" [(ngModel)]='character.Notes'
+            (ngModelChange)="onUpdateNotes($event)">{{character.Notes}}</textarea>
+        </mat-form-field>
+        <button mat-button (click)="onRemoveCreatureClick()" cdkFocusInitial>Delete</button>
+      </div>
+    </mat-expansion-panel>
+  </mat-card>
 </div>

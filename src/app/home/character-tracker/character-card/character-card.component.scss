@@ -1,4 +1,19 @@
 .character-card {
+  padding: 0.25em;
+  .form-column {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-title {
+    font-size: 1em;
+  }
+  .mat-card-content {
+    margin-bottom: 8px;
+  }
+  .mat-expansion-panel-header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   .stat-value {
     font-size: 1em;
   }

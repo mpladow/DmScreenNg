@@ -24,6 +24,7 @@ import { EncounterInitiativeDialogComponent } from './home/character-tracker/enc
 import { CharactercardService } from './_services/charactercard.service';
 import { CreatureEditorComponent } from './admin/creature-list/creature-editor/creature-editor.component';
 import { CreatureListComponent } from './admin/creature-list/creature-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -52,8 +53,9 @@ import { CreatureListComponent } from './admin/creature-list/creature-list.compo
     BrowserAnimationsModule,
     MaterialModule,
     CKEditorModule,
-    FormsModule, 
-    ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   entryComponents: [CharacterQuickaddComponent,
   EncounterInitiativeDialogComponent],

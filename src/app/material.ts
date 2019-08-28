@@ -10,31 +10,37 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
 @NgModule({
-imports: [MatCardModule, 
-    MatGridListModule, 
-    DragDropModule, 
-    MatInputModule, 
-    MatButtonModule, 
+imports: [MatCardModule,
+    MatGridListModule,
+    DragDropModule,
+    MatInputModule,
+    MatButtonModule,
     MatTableModule,
-    MatDialogModule, 
+    MatDialogModule,
     MatFormFieldModule,
     MatExpansionModule,
     MatCheckboxModule,
-    TextFieldModule],
-exports: [MatCardModule, 
-    MatGridListModule, 
-    DragDropModule, 
-    MatInputModule, 
-    MatButtonModule, 
+    TextFieldModule,
+    MatMenuModule,
+    MatIconModule],
+exports: [MatCardModule,
+    MatGridListModule,
+    DragDropModule,
+    MatInputModule,
+    MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
     MatDialogModule,
     MatExpansionModule,
     MatCheckboxModule,
-    TextFieldModule]
+    TextFieldModule,
+    MatMenuModule,
+    MatIconModule]
 })
 export class MaterialModule { }

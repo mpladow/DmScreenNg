@@ -4,6 +4,7 @@ import { Resource } from '../_models/resource.model';
 import { MatDialog } from '@angular/material/dialog';
 import { CharacterQuickaddComponent } from './character-tracker/character-quickadd/character-quickadd.component';
 import { CharactercardService } from '../_services/charactercard.service';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,8 @@ import { CharactercardService } from '../_services/charactercard.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  faMenu = faBars;
 
   resourceList: Resource[] = [];
   constructor(
