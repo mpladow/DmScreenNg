@@ -4,12 +4,12 @@
         <div [formGroup]='characterInitiativeForm' class='form-column'>
             <mat-form-field *ngFor='let card of characterCards'>
                 <mat-label>{{card.Name}}</mat-label>
-                <input matInput [formControlName]=card.Name value='{{card.Initiative}}'>
+                <input matInput [formControlName]=card.Name value='{{card.Initiative}}' type="number">
             </mat-form-field>
         </div>
     </div>
 </div>
 <div mat-dialog-actions>
     <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-button-raised cdkFocusInitial>Begin Encounter!</button>
+    <button mat-button-raised cdkFocusInitial (click)='onSubmitClick()'>Begin Encounter!</button>
 </div>

@@ -44,6 +44,14 @@ export class CharacterTrackerComponent implements OnInit {
       dataKey: this.characterCards
     }
     const dialogRef = this.dialog.open(EncounterInitiativeDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // call the service to re-order the array
+        this.characterCardService.sortByInitiative();
+        this.characterCards = this.characterCardService.getCharacterCards();
+      }
+    })
+
   }
 
   onCharacterDeleted(character: CharacterCard) {

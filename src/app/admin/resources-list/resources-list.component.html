@@ -19,6 +19,8 @@
                     <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                     <mat-cell mat-cell *matCellDef="let element">
                         <button mat-button (click)='onEditClick(element)'>Edit</button>
+                        <button mat-button color='warn' (click)='onDeleteClick(element)'>Delete</button>
+
                     </mat-cell>
                 </ng-container>
 

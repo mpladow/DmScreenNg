@@ -3,9 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ResourcesListComponent } from './admin/resources-list/resources-list.component';
 import { ResourceEditorComponent } from './admin/resources-list/resource-editor/resource-editor.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './login/register/register.component';
 
 
 const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'home',
   component: HomeComponent},
   {path: 'resources-list',

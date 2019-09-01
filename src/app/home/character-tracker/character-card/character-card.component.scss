@@ -1,12 +1,29 @@
+.mat-expansion-panel-body {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.mat-card-header{
+  justify-content: space-between;
+}
+.mat-card-avatar {
+  padding-top: 6px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 2px solid #eaeaea;
+}
 .character-card {
   padding: 0.25em;
   .form-column {
     display: flex;
     flex-direction: column;
   }
-  .mat-title {
-    font-size: 1em;
-  }
+  // .mat-title {
+  //   font-size: 1em;
+  //   text-align: left;
+  // }
   .mat-card-content {
     margin-bottom: 8px;
   }
@@ -20,7 +37,15 @@
   .stat-label {
     font-size: 0.7em;
   }
-
+  .stat-AC {
+    height: 48px;
+    width: 48px;
+    border: 2px solid #eaeaea;
+    padding-top: 2px;
+    .stat-label-bottom {
+      font-size: 0.5em;
+    }
+  }
   .stat-flex {
     display: flex;
     flex-direction: column;
@@ -74,5 +99,6 @@
 }
 
 .isHostile {
-  border: 2px solid orange;
+  background-color: darken(red, 20%) !important;
+  color: #ffffff !important;
 }

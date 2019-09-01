@@ -25,8 +25,10 @@ import { CharactercardService } from './_services/charactercard.service';
 import { CreatureEditorComponent } from './admin/creature-list/creature-editor/creature-editor.component';
 import { CreatureListComponent } from './admin/creature-list/creature-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './login/register/register.component';
+import { ScreenLoaderComponent } from './home/screen/cheatsheet-loader/screen-loader.component';
+import { DeleteConfirmComponent } from './admin/dialog/delete-confirm/delete-confirm.component';
 
 
 
@@ -43,7 +45,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CharacterQuickaddComponent,
     EncounterInitiativeDialogComponent,
     CreatureEditorComponent,
-    CreatureListComponent
+    CreatureListComponent,
+    LoginComponent,
+    RegisterComponent,
+    ScreenLoaderComponent,
+    DeleteConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule
   ],
   entryComponents: [CharacterQuickaddComponent,
-  EncounterInitiativeDialogComponent],
+  EncounterInitiativeDialogComponent,
+  DeleteConfirmComponent
+],
   providers: [
     AlertifyService,
     ResourcesService,

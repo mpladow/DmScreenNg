@@ -11,14 +11,22 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class ScreenComponent implements OnInit {
 
   resourceList: Resource[] = [];
+  ghosts = [];
 
   constructor(private resourceService: ResourcesService,
     private alertifyService: AlertifyService) { }
 
   ngOnInit() {
+    this.reloadList();
+
     this.resourceService.getResourcesList().subscribe((data) => {
       this.resourceList = data;
-    }, error => this.alertifyService.error('Error'))
+      this.ghosts = [];
+    }, error => this.alertifyService.error('Error'));
+  }
+
+  reloadList() {
+    this.ghosts = new Array(10); // setup ghost items
   }
 
 }

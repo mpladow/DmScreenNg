@@ -12,6 +12,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -28,7 +29,8 @@ imports: [MatCardModule,
     MatCheckboxModule,
     TextFieldModule,
     MatMenuModule,
-    MatIconModule],
+    MatIconModule,
+    MatDividerModule],
 exports: [MatCardModule,
     MatGridListModule,
     DragDropModule,
@@ -41,6 +43,7 @@ exports: [MatCardModule,
     MatCheckboxModule,
     TextFieldModule,
     MatMenuModule,
-    MatIconModule]
+    MatIconModule,
+    MatDividerModule]
 })
 export class MaterialModule { }
