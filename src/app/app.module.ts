@@ -29,6 +29,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register/register.component';
 import { ScreenLoaderComponent } from './home/screen/cheatsheet-loader/screen-loader.component';
 import { DeleteConfirmComponent } from './admin/dialog/delete-confirm/delete-confirm.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 
@@ -70,7 +71,9 @@ import { DeleteConfirmComponent } from './admin/dialog/delete-confirm/delete-con
   providers: [
     AlertifyService,
     ResourcesService,
-    CharactercardService
+    CharactercardService,
+    AuthGuard,
+
   ],
   bootstrap: [AppComponent]
 })

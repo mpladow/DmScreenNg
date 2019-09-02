@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CharacterQuickaddComponent } from './character-tracker/character-quickadd/character-quickadd.component';
 import { CharactercardService } from '../_services/charactercard.service';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { AlertifyService } from '../_services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +21,15 @@ export class HomeComponent implements OnInit {
   constructor(
     private resourceService: ResourcesService,
     public dialog: MatDialog,
-    private characterCardService: CharactercardService) { }
+    private characterCardService: CharactercardService,
+    private alertify: AlertifyService,
+    private router: Router) { }
 
   ngOnInit() {
+  }
+  logout() {
+    localStorage.removeItem('token');
+    this.alertify.message('logged out');
+    this.router.navigate(['/login']);
   }
 }

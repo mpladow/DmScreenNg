@@ -26,7 +26,7 @@ export class DeleteConfirmComponent implements OnInit {
     console.log(this.id['dataKey'])
     this.resourceService.deleteResource(this.id['dataKey']).subscribe(result => {
       isDeleted = true;
-      this.dialogRef.close();
+      this.dialogRef.close(isDeleted);
     }, fail => {
       isDeleted = false;
     });

@@ -39,7 +39,7 @@ export class EncounterInitiativeDialogComponent implements OnInit {
   }
 
   onSubmitClick() {
-    console.log(this.characterInitiativeForm.value)
+    console.log(this.characterInitiativeForm.value);
     this.characterCardService.updateInitiativeValues(this.characterInitiativeForm.value);
     this.dialogRef.close();
 

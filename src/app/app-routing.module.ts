@@ -5,18 +5,27 @@ import { ResourcesListComponent } from './admin/resources-list/resources-list.co
 import { ResourceEditorComponent } from './admin/resources-list/resource-editor/resource-editor.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register/register.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'home',
-  component: HomeComponent},
-  {path: 'resources-list',
-  component: ResourcesListComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'resource/:id', component: ResourceEditorComponent},
-  {path: 'resource', component: ResourceEditorComponent}
+  {
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
+      { path: 'resources-list', component: ResourcesListComponent },
+      { path: 'resource/:id', component: ResourceEditorComponent },
+      { path: 'resource', component: ResourceEditorComponent }
+
+    ]
+  },
+
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+
 ];
 
 @NgModule({

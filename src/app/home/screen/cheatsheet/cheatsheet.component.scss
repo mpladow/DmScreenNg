@@ -33,7 +33,19 @@ div.resource-container {
       margin-bottom: .25em;
     }
     th{
+      font-size: 0.7em;
+      padding: .25em;
+      border: 1px solid #181818;
+      margin-bottom: .25em;
       font-weight: bold;
     }
   }
+}
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
 }

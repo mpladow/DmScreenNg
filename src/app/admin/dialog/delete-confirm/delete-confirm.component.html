@@ -4,6 +4,6 @@
   <p>This action cannot be undone!</p>
 </div>
 <div mat-dialog-actions>
-    <button mat-flat-button color='primary' (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
-    <button mat-button colour='alert' (click)="onDeleteClick($event)">Delete Resource</button>
-  </div>
+  <button mat-flat-button colour='warn' (click)="onDeleteClick()">Delete Resource</button>
+  <button mat-button (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
+</div>
