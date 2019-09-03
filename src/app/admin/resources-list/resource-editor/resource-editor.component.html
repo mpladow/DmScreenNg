@@ -1,0 +1,44 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{this.id >= 0? 'Edit': 'New'}} Resource</mat-card-title>
+      <mat-card-subtitle>Enter the details of your cheatsheet panel.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="form-vertical">
+        <form [formGroup]="resourceForm">
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="Category" placeholder="Category" value="Cheatsheet">
+          </mat-form-field>
+          <label class="form-label">Content</label>
+          <ckeditor [editor]="Editor" formControlName="Html" [config]="
+                    { heading: {
+                        options: [
+                        {
+                            model: 'headingFancy',
+                            view: {
+                                name: 'h2',
+                                classes: 'fancy'
+                            },
+                            title: 'Heading 2 (fancy)',
+                            class: 'ck-heading_heading2_fancy',
+                            converterPriority: 'high'
+                        }
+                        ]
+                    }
+                        }"></ckeditor>
+          <div class=form-vertical>
+          </div>
+        </form>
+        <div class='buttons-component'>
+          <div *ngIf='!isLoading'>
+            <button mat-raised-button color="primary" (click)='onSubmit()'>Save</button>
+            <button mat-button color="primary">Clear</button>
+            <button (click)="onResourceListClick()" mat-button>Back to Resource list</button>
+          </div>
+          <mat-spinner *ngIf='isLoading'></mat-spinner>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

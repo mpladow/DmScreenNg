@@ -1,0 +1,29 @@
+<div class='container mt-5 w-50'>
+  <mat-card *ngIf='!registerMode'>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>For DM's only!</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <img mat-card-image src='assets/images/dndampersand.png'>
+      <form class='form-column' [formGroup]='loginForm'>
+        <mat-form-field style='margin-top: 2em;'>
+          <input matInput placeholder='Email' formControlName='Email' type="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder='Password' formControlName='Password' type="password">
+        </mat-form-field>
+        <div class='buttons-component'>
+        <div *ngIf='!buttonLoader'>
+          <button mat-flat-button color='primary' (click)='onLoginClick()'>Login</button>
+          <button mat-button (click)='activateRegisterMode()'>Register</button>
+        </div>
+          <mat-spinner *ngIf='buttonLoader'></mat-spinner>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf='registerMode'>
+    <app-register (cancelRegister)='cancelRegisterMode($event)'></app-register>
+  </div>
+</div>

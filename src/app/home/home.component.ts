@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ResourcesService } from '../_services/resources.service';
+import { Resource } from '../_models/resource.model';
+import { MatDialog } from '@angular/material/dialog';
+import { CharacterQuickaddComponent } from './character-tracker/character-quickadd/character-quickadd.component';
+import { CharactercardService } from '../_services/charactercard.service';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { AlertifyService } from '../_services/alertify.service';
+import { Router } from '@angular/router';
+import { SessionService } from '../_services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +16,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  faMenu = faBars;
+
+  resourceList: Resource[] = [];
+  constructor(
+    private resourceService: ResourcesService,
+    public dialog: MatDialog,
+    private characterCardService: CharactercardService,
+    private alertify: AlertifyService,
+    private router: Router,
+    private session: SessionService) { }
 
   ngOnInit() {
   }
-
+  logout() {
+    localStorage.removeItem('token');
+    this.alertify.message('logged out');
+    this.router.navigate(['/login']);
+  }
+  saveSession() {
+    var activeResources = this.session.getActiveResourceSheets();
+    this.session.saveActiveResourceSheets();
+  }
 }

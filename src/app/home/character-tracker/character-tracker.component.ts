@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__, OnChanges, SimpleChanges } from '@angular/core';
+import { CharacterService } from 'src/app/_services/character.service';
+import { CharacterCard } from 'src/app/_models/charactercard.model';
+import { CharacterQuickaddComponent } from './character-quickadd/character-quickadd.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { EncounterInitiativeDialogComponent } from './encounter-initiative-dialog/encounter-initiative-dialog.component';
+import { CharactercardService } from 'src/app/_services/charactercard.service';
 
 @Component({
   selector: 'app-character-tracker',
@@ -7,9 +14,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CharacterTrackerComponent implements OnInit {
 
-  constructor() { }
+  characterCards: CharacterCard[] = [
+  ];
+  encounterMode = false;
+
+  constructor(private characterService: CharacterService,
+    public dialog: MatDialog,
+    private characterCardService: CharactercardService) { }
 
   ngOnInit() {
+    this.characterCards = this.characterCardService.getCharacterCards();
   }
 
+  onAddCreatureClick() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    const dialogRef = this.dialog.open(CharacterQuickaddComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        this.characterCards = this.characterCardService.getCharacterCards();
+      }
+    });
+  }
+  onInitiateEncounterClick() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      dataKey: this.characterCards
+    }
+    const dialogRef = this.dialog.open(EncounterInitiativeDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // call the service to re-order the array
+        this.characterCardService.sortByInitiative();
+        this.characterCards = this.characterCardService.getCharacterCards();
+      }
+    })
+
+  }
+
+  onCharacterDeleted(character: CharacterCard) {
+    this.characterCardService.removeCharacterCard(character);
+    this.characterCards = this.characterCardService.getCharacterCards();
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.characterCards, event.previousIndex, event.currentIndex);
+  }
 }

@@ -1,0 +1,63 @@
+<div class="draggable example-box">
+  <mat-card class="character-card" [class.isHostile]='character.isHostile'>
+    <mat-card-header>
+      <div mat-card-avatar>{{character.Initiative}}</div>
+      <mat-card-title cdkDragHandle>
+        {{character.Name}}
+      </mat-card-title>
+      <div class='stat-flex stat-AC'>
+        <span class="stat-value">{{character.AC}}</span>
+        <label class="stat-label-bottom">AC</label>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="container">
+        <div class='row'>
+          <div class="col-4 stat-flex">
+            <label class="stat-label-top">Perception</label>
+            <span class="stat-value">{{character.PPerception}}</span>
+          </div>
+          <div class="col-4 stat-flex">
+            <label class="stat-label-top">Investigaton</label>
+            <span class="stat-value">{{character.PInvestigation}}</span>
+          </div>
+          <div class="col-4 stat-flex">
+            <label class="stat-label-top">Insight</label>
+            <span class=" stat-value">{{character.PInsight}}</span>
+          </div>
+        </div>
+      </div>
+      <mat-expansion-panel *ngIf='character.isHostile'>
+          <mat-expansion-panel-header [collapsedHeight]="'32px'" [expandedHeight]="'32px'">
+            <mat-panel-title>
+              Actions
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div style='text-align: left'>
+            <p *ngFor='let action of character.Actions'>
+              {{action}}
+            </p>
+          </div>
+        </mat-expansion-panel>
+    </mat-card-content>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header [collapsedHeight]="'32px'" [expandedHeight]="'32px'">
+        <mat-panel-title>
+          Additional Notes
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class='form-column'>
+        <mat-form-field>
+          <textarea matInput cdkTextareaAutosize #autosize='cdkTextareaAutosize' cdkAutosizeMinRows='1'
+            placeholder="notes" [(ngModel)]='character.Notes'
+            (ngModelChange)="onUpdateNotes($event)">{{character.Notes}}</textarea>
+        </mat-form-field>
+        <div style='text-align: center;'>
+        <button mat-icon-button color='warn'(click)="onRemoveCreatureClick()" cdkFocusInitial>
+          <span style='font-size: 1.5em;'>X</span>
+        </button>
+      </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-card>
+</div>

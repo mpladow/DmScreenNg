@@ -1,0 +1,109 @@
+.mat-expansion-panel-body {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.mat-card-header {
+  justify-content: space-between;
+}
+.mat-card-avatar {
+  padding-top: 6px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 2px solid #eaeaea;
+}
+.mat-expansion-panel-body {
+  padding-bottom: 6px;
+}
+.character-card {
+  padding: 0.25em;
+  .form-column {
+    display: flex;
+    flex-direction: column;
+  }
+  // .mat-title {
+  //   font-size: 1em;
+  //   text-align: left;
+  // }
+  .mat-card-content {
+    margin-bottom: 8px;
+  }
+  .mat-expansion-panel-header {
+    margin-top: .25em;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .stat-value {
+    font-size: 1em;
+  }
+  .stat-label {
+    font-size: 0.7em;
+  }
+  .stat-AC {
+    height: 48px;
+    width: 48px;
+    border: 2px solid #eaeaea;
+    padding-top: 2px;
+    .stat-label-bottom {
+      font-size: 0.5em;
+    }
+  }
+  .stat-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .stat-label-top {
+      font-size: 0.7em;
+      margin-bottom: 0;
+    }
+    .stat-label-bottom {
+      font-size: 0.7em;
+    }
+  }
+  p {
+    margin-bottom: 0.25em;
+  }
+}
+.example-handle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ccc;
+  cursor: move;
+  width: 24px;
+  height: 24px;
+  cursor: move;
+}
+.draggable {
+  margin: 0px 6px;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  margin-right: 25px;
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  &:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+      0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.isHostile {
+  background-color: darken(red, 20%) !important;
+  color: #ffffff !important;
+}
