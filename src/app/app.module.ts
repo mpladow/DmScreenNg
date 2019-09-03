@@ -32,6 +32,7 @@ import { DeleteConfirmComponent } from './admin/dialog/delete-confirm/delete-con
 import { AuthGuard } from './_guards/auth.guard';
 import { DeleteCardConfirmComponent } from './home/character-tracker/character-card/delete-card-confirm/delete-card-confirm.component';
 import { SessionService } from './_services/session.service';
+import { HelperService } from './_services/helper.service';
 
 
 
@@ -78,6 +79,7 @@ import { SessionService } from './_services/session.service';
     CharactercardService,
     AuthGuard,
     SessionService,
+    HelperService
 
   ],
   bootstrap: [AppComponent]

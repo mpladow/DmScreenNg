@@ -1,3 +1,4 @@
+import { HelperService } from './helper.service';
 import { Injectable } from '@angular/core';
 import { CharacterCard } from '../_models/charactercard.model';
 import { Resource } from '../_models/resource.model';
@@ -15,7 +16,9 @@ export class SessionService {
   accountResources: Resource[] = [];
   accountCharacterCards: CharacterCard[] = [];
 
-  constructor(private http: HttpClient, private alertify: AlertifyService) { }
+  constructor(private http: HttpClient,
+    private alertify: AlertifyService,
+    private helper: HelperService) { }
   getActiveCharacterCards() {
 
   }
@@ -43,10 +46,10 @@ export class SessionService {
     this.accountCharacterCards.push(characterCard);
   }
   removeActiveResourceSheet(id: number) {
-    this.accountResources = this.accountResources.filter((e) => {
-      e !== id;
-    });
-  }
+    console.log(this.accountResources)
+    this.accountResources = this.accountResources.filter(r => {
+      return r.id !== id;
+    })  }
   retrieveSavedActiveResources(id: number){
 // call the database and retrieve the saved values
   }

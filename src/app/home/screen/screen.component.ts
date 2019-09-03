@@ -48,8 +48,8 @@ export class ScreenComponent implements OnInit {
     const resourceFound: Resource = this.resourceList.find(res => {
       return res.id === parseInt(this.selected);
     })
-    this.accountResourceList.push(resourceFound);
     this.sessionService.addActiveResourceSheet(resourceFound);
+    this.accountResourceList = this.sessionService.getActiveResourceSheets();
   }
   onDeleted(id: number) {
     this.sessionService.removeActiveResourceSheet(id);

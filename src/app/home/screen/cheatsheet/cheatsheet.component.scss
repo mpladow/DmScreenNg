@@ -1,3 +1,15 @@
+.btn-close {
+  position: absolute;
+  right: -12px;
+  top: -4px;
+  color:transparent;
+  transition: .5s all;
+
+  &:hover{
+    color: #fff;
+    transition: .5s all;
+  }
+}
 div.resource-container {
   width: 300px;
   height: 100%;
@@ -6,46 +18,46 @@ div.resource-container {
   overflow-y: scroll;
 
   h2.fancy {
-      color: #fff;
-      background: #000;
-      font-size: 1em;
-      padding: .25em;
-      margin-bottom: 0px;
+    color: #fff;
+    background: #000;
+    font-size: 1em;
+    padding: 0.25em;
+    margin-bottom: 0px;
 
-      &:not(:first-child){
-        margin-bottom: .5em;
-      }
+    &:not(:first-child) {
+      margin-bottom: 0.5em;
+    }
   }
-  p{
+  p {
     margin-bottom: 0.25em;
     padding-left: 0.25em;
     padding-right: 0.25em;
     font-size: 0.7em;
   }
-  figure{
-    margin-bottom: .25em;
+  figure {
+    margin-bottom: 0.25em;
   }
-  .table{
-    td{
+  .table {
+    td {
       font-size: 0.7em;
-      padding: .25em;
+      padding: 0.25em;
       border: 1px solid #181818;
-      margin-bottom: .25em;
+      margin-bottom: 0.25em;
     }
-    th{
+    th {
       font-size: 0.7em;
-      padding: .25em;
+      padding: 0.25em;
       border: 1px solid #181818;
-      margin-bottom: .25em;
+      margin-bottom: 0.25em;
       font-weight: bold;
     }
   }
 }
 ::-webkit-scrollbar {
-  width: 0px;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-  background: #FF0000;
+  background: #ff0000;
 }

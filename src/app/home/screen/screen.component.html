@@ -1,6 +1,6 @@
 <div class="fixed-bottom">
   <div class="overflow-row">
-    <app-cheatsheet *ngFor="let resource of accountResourceList;" [Resource]=resource (cheatsheetDeleted)='onDeleted($event)'></app-cheatsheet>
+    <app-cheatsheet style='position: relative' *ngFor="let resource of accountResourceList;" [Resource]=resource (cheatsheetDeleted)='onDeleted($event)'></app-cheatsheet>
     <app-screen-loader *ngFor='let ghost of ghosts'></app-screen-loader>
     <div class=resource-add-container>
       <div style='text-align: center;'>
