@@ -31,6 +31,7 @@ import { ScreenLoaderComponent } from './home/screen/cheatsheet-loader/screen-lo
 import { DeleteConfirmComponent } from './admin/dialog/delete-confirm/delete-confirm.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { DeleteCardConfirmComponent } from './home/character-tracker/character-card/delete-card-confirm/delete-card-confirm.component';
+import { SessionService } from './_services/session.service';
 
 
 
@@ -76,6 +77,7 @@ import { DeleteCardConfirmComponent } from './home/character-tracker/character-c
     ResourcesService,
     CharactercardService,
     AuthGuard,
+    SessionService,
 
   ],
   bootstrap: [AppComponent]

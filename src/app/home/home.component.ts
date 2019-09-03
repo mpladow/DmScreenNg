@@ -7,6 +7,7 @@ import { CharactercardService } from '../_services/charactercard.service';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
+import { SessionService } from '../_services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog,
     private characterCardService: CharactercardService,
     private alertify: AlertifyService,
-    private router: Router) { }
+    private router: Router,
+    private session: SessionService) { }
 
   ngOnInit() {
   }
@@ -31,5 +33,9 @@ export class HomeComponent implements OnInit {
     localStorage.removeItem('token');
     this.alertify.message('logged out');
     this.router.navigate(['/login']);
+  }
+  saveSession() {
+    var activeResources = this.session.getActiveResourceSheets();
+    this.session.saveActiveResourceSheets();
   }
 }
