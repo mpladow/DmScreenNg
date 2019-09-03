@@ -1,8 +1,25 @@
 <div class="fixed-bottom">
-    <div class="overflow-row">
-        <app-cheatsheet *ngFor="let resource of resourceList;"
-        [Resource]=resource
-        ></app-cheatsheet>
-        <app-screen-loader *ngFor='let ghost of ghosts'></app-screen-loader>
+  <div class="overflow-row">
+    <app-cheatsheet *ngFor="let resource of accountResourceList;" [Resource]=resource></app-cheatsheet>
+    <app-screen-loader *ngFor='let ghost of ghosts'></app-screen-loader>
+    <div class=resource-add-container>
+      <div style='text-align: center;'>
+        <mat-form-field>
+            <mat-label>Add existing cheetsheet</mat-label>
+            <mat-select [(value)]='selected'>
+              <mat-option *ngFor="let resource of selectResourceItems" [value]="resource.value">
+                {{resource.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button color='primary' (click)='addResource()'>Add</button>
+
+      </div>
     </div>
+  </div>
+</div>
+<div class='fixed-button-right'>
+  <button mat-icon-button color='primary'>
+    <fa-icon [icon]='faPlus'></fa-icon>
+  </button>
 </div>

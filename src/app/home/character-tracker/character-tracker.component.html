@@ -1,9 +1,9 @@
 <div class="fixed-top">
-    <div class="row-maxwidth example-list" 
-    cdkDropList 
-    (cdkDropListDropped)='drop($event)' 
+    <div class="row-maxwidth example-list"
+    cdkDropList
+    (cdkDropListDropped)='drop($event)'
     cdkDropListOrientation="horizontal">
-            <app-character-card *ngFor='let card of characterCards' 
+            <app-character-card *ngFor='let card of characterCards'
             [character]='card'
             (deleted)='onCharacterDeleted($event)' cdkDrag cdkDragLockAxis="x">
         </app-character-card>
@@ -14,7 +14,7 @@
             <span>+ Add Creature</span>
         </button>
         <button mat-raised-button (click)='onInitiateEncounterClick()'>
-            <span>Initate Encounter</span>
+            <span><img src='assets/images/DnD5E_ClassSymb_Fighter.tif'></span>
         </button>
     </div>
 </div>

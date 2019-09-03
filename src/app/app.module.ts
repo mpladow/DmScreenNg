@@ -30,6 +30,7 @@ import { RegisterComponent } from './login/register/register.component';
 import { ScreenLoaderComponent } from './home/screen/cheatsheet-loader/screen-loader.component';
 import { DeleteConfirmComponent } from './admin/dialog/delete-confirm/delete-confirm.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { DeleteCardConfirmComponent } from './home/character-tracker/character-card/delete-card-confirm/delete-card-confirm.component';
 
 
 
@@ -50,7 +51,8 @@ import { AuthGuard } from './_guards/auth.guard';
     LoginComponent,
     RegisterComponent,
     ScreenLoaderComponent,
-    DeleteConfirmComponent
+    DeleteConfirmComponent,
+    DeleteCardConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { AuthGuard } from './_guards/auth.guard';
   ],
   entryComponents: [CharacterQuickaddComponent,
   EncounterInitiativeDialogComponent,
-  DeleteConfirmComponent
+  DeleteConfirmComponent,
+  DeleteCardConfirmComponent
 ],
   providers: [
     AlertifyService,

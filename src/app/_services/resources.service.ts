@@ -25,4 +25,5 @@ export class ResourcesService {
     console.log(id + 'test')
     return this.http.delete<Resource>(this.baseUrl + '/' + id);
   }
+
 }

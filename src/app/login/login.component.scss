@@ -1,4 +1,14 @@
-.form-column{
-   display: flex;
-   flex-direction: column;
+.form-column {
+  display: flex;
+  flex-direction: column;
+}
+.mat-card {
+  width: 480px;
+  margin: 0 auto;
+  .mat-card-content {
+    img {
+      width: 460px;
+      margin: 0 auto;
+    }
+  }
 }

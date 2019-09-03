@@ -11,4 +11,5 @@ export class CharacterCard {
     PInsight?: number = 10;
     Notes?: string = "";
     isHostile?: boolean = false;
+    Actions: string[] = [];
 }

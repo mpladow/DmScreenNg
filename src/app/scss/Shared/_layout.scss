@@ -2,3 +2,13 @@
   display: flex;
   flex-direction: column;
 }
+.buttons-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  button {
+    margin-bottom: 1em;
+    width: 75%;
+  }
+}

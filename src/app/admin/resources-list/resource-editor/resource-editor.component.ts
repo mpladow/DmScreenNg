@@ -26,6 +26,7 @@ export class ResourceEditorComponent implements OnInit {
     Html: new FormControl('')
   });
 
+  isLoading = false;
   //test
   resourceList: Resource[] = [];
   constructor(private route: ActivatedRoute,
@@ -51,28 +52,18 @@ export class ResourceEditorComponent implements OnInit {
       });
     }
 
-    // set config values to the DKEditor
-
-    // if an id has been passed through, then retrieve the details from the db, then populate the existing model with content
-    // else, open a new 
-  }
-  onGetResourcesClick() {
-    // this.resourceService.getResourcesList()
-    //   .subscribe((data) => {
-    //     this.resourceList = data;
-    //     console.log(this.resourceList);
-    //   });
-    this.alertify.error("error teset alertify");
-    console.log("test");
   }
   onSubmit() {
+    this.isLoading = true;
     this.resource.id = +this.resourceForm.value['Id'] !== null ? +this.resourceForm.value['Id'] : 0;
     this.resource.category = this.resourceForm.value['Category'];
     this.resource.html = this.resourceForm.value['Html'];
     this.resourceService.createNewResource(this.resource)
       .subscribe((data) => {
+        this.isLoading = false;
         this.alertify.success("You resource has been saved");
       }, error => {
+        this.isLoading = false;
         this.alertify.error('An error has occurred');
       });
   }

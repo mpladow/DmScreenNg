@@ -7,6 +7,7 @@
   <mat-menu #menuMain="matMenu">
     <button mat-menu-item routerLink='/resources-list'>Resources</button>
     <button mat-menu-item>Creatures</button>
+    <button mat-menu-item (click)='saveSession()'>Save Session</button>
     <button mat-menu-item (click)='logout()'>Sign Out</button>
   </mat-menu>
 </div>

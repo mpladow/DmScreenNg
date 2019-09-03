@@ -2,7 +2,7 @@
   padding-left: 6px;
   padding-right: 6px;
 }
-.mat-card-header{
+.mat-card-header {
   justify-content: space-between;
 }
 .mat-card-avatar {
@@ -13,6 +13,9 @@
   flex-shrink: 0;
   object-fit: cover;
   border: 2px solid #eaeaea;
+}
+.mat-expansion-panel-body {
+  padding-bottom: 6px;
 }
 .character-card {
   padding: 0.25em;
@@ -28,9 +31,11 @@
     margin-bottom: 8px;
   }
   .mat-expansion-panel-header {
+    margin-top: .25em;
     padding-left: 16px;
     padding-right: 16px;
   }
+
   .stat-value {
     font-size: 1em;
   }

@@ -1,8 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { CharacterCard } from 'src/app/_models/charactercard.model';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { CharactercardService } from 'src/app/_services/charactercard.service';
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-character-quickadd',
@@ -14,6 +16,9 @@ export class CharacterQuickaddComponent implements OnInit {
   isHostile: boolean = false;
   private charactercard: CharacterCard;
   characterForm: FormGroup;
+  faPlus = faPlus;
+  faTimes = faTimes;
+
 
   constructor(public dialogRef: MatDialogRef<CharacterQuickaddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CharacterCard,
@@ -38,21 +43,32 @@ export class CharacterQuickaddComponent implements OnInit {
       Intelligence: new FormControl(10, [Validators.required]),
       Charisma: new FormControl(10, [Validators.required]),
       Notes: new FormControl(''),
-      isHostile: new FormControl(this.isHostile)
+      isHostile: new FormControl(this.isHostile),
+      Actions: this.fb.array([
+        this.fb.control('')
+      ])
     });
+  }
+  // form getters
+  get actions() {
+    return this.characterForm.get('Actions') as FormArray;
   }
   onCancelClick() {
     this.dialogRef.close();
   }
   onSaveCharacterClick() {
+    console.log(this.characterForm.value)
     if (this.characterForm.valid) {
       this.characterForm.controls.CurrentHP.setValue(this.characterForm.value.MaxHP);
       this.dialogRef.close(this.characterForm.value);
       this.characterCardService.addCharacterCard(this.characterForm.value);
-      console.log(this.characterCardService.getCharacterCards())
+      console.log(this.characterCardService.getCharacterCards());
     }
     else {
       console.log('invalid')
     }
+  }
+  addAction(){
+this.actions.push(this.fb.control(''));
   }
 }

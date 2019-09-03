@@ -13,6 +13,8 @@ import {TextFieldModule} from '@angular/cdk/text-field';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -31,7 +33,9 @@ imports: [MatCardModule,
     TextFieldModule,
     MatMenuModule,
     MatIconModule,
-    MatDividerModule],
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatSelectModule],
 exports: [MatCardModule,
     MatGridListModule,
     DragDropModule,
@@ -45,6 +49,8 @@ exports: [MatCardModule,
     TextFieldModule,
     MatMenuModule,
     MatIconModule,
-    MatDividerModule]
+    MatDividerModule,
+    MatProgressSpinnerModule,
+    MatSelectModule]
 })
 export class MaterialModule { }
