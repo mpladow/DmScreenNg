@@ -12,7 +12,7 @@ export class CheatsheetComponent implements OnInit {
 
   @Input() Resource: Resource;
   @Output() cheatsheetDeleted = new EventEmitter<number>();
-
+  @Input() isNewResource: boolean = false;
   constructor() { }
 
   ngOnInit() {

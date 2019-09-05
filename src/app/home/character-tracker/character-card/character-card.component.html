@@ -26,19 +26,43 @@
             <span class=" stat-value">{{character.PInsight}}</span>
           </div>
         </div>
+        <div class='row' *ngIf='character.isHostile'>
+          <div class="col-2 stat-flex">
+            <label class="stat-label-top">Strength</label>
+            <span class="stat-value">{{character.Strength}}</span>
+          </div>
+          <div class="col-2 stat-flex">
+            <label class="stat-label-top">Dex</label>
+            <span class="stat-value">{{character.Dexterity}}</span>
+          </div>
+          <div class="col-2 stat-flex">
+            <label class="stat-label-top">Strength</label>
+            <span class="stat-value">{{character.Strength}}</span>
+          </div>
+          <div class="col-2 stat-flex">
+            <label class="stat-label-top">Dex</label>
+            <span class="stat-value">{{character.Dexterity}}</span>
+          </div>
+          <div class="col-2 stat-flex">
+            <label class="stat-label-top">Strength</label>
+            <span class="stat-value">{{character.Strength}}</span>
+          </div>
+
+
+        </div>
       </div>
       <mat-expansion-panel *ngIf='character.isHostile'>
-          <mat-expansion-panel-header [collapsedHeight]="'32px'" [expandedHeight]="'32px'">
-            <mat-panel-title>
-              Actions
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div style='text-align: left'>
-            <p *ngFor='let action of character.Actions'>
-              {{action}}
-            </p>
-          </div>
-        </mat-expansion-panel>
+        <mat-expansion-panel-header [collapsedHeight]="'32px'" [expandedHeight]="'32px'">
+          <mat-panel-title>
+            Actions
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div style='text-align: left' style='display: flex; flex-direction: column'>
+          <textarea *ngFor='let action of character.Actions' [(ngModel)]='action' >
+            {{action}}
+          </textarea>
+        </div>
+      </mat-expansion-panel>
     </mat-card-content>
     <mat-expansion-panel>
       <mat-expansion-panel-header [collapsedHeight]="'32px'" [expandedHeight]="'32px'">
@@ -53,10 +77,10 @@
             (ngModelChange)="onUpdateNotes($event)">{{character.Notes}}</textarea>
         </mat-form-field>
         <div style='text-align: center;'>
-        <button mat-icon-button color='warn'(click)="onRemoveCreatureClick()" cdkFocusInitial>
-          <span style='font-size: 1.5em;'>X</span>
-        </button>
-      </div>
+          <button mat-icon-button color='warn' (click)="onRemoveCreatureClick()" cdkFocusInitial>
+            <span style='font-size: 1.5em;'>X</span>
+          </button>
+        </div>
       </div>
     </mat-expansion-panel>
   </mat-card>
