@@ -57,7 +57,6 @@ export class CharacterQuickaddComponent implements OnInit {
     this.dialogRef.close();
   }
   onSaveCharacterClick() {
-    console.log(this.characterForm.value)
     if (this.characterForm.valid) {
       this.characterForm.controls.CurrentHP.setValue(this.characterForm.value.MaxHP);
       this.dialogRef.close(this.characterForm.value);

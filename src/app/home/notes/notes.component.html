@@ -1,0 +1,12 @@
+<mat-drawer #sidenav mode="side" style='z-index: 999999'>
+
+<button mat-flat-button mat-button
+  (click)="sidenav.toggle()">X</button>
+  <button mat-flat-button color='primary' mat-button
+  (click)="saveNotes()">Save</button>
+    <ckeditor ([ngModel])='note.Notes' [editor]="Editor"></ckeditor>
+</mat-drawer>
+<textarea ([ngModel])='note.Notes'></textarea>
+<p class='testing'>{{note.Notes}}</p>
+<button mat-flat-button style='position: fixed; z-index: 99999; bottom: 7em; left: 0em;' mat-button
+  (click)="sidenav.toggle()">Notes</button>

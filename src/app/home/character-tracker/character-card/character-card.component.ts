@@ -3,10 +3,11 @@ import { MatCardModule } from '@angular/material/card';
 import { CharacterCard } from 'src/app/_models/charactercard.model';
 import { FormGroup } from '@angular/forms';
 import { CharactercardService } from 'src/app/_services/charactercard.service';
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteConfirmComponent } from 'src/app/admin/dialog/delete-confirm/delete-confirm.component';
 import { DeleteCardConfirmComponent } from './delete-card-confirm/delete-card-confirm.component';
+import { CharacterQuickaddComponent } from '../character-quickadd/character-quickadd.component';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class CharacterCardComponent implements OnInit, OnChanges {
   @Output() deleted = new EventEmitter<CharacterCard>();
   characterModifyForm: FormGroup;
   faTimes = faTimes;
+  faPencil = faPen;
 
 
   constructor(
@@ -45,6 +47,9 @@ export class CharacterCardComponent implements OnInit, OnChanges {
   onUpdateNotes(e: string) {
     this.character.Notes = e;
     this.characterCardService.updateCharacterCard(this.character);
+  }
+  onEditCreatureClick(){
+    const dialogEdit = this.dialog.open(CharacterQuickaddComponent);
   }
 
 }

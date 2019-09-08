@@ -27,6 +27,34 @@
           </div>
         </div>
       </div>
+      <div class="container" *ngIf='character.isHostile'>
+          <div class='row'>
+            <div class="col-2 stat-flex">
+              <label class="stat-label-top">Str</label>
+              <span class="stat-value">{{character.Strength}}</span>
+            </div>
+            <div class="col-2 stat-flex">
+              <label class="stat-label-top">Dex</label>
+              <span class="stat-value">{{character.Dexterity}}</span>
+            </div>
+            <div class="col-2 stat-flex">
+                <label class="stat-label-top">Con</label>
+                <span class=" stat-value">{{character.Constitution}}</span>
+              </div>
+            <div class="col-2 stat-flex">
+              <label class="stat-label-top">Int</label>
+              <span class=" stat-value">{{character.Intelligence}}</span>
+            </div>
+            <div class="col-2 stat-flex">
+                <label class="stat-label-top">Wis</label>
+                <span class="stat-value">{{character.Wisdom}}</span>
+              </div>
+              <div class="col-2 stat-flex">
+                <label class="stat-label-top">Cha</label>
+                <span class="stat-value">{{character.Charisma}}</span>
+              </div>
+          </div>
+        </div>
       <mat-expansion-panel *ngIf='character.isHostile'>
           <mat-expansion-panel-header [collapsedHeight]="'32px'" [expandedHeight]="'32px'">
             <mat-panel-title>
@@ -35,7 +63,7 @@
           </mat-expansion-panel-header>
           <div style='text-align: left'>
             <p *ngFor='let action of character.Actions'>
-              {{action}}
+              <span style='font-weight: bold'>{{action.Name}}</span> <span>{{action.Description}}</span>
             </p>
           </div>
         </mat-expansion-panel>
@@ -53,9 +81,12 @@
             (ngModelChange)="onUpdateNotes($event)">{{character.Notes}}</textarea>
         </mat-form-field>
         <div style='text-align: center;'>
-        <button mat-icon-button color='warn'(click)="onRemoveCreatureClick()" cdkFocusInitial>
+        <button mat-icon-button color='warn'(click)="onRemoveCreatureClick()">
           <span style='font-size: 1.5em;'>X</span>
         </button>
+        <button mat-icon-button color='warn'(click)="onEditCreatureClick()">
+            <span style='font-size: 1.5em;'><fa-icon [icon]='faPen'></fa-icon></span>
+          </button>
       </div>
       </div>
     </mat-expansion-panel>

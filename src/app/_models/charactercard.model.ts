@@ -1,3 +1,5 @@
+import { CreatureAction } from './creatureaction.model';
+
 export class CharacterCard {
     CharacterCardId?: number;
     Name?: string = "";
@@ -9,7 +11,14 @@ export class CharacterCard {
     PPerception?: number = 10;
     PInvestigation?: number = 10;
     PInsight?: number = 10;
+    Strength?: number = 10;
+    Dexterity?: number = 10;
+    Constitution?: number = 10;
+    Intelligence?: number = 10;
+    Wisdom?: number = 10;
+    Charisma?: number = 10;
+
     Notes?: string = "";
     isHostile?: boolean = false;
-    Actions: string[] = [];
+    Actions: CreatureAction[] = [];
 }

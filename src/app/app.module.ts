@@ -33,7 +33,10 @@ import { AuthGuard } from './_guards/auth.guard';
 import { DeleteCardConfirmComponent } from './home/character-tracker/character-card/delete-card-confirm/delete-card-confirm.component';
 import { SessionService } from './_services/session.service';
 import { HelperService } from './_services/helper.service';
+import { NotesService } from './_services/notes.service';
 
+import { TimeCounterComponent } from './home/time-counter/time-counter.component';
+import { NotesComponent } from './home/notes/notes.component';
 
 
 @NgModule({
@@ -54,7 +57,9 @@ import { HelperService } from './_services/helper.service';
     RegisterComponent,
     ScreenLoaderComponent,
     DeleteConfirmComponent,
-    DeleteCardConfirmComponent
+    DeleteCardConfirmComponent,
+    TimeCounterComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +84,8 @@ import { HelperService } from './_services/helper.service';
     CharactercardService,
     AuthGuard,
     SessionService,
-    HelperService
+    HelperService,
+    NotesService
 
   ],
   bootstrap: [AppComponent]

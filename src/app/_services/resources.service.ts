@@ -22,8 +22,8 @@ export class ResourcesService {
     return this.http.post<Resource>(this.baseUrl + '/edit', model);
   }
   deleteResource(id: number) {
-    console.log(id + 'test')
+
+    console.log(id + 'test');
     return this.http.delete<Resource>(this.baseUrl + '/' + id);
   }
-
 }

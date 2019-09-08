@@ -43,18 +43,29 @@ export class ScreenComponent implements OnInit {
     this.ghosts = new Array(10); // setup ghost items
   }
   addResource() {
-    console.log(this.selected);
     // find resource in the resource list, then add this resource to the accountResourceList
     const resourceFound: Resource = this.resourceList.find(res => {
       return res.id === parseInt(this.selected);
     })
+    this.accountResourceList.push(resourceFound);
     this.sessionService.addActiveResourceSheet(resourceFound);
-    this.accountResourceList = this.sessionService.getActiveResourceSheets();
   }
   onDeleted(id: number) {
     this.sessionService.removeActiveResourceSheet(id);
     this.accountResourceList = this.sessionService.getActiveResourceSheets();
     console.log(this.accountResourceList);
+  }
+  addNewResource() {
+    // let newResource: Resource = {};
+    // let randomId = Math.floor((Math.random() * 100) + 1);
+    // newResource.category = 'Notes'+ randomId;
+    // this.resourceService.createNewResource(newResource)
+    // .subscribe(resource => {
+    //   this.accountResourceList.push(resource);
+    //   this.sessionService.addActiveResourceSheet(resource);
+    // }, fail =>{
+    //   this.alertifyService.error('An error has occurred.');
+    // })
   }
 
 }
