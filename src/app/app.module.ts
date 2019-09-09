@@ -1,3 +1,4 @@
+import { CreatureCardService } from 'src/app/_services/creaturecard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,6 @@ import { AlertifyService } from './_services/alertify.service';
 import { ResourcesService } from './_services/resources.service';
 import { CharacterQuickaddComponent } from './home/character-tracker/character-quickadd/character-quickadd.component';
 import { EncounterInitiativeDialogComponent } from './home/character-tracker/encounter-initiative-dialog/encounter-initiative-dialog.component';
-import { CharactercardService } from './_services/charactercard.service';
 import { CreatureEditorComponent } from './admin/creature-list/creature-editor/creature-editor.component';
 import { CreatureListComponent } from './admin/creature-list/creature-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -81,7 +81,7 @@ import { NotesComponent } from './home/notes/notes.component';
   providers: [
     AlertifyService,
     ResourcesService,
-    CharactercardService,
+    CreatureCardService,
     AuthGuard,
     SessionService,
     HelperService,

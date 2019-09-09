@@ -1,39 +1,40 @@
 import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__, OnChanges, SimpleChanges } from '@angular/core';
-import { CharacterService } from 'src/app/_services/character.service';
-import { CharacterCard } from 'src/app/_models/charactercard.model';
+import { CreatureCard } from 'src/app/_models/creaturecard.model';
 import { CharacterQuickaddComponent } from './character-quickadd/character-quickadd.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { EncounterInitiativeDialogComponent } from './encounter-initiative-dialog/encounter-initiative-dialog.component';
-import { CharactercardService } from 'src/app/_services/charactercard.service';
+import { CreatureCardService } from 'src/app/_services/creaturecard.service';
 
 @Component({
-  selector: 'app-character-tracker',
-  templateUrl: './character-tracker.component.html',
-  styleUrls: ['./character-tracker.component.scss']
+  selector: "app-character-tracker",
+  templateUrl: "./character-tracker.component.html",
+  styleUrls: ["./character-tracker.component.scss"]
 })
 export class CharacterTrackerComponent implements OnInit {
-
-  characterCards: CharacterCard[] = [
-  ];
+  creatureCards: CreatureCard[] = [];
   encounterMode = false;
 
-  constructor(private characterService: CharacterService,
+  constructor(
     public dialog: MatDialog,
-    private characterCardService: CharactercardService) { }
+    private characterCardService: CreatureCardService
+  ) {}
 
   ngOnInit() {
-    this.characterCards = this.characterCardService.getCharacterCards();
+    this.creatureCards = this.characterCardService.getCreatureCards();
   }
 
   onAddCreatureClick() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(CharacterQuickaddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(
+      CharacterQuickaddComponent,
+      dialogConfig
+    );
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        this.characterCards = this.characterCardService.getCharacterCards();
+        this.creatureCards = this.characterCardService.getCreatureCards();
       }
     });
   }
@@ -41,25 +42,31 @@ export class CharacterTrackerComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-      dataKey: this.characterCards
-    }
-    const dialogRef = this.dialog.open(EncounterInitiativeDialogComponent, dialogConfig);
+      dataKey: this.creatureCards
+    };
+    const dialogRef = this.dialog.open(
+      EncounterInitiativeDialogComponent,
+      dialogConfig
+    );
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // call the service to re-order the array
         this.characterCardService.sortByInitiative();
-        this.characterCards = this.characterCardService.getCharacterCards();
+        this.creatureCards = this.characterCardService.getCreatureCards();
       }
-    })
-
+    });
   }
 
-  onCharacterDeleted(character: CharacterCard) {
-    this.characterCardService.removeCharacterCard(character);
-    this.characterCards = this.characterCardService.getCharacterCards();
+  onCharacterDeleted(creature: CreatureCard) {
+    this.characterCardService.removeCharacterCard(creature);
+    this.creatureCards = this.characterCardService.getCreatureCards();
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.characterCards, event.previousIndex, event.currentIndex);
+    moveItemInArray(
+      this.creatureCards,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 }

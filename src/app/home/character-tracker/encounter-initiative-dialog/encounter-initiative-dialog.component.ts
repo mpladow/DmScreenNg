@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CharacterCard } from 'src/app/_models/charactercard.model';
+import { CreatureCard } from 'src/app/_models/creaturecard.model';
 import { CharacterQuickaddComponent } from '../character-quickadd/character-quickadd.component';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators, FormGroupName } from '@angular/forms';
-import { CharactercardService } from 'src/app/_services/charactercard.service';
+import { CreatureCardService } from "src/app/_services/creaturecard.service";
 
 @Component({
   selector: 'app-encounter-initiative-dialog',
@@ -12,13 +12,13 @@ import { CharactercardService } from 'src/app/_services/charactercard.service';
 })
 export class EncounterInitiativeDialogComponent implements OnInit {
 
-  characterCards: CharacterCard[] = [];
+  creatureCards: CreatureCard[] = [];
   characterInitiativeForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<EncounterInitiativeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private characterCardService: CharactercardService) {
+    private creatureCardService: CreatureCardService) {
   }
 
   get charactersArray() {
@@ -27,9 +27,9 @@ export class EncounterInitiativeDialogComponent implements OnInit {
 
   ngOnInit() {
     let group = {};
-    this.characterCards = this.data['dataKey'];
-    this.characterCards.forEach(card =>
-      group[card.Name] = new FormControl(card.Initiative)
+    this.creatureCards = this.data["dataKey"];
+    this.creatureCards.forEach(
+      card => (group[card.Name] = new FormControl(card.Initiative))
     );
     this.characterInitiativeForm = new FormGroup(group);
   }
@@ -40,7 +40,9 @@ export class EncounterInitiativeDialogComponent implements OnInit {
 
   onSubmitClick() {
     console.log(this.characterInitiativeForm.value);
-    this.characterCardService.updateInitiativeValues(this.characterInitiativeForm.value);
+    this.creatureCardService.updateInitiativeValues(
+      this.characterInitiativeForm.value
+    );
     this.dialogRef.close();
 
     // add the initiative value to each of the characterCards

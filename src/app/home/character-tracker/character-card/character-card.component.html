@@ -63,7 +63,7 @@
           </mat-expansion-panel-header>
           <div style='text-align: left'>
             <p *ngFor='let action of character.Actions'>
-              <span style='font-weight: bold'>{{action.Name}}</span> <span>{{action.Description}}</span>
+              <span style='font-weight: bold'>{{action.Name}}: </span><span>{{action.Description}}</span>
             </p>
           </div>
         </mat-expansion-panel>
@@ -82,7 +82,7 @@
         </mat-form-field>
         <div style='text-align: center;'>
         <button mat-icon-button color='warn'(click)="onRemoveCreatureClick()">
-          <span style='font-size: 1.5em;'>X</span>
+          <span style='font-size: 1.5em;'><fa-icon [icon]='faTimes'></fa-icon></span>
         </button>
         <button mat-icon-button color='warn'(click)="onEditCreatureClick()">
             <span style='font-size: 1.5em;'><fa-icon [icon]='faPen'></fa-icon></span>

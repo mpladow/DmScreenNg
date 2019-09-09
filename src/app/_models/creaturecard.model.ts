@@ -1,7 +1,7 @@
 import { CreatureAction } from './creatureaction.model';
 
-export class CharacterCard {
-    CharacterCardId?: number;
+export class CreatureCard {
+    CreatureCardId?: number;
     Name?: string = "";
     Level?: number = 0;
     AC?: number = 10;
@@ -20,5 +20,5 @@ export class CharacterCard {
 
     Notes?: string = "";
     isHostile?: boolean = false;
-    Actions: CreatureAction[] = [];
+    Actions?: CreatureAction[] = [];
 }

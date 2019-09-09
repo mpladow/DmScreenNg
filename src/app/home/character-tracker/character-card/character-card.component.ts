@@ -1,45 +1,54 @@
-import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { CharacterCard } from 'src/app/_models/charactercard.model';
-import { FormGroup } from '@angular/forms';
-import { CharactercardService } from 'src/app/_services/charactercard.service';
-import { faPlus, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DeleteConfirmComponent } from 'src/app/admin/dialog/delete-confirm/delete-confirm.component';
-import { DeleteCardConfirmComponent } from './delete-card-confirm/delete-card-confirm.component';
-import { CharacterQuickaddComponent } from '../character-quickadd/character-quickadd.component';
-
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  Output,
+  OnChanges,
+  SimpleChanges
+} from "@angular/core";
+import { MatCardModule } from "@angular/material/card";
+import { CreatureCard } from "src/app/_models/creaturecard.model";
+import { FormGroup } from "@angular/forms";
+import { CreatureCardService } from "src/app/_services/creaturecard.service";
+import { faPlus, faTimes, faPen } from "@fortawesome/free-solid-svg-icons";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { DeleteConfirmComponent } from "src/app/admin/dialog/delete-confirm/delete-confirm.component";
+import { DeleteCardConfirmComponent } from "./delete-card-confirm/delete-card-confirm.component";
+import { CharacterQuickaddComponent } from "../character-quickadd/character-quickadd.component";
 
 @Component({
-  selector: 'app-character-card',
-  templateUrl: './character-card.component.html',
-  styleUrls: ['./character-card.component.scss']
+  selector: "app-character-card",
+  templateUrl: "./character-card.component.html",
+  styleUrls: ["./character-card.component.scss"]
 })
 export class CharacterCardComponent implements OnInit, OnChanges {
-
-  @Input() character: CharacterCard;
-  @Output() deleted = new EventEmitter<CharacterCard>();
+  @Input() character: CreatureCard;
+  @Output() deleted = new EventEmitter<CreatureCard>();
   characterModifyForm: FormGroup;
   faTimes = faTimes;
-  faPencil = faPen;
-
+  faPen = faPen;
 
   constructor(
-    private characterCardService: CharactercardService,
-    private dialog: MatDialog) { }
+    private characterCardService: CreatureCardService,
+    private dialog: MatDialog
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   onRemoveCreatureClick() {
     // tslint:disable-next-line: one-variable-per-declaration
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(DeleteCardConfirmComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe((isDeleted) => {
+    dialogConfig.height = "600px";
+    const dialogRef = this.dialog.open(
+      DeleteCardConfirmComponent,
+      dialogConfig
+    );
+    dialogRef.afterClosed().subscribe(isDeleted => {
       if (isDeleted) {
         this.deleted.emit(this.character);
       }
-    })
+    });
   }
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
@@ -48,8 +57,14 @@ export class CharacterCardComponent implements OnInit, OnChanges {
     this.character.Notes = e;
     this.characterCardService.updateCharacterCard(this.character);
   }
-  onEditCreatureClick(){
-    const dialogEdit = this.dialog.open(CharacterQuickaddComponent);
+  onEditCreatureClick() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      dataKey: this.character
+    };
+    const dialogEdit = this.dialog.open(
+      CharacterQuickaddComponent,
+      dialogConfig
+    );
   }
-
 }
