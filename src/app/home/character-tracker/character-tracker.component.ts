@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CreatureCard } from 'src/app/_models/creaturecard.model';
 import { CharacterQuickaddComponent } from './character-quickadd/character-quickadd.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
