@@ -62,7 +62,7 @@ export class CharacterTrackerComponent implements OnInit {
     });
   }
 
-  onCharacterDeleted(creature: CreatureCard) {
+  onCreatureDeleted(creature: CreatureCard) {
     this.creatureCardService.removeCharacterCard(creature);
     this.creatureCards = this.creatureCardService.getCreatureCards();
   }

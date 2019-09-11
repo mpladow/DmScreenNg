@@ -25,7 +25,7 @@ export class SessionService {
   // this will save the users:
   // Resources, CreatureCards
   // -- future: Notes
-  getCurrentSession(){
+  getCurrentSession() {
     return this.session;
   }
   saveSession() {
@@ -33,23 +33,23 @@ export class SessionService {
   }
   getSession() {
     var sessionInLocalStorage = localStorage.getItem('session');
-    if (sessionInLocalStorage !== null){
+    if (sessionInLocalStorage !== null) {
       this.session = JSON.parse(sessionInLocalStorage);
+    } else {
+      // initialise the arrays
+      this.session.Resources = [];
+      this.session.CreatureCards = [];
     }
     // else, get the most recent session from the database.
-
-    // retrieve the most recent session of the account
-    // save this session object into local storage
-    // call the resources and creaturecard sesrvice and set the arrays appropriately property
   }
-  getCreatureCardsList(){
+  getCreatureCardsList() {
     return this.session.CreatureCards;
   }
   getResourcesList() {
     return this.session.Resources;
   }
-  getAccountId(){
-return this.session.AccountId;
+  getAccountId() {
+    return this.session.AccountId;
   }
   removeCreatureCard(id: number) {
     this.session.CreatureCards = this.session.CreatureCards.filter(r => {
@@ -78,7 +78,7 @@ return this.session.AccountId;
   retrieveSavedActiveResources(id: number) {
     // call the database and retrieve the saved values
   }
-  updateSessionToLocalStorage(){
+  updateSessionToLocalStorage() {
     localStorage.setItem('session', JSON.stringify(this.session));
   }
 }

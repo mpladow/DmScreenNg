@@ -2,7 +2,7 @@
 <div mat-dialog-content>
     <div>
         <div [formGroup]='characterInitiativeForm' class='form-column'>
-            <mat-form-field *ngFor='let card of characterCards'>
+            <mat-form-field *ngFor='let card of creatureCards'>
                 <mat-label>{{card.Name}}</mat-label>
                 <input matInput [formControlName]=card.Name value='{{card.Initiative}}' type="number">
             </mat-form-field>

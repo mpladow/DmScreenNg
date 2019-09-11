@@ -53,7 +53,6 @@ export class CreatureCardService {
       this.creatureCards[index].Initiative = c.Initiative;
     });
     this.sortByInitiative();
-    this.creatureCards = creatureArray;
     this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
 
