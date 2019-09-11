@@ -4,6 +4,8 @@ import { Resource } from './resource.model';
 
 export class Session {
   SessionId?: number = 0;
-  CreatureCard: CreatureCard[] = [];
-  Resource: Resource[] = [];
+  Token: string = '';
+  AccountId: number = 0;
+  CreatureCards: CreatureCard[] = [];
+  Resources: Resource[] = [];
 }

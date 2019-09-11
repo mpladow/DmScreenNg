@@ -2,6 +2,7 @@ import { Injectable, ViewChild } from '@angular/core';
 import { CreatureCard } from "../_models/creaturecard.model";
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: "root"
@@ -9,49 +10,51 @@ import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrie
 export class CreatureCardService {
   creatureCards: CreatureCard[] = [];
   @ViewChild("autosize", { static: false }) autosize: CdkTextareaAutosize;
-  constructor() {}
+  constructor(private sessionService: SessionService) { }
 
+  getCreatureCardsFromSession(){
+    this.creatureCards = this.sessionService.getCreatureCardsList();
+  }
   getCreatureCards() {
     // if local storage has a value, then populate this array wiht the local storage value
-    const creatureCardstorage = localStorage.getItem("creatureCards");
-    if (creatureCardstorage != undefined) {
-      this.creatureCards = JSON.parse(creatureCardstorage);
-    }
+    this.creatureCards = this.sessionService.getCreatureCardsList();
     return this.creatureCards;
   }
-  addCharacterCard(creature: CreatureCard) {
-    // find the highest id of the previous
+  addCreatureCard(creature: CreatureCard) {
+    //add this card to the database, if requested
+    //add this to the session.
     this.creatureCards.push(creature);
-    localStorage.setItem("creatureCards", JSON.stringify(this.creatureCards));
-    // set this array to the session service
+    this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
+
   removeCharacterCard(creature: CreatureCard) {
     this.creatureCards = this.creatureCards.filter(obj => {
       return obj.Name !== creature.Name;
     });
-    localStorage.setItem("creatureCards", JSON.stringify(this.creatureCards));
+    this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
-  updateCharacterCard(characterToUpdate: CreatureCard) {
+  updateCharacterCard(creatureToUpDate: CreatureCard) {
     const index = this.creatureCards.findIndex(
-      obj => obj.Name == characterToUpdate.Name
+      obj => obj.Name == creatureToUpDate.Name
     );
-    // update the array
-    this.creatureCards[index].Notes = characterToUpdate.Notes;
-    localStorage.setItem("creatureCards", JSON.stringify(this.creatureCards));
+    // update the array, currently can only update notes
+    this.creatureCards[index].Notes = creatureToUpDate.Notes;
+    this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
   updateInitiativeValues(charactersToUpdate) {
-    let characterArray = [];
+    let creatureArray = [];
     for (var name in charactersToUpdate) {
-      characterArray.push({ Name: name, Initiative: charactersToUpdate[name] });
+      creatureArray.push({ Name: name, Initiative: charactersToUpdate[name]
+      });
     }
-    console.log(characterArray);
-    characterArray.forEach(c => {
+    creatureArray.forEach(c => {
       //consider changing this to ID in the future
       const index = this.creatureCards.findIndex(obj => obj.Name == c.Name);
       this.creatureCards[index].Initiative = c.Initiative;
     });
     this.sortByInitiative();
-    localStorage.setItem("creatureCards", JSON.stringify(this.creatureCards));
+    this.creatureCards = creatureArray;
+    this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
 
   loadcreatureCardsFromDb() {

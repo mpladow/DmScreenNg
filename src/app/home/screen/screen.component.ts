@@ -24,10 +24,13 @@ export class ScreenComponent implements OnInit {
     private sessionService: SessionService) { }
 
   ngOnInit() {
+    //get data from the session service.
+    this.sessionService.getSession();
+    this.resourceService.getcurrentResourcesFromSession();
     this.reloadList();
-
+    this.accountResourceList = this.sessionService.getResourcesList();
+//get the total resources list from the database to generate the select list
     this.resourceService.getResourcesList().subscribe((data: Resource[]) => {
-      // generate select list
       this.resourceList = data;
       data.forEach(r => {
         const selectListitem = {
@@ -47,13 +50,12 @@ export class ScreenComponent implements OnInit {
     const resourceFound: Resource = this.resourceList.find(res => {
       return res.id === parseInt(this.selected);
     })
-    this.accountResourceList.push(resourceFound);
-    this.sessionService.addActiveResourceSheet(resourceFound);
+    this.resourceService.addSessionResource(resourceFound);
+    this.accountResourceList = this.resourceService.getCurrentResources();
   }
   onDeleted(id: number) {
-    this.sessionService.removeActiveResourceSheet(id);
-    this.accountResourceList = this.sessionService.getActiveResourceSheets();
-    console.log(this.accountResourceList);
+    this.resourceService.removeSessionResource(id);
+    this.accountResourceList = this.resourceService.getCurrentResources();
   }
   addNewResource() {
     // let newResource: Resource = {};

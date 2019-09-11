@@ -5,6 +5,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { EncounterInitiativeDialogComponent } from './encounter-initiative-dialog/encounter-initiative-dialog.component';
 import { CreatureCardService } from 'src/app/_services/creaturecard.service';
+import { SessionService } from 'src/app/_services/session.service';
 
 @Component({
   selector: "app-character-tracker",
@@ -17,11 +18,14 @@ export class CharacterTrackerComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private characterCardService: CreatureCardService
+    private creatureCardService: CreatureCardService,
+    private sessionService: SessionService
   ) {}
 
   ngOnInit() {
-    this.creatureCards = this.characterCardService.getCreatureCards();
+    this.creatureCardService.getCreatureCardsFromSession();
+    this.creatureCards = this.creatureCardService.getCreatureCards();
+    // get a list of all creatures from the database and prepare the dropdown.
   }
 
   onAddCreatureClick() {
@@ -34,7 +38,8 @@ export class CharacterTrackerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        this.creatureCards = this.characterCardService.getCreatureCards();
+        this.creatureCards = this.creatureCardService.getCreatureCards();
+        this.sessionService.updateAllCreatureCards(this.creatureCards);
       }
     });
   }
@@ -51,15 +56,15 @@ export class CharacterTrackerComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // call the service to re-order the array
-        this.characterCardService.sortByInitiative();
-        this.creatureCards = this.characterCardService.getCreatureCards();
+        this.creatureCardService.sortByInitiative();
+        this.creatureCards = this.creatureCardService.getCreatureCards();
       }
     });
   }
 
   onCharacterDeleted(creature: CreatureCard) {
-    this.characterCardService.removeCharacterCard(creature);
-    this.creatureCards = this.characterCardService.getCreatureCards();
+    this.creatureCardService.removeCharacterCard(creature);
+    this.creatureCards = this.creatureCardService.getCreatureCards();
   }
 
   drop(event: CdkDragDrop<string[]>) {

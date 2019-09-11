@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { SessionService } from '../_services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   });
   buttonLoader = false;
   constructor(public authService: AuthService,
-    private alertify: AlertifyService, private router: Router) { }
+    private alertify: AlertifyService, private router: Router, private sessionService: SessionService) { }
 
   ngOnInit() {
   }
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       next => {
         this.buttonLoader = false;
+        this.sessionService.getSession();
         this.router.navigate(['/home']);
         this.alertify.success('Logged in successfully');
       },

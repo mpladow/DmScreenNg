@@ -34,7 +34,7 @@ export class CharacterQuickaddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: CreatureCard,
     private fb: FormBuilder,
     private creatureCardService: CreatureCardService
-  ) {}
+  ) { }
 
   ngOnInit() {
     //get the existing character if editing.
@@ -132,13 +132,10 @@ export class CharacterQuickaddComponent implements OnInit {
         this.characterForm.value.MaxHP
       );
       this.dialogRef.close(this.characterForm.value);
-      this.creatureCardService.addCharacterCard(this.characterForm.value);
-      console.log(this.creatureCardService.getCreatureCards());
-    } else {
-      console.log("invalid");
+      this.creatureCardService.addCreatureCard(this.characterForm.value);
     }
   }
-  onSaveToDbClick() {}
+  onSaveToDbClick() { }
   addNewAction(control) {
     control.push(
       this.fb.group({

@@ -7,66 +7,78 @@ import { HttpClient } from '@angular/common/http';
 import { AlertifyService } from './alertify.service';
 import { AccountResource } from '../_models/accountresource.model';
 import { Session } from '../_models/session.model';
+import { CreatureCardService } from './creaturecard.service';
+import { ResourcesService } from './resources.service';
 
 @Injectable({
   providedIn: "root"
 })
 export class SessionService {
   baseUrl = `${environment.apiUrl}/accountresource`;
-  accountResources: Resource[] = [];
-  accountCreatureCards: CreatureCard[] = [];
   session: Session = new Session();
 
   constructor(
     private http: HttpClient,
     private alertify: AlertifyService,
-    private helper: HelperService
-  ) {}
+    private helper: HelperService,
+  ) { }
   // this will save the users:
   // Resources, CreatureCards
   // -- future: Notes
-  saveSession(){
-    // create a session
-    // save to the database
+  getCurrentSession(){
+    return this.session;
   }
-  getSession(){
+  saveSession() {
+    // set this session to the db
+  }
+  getSession() {
+    var sessionInLocalStorage = localStorage.getItem('session');
+    if (sessionInLocalStorage !== null){
+      this.session = JSON.parse(sessionInLocalStorage);
+    }
+    // else, get the most recent session from the database.
+
     // retrieve the most recent session of the account
     // save this session object into local storage
-  // call the resources and creaturecard sesrvice and set the arrays appropriately property
+    // call the resources and creaturecard sesrvice and set the arrays appropriately property
   }
-  getActiveCharacterCards() {}
-  getActiveResourceSheets() {
-
-    return this.accountResources;
+  getCreatureCardsList(){
+    return this.session.CreatureCards;
   }
-  saveActiveCharacterCards(characterCards: CreatureCard[]) {}
-  saveActiveResourceSheets() {
-    let model: AccountResource = {};
-    model.AccountId = 4; // find out how to get value from jwt
-    model.Resources = this.accountResources;
-    this.http.post(this.baseUrl + "/save", model).subscribe(
-      result => {
-        console.log(result);
-        this.alertify.success("Your resources have been saved!");
-      },
-      fail => {
-        this.alertify.error("Something went wrong");
-      }
-    );
+  getResourcesList() {
+    return this.session.Resources;
   }
-  addActiveResourceSheet(resource: Resource) {
-    this.accountResources.push(resource);
+  getAccountId(){
+return this.session.AccountId;
   }
-  addActiveCharacterCard(characterCard: CreatureCard) {
-    this.accountCreatureCards.push(characterCard);
+  removeCreatureCard(id: number) {
+    this.session.CreatureCards = this.session.CreatureCards.filter(r => {
+      return r.CreatureCardId !== id;
+    });
+    this.updateSessionToLocalStorage();
   }
-  removeActiveResourceSheet(id: number) {
-    console.log(this.accountResources);
-    this.accountResources = this.accountResources.filter(r => {
+  removeResource(id: number) {
+    this.session.Resources = this.session.Resources.filter(r => {
       return r.id !== id;
     });
+    this.updateSessionToLocalStorage();
   }
+
+  updateAllCreatureCards(creatureCards: CreatureCard[]) {
+    this.session.CreatureCards = creatureCards;
+    this.updateSessionToLocalStorage();
+
+  }
+  updateAllResources(resources: Resource[]) {
+    this.session.Resources = resources;
+    this.updateSessionToLocalStorage();
+
+  }
+
   retrieveSavedActiveResources(id: number) {
     // call the database and retrieve the saved values
+  }
+  updateSessionToLocalStorage(){
+    localStorage.setItem('session', JSON.stringify(this.session));
   }
 }
