@@ -28,10 +28,12 @@ export class HomeComponent implements OnInit {
     private session: SessionService) { }
 
   ngOnInit() {
-    //
+    this.session.getSession();
+  this.resourceService.getcurrentResourcesFromSession();
   }
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('session');
     this.alertify.message('logged out');
     this.router.navigate(['/login']);
   }
