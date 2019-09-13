@@ -4,7 +4,7 @@
     (cdkDropListDropped)='drop($event)'
     cdkDropListOrientation="horizontal">
             <app-character-card *ngFor='let card of creatureCards'
-            [character]='card'
+            [creature]='card'
             (deleted)='onCreatureDeleted($event)' cdkDrag cdkDragLockAxis="x">
         </app-character-card>
     </div>

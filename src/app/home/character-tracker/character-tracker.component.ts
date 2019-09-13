@@ -39,8 +39,8 @@ export class CharacterTrackerComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         this.creatureCards = this.creatureCardService.getCreatureCards();
-        this.sessionService.updateAllCreatureCards(this.creatureCards);
       }
+      console.log(this.creatureCards);
     });
   }
   onInitiateEncounterClick() {

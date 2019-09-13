@@ -29,7 +29,7 @@ export class EncounterInitiativeDialogComponent implements OnInit {
     let group = {};
     this.creatureCards = this.data["dataKey"];
     this.creatureCards.forEach(
-      card => (group[card.Name] = new FormControl(card.Initiative))
+      card => (group[card.name] = new FormControl(card.initiative))
     );
     this.characterInitiativeForm = new FormGroup(group);
   }

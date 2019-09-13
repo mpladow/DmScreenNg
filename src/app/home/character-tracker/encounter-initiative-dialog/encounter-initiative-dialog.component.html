@@ -3,8 +3,8 @@
     <div>
         <div [formGroup]='characterInitiativeForm' class='form-column'>
             <mat-form-field *ngFor='let card of creatureCards'>
-                <mat-label>{{card.Name}}</mat-label>
-                <input matInput [formControlName]=card.Name value='{{card.Initiative}}' type="number">
+                <mat-label>{{card.name}}</mat-label>
+                <input matInput [formControlName]=card.name value='{{card.initiative}}' type="number">
             </mat-form-field>
         </div>
     </div>

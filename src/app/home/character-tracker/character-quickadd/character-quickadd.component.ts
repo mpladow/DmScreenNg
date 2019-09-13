@@ -23,7 +23,8 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 export class CharacterQuickaddComponent implements OnInit {
   isHostile: boolean = false;
   private creatureCards: CreatureCard;
-  characterForm: FormGroup;
+  creatureForm: FormGroup;
+  editMode = false;
   // Font Awesome Icons used
   faPlus = faPlus;
   faTimes = faTimes;
@@ -38,54 +39,54 @@ export class CharacterQuickaddComponent implements OnInit {
 
   ngOnInit() {
     //get the existing character if editing.
-    if (this.data !== null) {
+    if (this.editMode) {
       if (this.data["dataKey"] !== null) {
         this.creatureCards = this.data["dataKey"];
-        this.characterForm = this.fb.group({
-          Name: new FormControl(this.creatureCards.Name, [Validators.required]),
-          Level: new FormControl(this.creatureCards.Level),
-          AC: new FormControl(this.creatureCards.AC),
-          MaxHP: new FormControl(this.creatureCards.MaxHP, [
+        this.creatureForm = this.fb.group({
+          Name: new FormControl(this.creatureCards.name, [Validators.required]),
+          Level: new FormControl(this.creatureCards['level']),
+          AC: new FormControl(this.creatureCards.ac),
+          MaxHP: new FormControl(this.creatureCards['maxhp'], [
             Validators.required
           ]),
           CurrentHP: 0,
-          Initiative: new FormControl(this.creatureCards.Initiative, [
+          Initiative: new FormControl(this.creatureCards['initiative'], [
             Validators.required
           ]),
-          PPerception: new FormControl(this.creatureCards.PPerception, [
+          PPerception: new FormControl(this.creatureCards['pPerception'], [
             Validators.required
           ]),
-          PInvestigation: new FormControl(this.creatureCards.PInvestigation, [
+          PInvestigation: new FormControl(this.creatureCards['pInvestigation'], [
             Validators.required
           ]),
-          PInsight: new FormControl(this.creatureCards.PInsight, [
+          PInsight: new FormControl(this.creatureCards['pInsight'], [
             Validators.required
           ]),
-          Strength: new FormControl(this.creatureCards.Strength, [
+          Strength: new FormControl(this.creatureCards['strength'], [
             Validators.required
           ]),
-          Dexterity: new FormControl(this.creatureCards.Dexterity, [
+          Dexterity: new FormControl(this.creatureCards['dexterity'], [
             Validators.required
           ]),
-          Constitution: new FormControl(this.creatureCards.Constitution, [
+          Constitution: new FormControl(this.creatureCards['constitution'], [
             Validators.required
           ]),
-          Wisdom: new FormControl(this.creatureCards.Wisdom, [
+          Wisdom: new FormControl(this.creatureCards['wisdom'], [
             Validators.required
           ]),
-          Intelligence: new FormControl(this.creatureCards.Intelligence, [
+          Intelligence: new FormControl(this.creatureCards['intelligence'], [
             Validators.required
           ]),
-          Charisma: new FormControl(this.creatureCards.Charisma, [
+          Charisma: new FormControl(this.creatureCards['charisma'], [
             Validators.required
           ]),
-          Notes: new FormControl(this.creatureCards.Notes),
+          Notes: new FormControl(this.creatureCards.notes),
           isHostile: new FormControl(this.isHostile),
-          Actions: this.setExistingActions(this.creatureCards.Actions)
+          Actions: this.setExistingActions(this.creatureCards.actions)
         });
       }
     } else {
-      this.characterForm = this.fb.group({
+      this.creatureForm = this.fb.group({
         Name: new FormControl("", [Validators.required]),
         Level: new FormControl(0),
         AC: new FormControl(10),
@@ -109,30 +110,33 @@ export class CharacterQuickaddComponent implements OnInit {
   }
   // form getters
   get actions() {
-    return this.characterForm.get("Actions") as FormArray;
+    return this.creatureForm.get("Actions") as FormArray;
   }
   setExistingActions(x) {
-    let arr = new FormArray([]);
-    x.forEach(y => {
-      arr.push(
-        this.fb.group({
-          Name: y.Name,
-          Description: y.Description
-        })
-      );
-    });
+    const arr = new FormArray([]);
+    if (x !== undefined) {
+
+      x.forEach(y => {
+        arr.push(
+          this.fb.group({
+            Name: y.Name,
+            Description: y.Description
+          })
+        );
+      });
+    }
     return arr;
   }
   onCancelClick() {
     this.dialogRef.close();
   }
   onSaveCharacterClick() {
-    if (this.characterForm.valid) {
-      this.characterForm.controls.CurrentHP.setValue(
-        this.characterForm.value.MaxHP
+    if (this.creatureForm.valid) {
+      this.creatureForm.controls.CurrentHP.setValue(
+        this.creatureForm.value.MaxHP
       );
-      this.dialogRef.close(this.characterForm.value);
-      this.creatureCardService.addCreatureCard(this.characterForm.value);
+      this.dialogRef.close(this.creatureForm.value);
+      this.creatureCardService.addCreatureCard(this.creatureForm.value);
     }
   }
   onSaveToDbClick() { }
@@ -143,7 +147,7 @@ export class CharacterQuickaddComponent implements OnInit {
         Description: [""]
       })
     );
-    console.log(this.characterForm.get("actions"));
+    console.log(this.creatureForm.get("actions"));
   }
   deleteAction(control, index) {
     control.removeAt(index);

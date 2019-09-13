@@ -1,12 +1,12 @@
 <div class="draggable example-box">
-  <mat-card class="character-card" [class.isHostile]='character.isHostile'>
+  <mat-card class="character-card" [class.isHostile]='creature.isHostile'>
     <mat-card-header>
-      <div mat-card-avatar>{{character.Initiative}}</div>
+      <div mat-card-avatar>{{creature.initiative}}</div>
       <mat-card-title cdkDragHandle>
-        {{character.Name}}
+        {{creature.name}}
       </mat-card-title>
       <div class='stat-flex stat-AC'>
-        <span class="stat-value">{{character.AC}}</span>
+        <span class="stat-value">{{creature.ac}}</span>
         <label class="stat-label-bottom">AC</label>
       </div>
     </mat-card-header>
@@ -15,55 +15,55 @@
         <div class='row'>
           <div class="col-4 stat-flex">
             <label class="stat-label-top">Perception</label>
-            <span class="stat-value">{{character.PPerception}}</span>
+            <span class="stat-value">{{creature.pPerception}}</span>
           </div>
           <div class="col-4 stat-flex">
             <label class="stat-label-top">Investigaton</label>
-            <span class="stat-value">{{character.PInvestigation}}</span>
+            <span class="stat-value">{{creature.pInvestigation}}</span>
           </div>
           <div class="col-4 stat-flex">
             <label class="stat-label-top">Insight</label>
-            <span class=" stat-value">{{character.PInsight}}</span>
+            <span class=" stat-value">{{creature.pInsight}}</span>
           </div>
         </div>
       </div>
-      <div class="container" *ngIf='character.isHostile'>
+      <div class="container" *ngIf='creature.isHostile'>
           <div class='row'>
             <div class="col-2 stat-flex">
               <label class="stat-label-top">Str</label>
-              <span class="stat-value">{{character.Strength}}</span>
+              <span class="stat-value">{{creature.strength}}</span>
             </div>
             <div class="col-2 stat-flex">
               <label class="stat-label-top">Dex</label>
-              <span class="stat-value">{{character.Dexterity}}</span>
+              <span class="stat-value">{{creature.dexterity}}</span>
             </div>
             <div class="col-2 stat-flex">
                 <label class="stat-label-top">Con</label>
-                <span class=" stat-value">{{character.Constitution}}</span>
+                <span class=" stat-value">{{creature.constitution}}</span>
               </div>
             <div class="col-2 stat-flex">
               <label class="stat-label-top">Int</label>
-              <span class=" stat-value">{{character.Intelligence}}</span>
+              <span class=" stat-value">{{creature.intelligence}}</span>
             </div>
             <div class="col-2 stat-flex">
                 <label class="stat-label-top">Wis</label>
-                <span class="stat-value">{{character.Wisdom}}</span>
+                <span class="stat-value">{{creature.wisdom}}</span>
               </div>
               <div class="col-2 stat-flex">
                 <label class="stat-label-top">Cha</label>
-                <span class="stat-value">{{character.Charisma}}</span>
+                <span class="stat-value">{{creature.charisma}}</span>
               </div>
           </div>
         </div>
-      <mat-expansion-panel *ngIf='character.isHostile'>
+      <mat-expansion-panel *ngIf='creature.isHostile'>
           <mat-expansion-panel-header [collapsedHeight]="'32px'" [expandedHeight]="'32px'">
             <mat-panel-title>
               Actions
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div style='text-align: left'>
-            <p *ngFor='let action of character.Actions'>
-              <span style='font-weight: bold'>{{action.Name}}: </span><span>{{action.Description}}</span>
+            <p *ngFor='let action of creature.actions'>
+              <span style='font-weight: bold'>{{action.name}}: </span><span>{{action.description}}</span>
             </p>
           </div>
         </mat-expansion-panel>
@@ -77,8 +77,8 @@
       <div class='form-column'>
         <mat-form-field>
           <textarea matInput cdkTextareaAutosize #autosize='cdkTextareaAutosize' cdkAutosizeMinRows='1'
-            placeholder="notes" [(ngModel)]='character.Notes'
-            (ngModelChange)="onUpdateNotes($event)">{{character.Notes}}</textarea>
+            placeholder="notes" [(ngModel)]='creature.Notes'
+            (ngModelChange)="onUpdateNotes($event)">{{creature.notes}}</textarea>
         </mat-form-field>
         <div style='text-align: center;'>
         <button mat-icon-button color='warn'(click)="onRemoveCreatureClick()">

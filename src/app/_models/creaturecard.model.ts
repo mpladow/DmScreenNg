@@ -1,11 +1,11 @@
 import { CreatureAction } from './creatureaction.model';
 
 export class CreatureCard {
-    CreatureCardId?: number;
-    Name?: string = "";
+    creatureCardId?: number;
+    name?: string = "";
     Level?: number = 0;
-    AC?: number = 10;
-    Initiative?: number = 7;
+    ac?: number = 10;
+    initiative?: number = 7;
     CurrentHP?: number = 10;
     MaxHP?: number = 10;
     PPerception?: number = 10;
@@ -15,10 +15,10 @@ export class CreatureCard {
     Dexterity?: number = 10;
     Constitution?: number = 10;
     Intelligence?: number = 10;
-    Wisdom?: number = 10;
-    Charisma?: number = 10;
+    wisdom?: number = 10;
+    charisma?: number = 10;
 
-    Notes?: string = "";
+    notes?: string = "";
     isHostile?: boolean = false;
-    Actions?: CreatureAction[] = [];
+    actions?: CreatureAction[] = [];
 }

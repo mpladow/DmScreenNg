@@ -4,6 +4,13 @@
   <p>This action cannot be undone!</p>
 </div>
 <div mat-dialog-actions>
+  <div class='row'>
+    <div class='col-2'>
+      <mat-checkbox (change)='deleteFromDb = !deleteFromDb'>
+        <mat-label>Remove From Creature Database</mat-label>
+      </mat-checkbox>
+    </div>
+  </div>
   <button mat-flat-button colour='warn' (click)="onDeleteClick()">Delete Resource</button>
   <button mat-button (click)="onCancelClick()" cdkFocusInitial>Cancel</button>
 </div>

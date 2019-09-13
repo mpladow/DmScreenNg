@@ -8,6 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class DeleteCardConfirmComponent implements OnInit {
   isDeleted = false;
+  deleteFromDb = false;
 
   constructor(public dialogRef: MatDialogRef<DeleteCardConfirmComponent>) { }
 

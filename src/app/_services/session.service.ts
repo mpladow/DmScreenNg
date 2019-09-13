@@ -53,7 +53,7 @@ export class SessionService {
   }
   removeCreatureCard(id: number) {
     this.session.CreatureCards = this.session.CreatureCards.filter(r => {
-      return r.CreatureCardId !== id;
+      return r.creatureCardId !== id;
     });
     this.updateSessionToLocalStorage();
   }

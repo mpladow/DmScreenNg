@@ -1,7 +1,7 @@
-<h1 mat-dialog-title>Add Creature</h1>
+<h1 mat-dialog-title>{{editMode ? 'Edit Creature' : 'Create Creature'}}</h1>
 <div mat-dialog-content>
   <div class='container'>
-    <div class="" [formGroup]='characterForm'>
+    <div class="" [formGroup]='creatureForm'>
       <div class='row'>
         <div class='col-10'>
           <mat-form-field appearance="outline">
@@ -147,5 +147,5 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-flat-button color='primary' (click)="onSaveCharacterClick()" cdkFocusInitial>Add Creature</button>
+    <button mat-flat-button color='primary' (click)="onSaveCharacterClick()" cdkFocusInitial><span>{{editMode ? 'Save Changes' : 'Create'}}</span></button>
   </div>

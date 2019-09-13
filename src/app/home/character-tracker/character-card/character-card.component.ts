@@ -23,7 +23,7 @@ import { CharacterQuickaddComponent } from "../character-quickadd/character-quic
   styleUrls: ["./character-card.component.scss"]
 })
 export class CharacterCardComponent implements OnInit, OnChanges {
-  @Input() character: CreatureCard;
+  @Input() creature: CreatureCard;
   @Output() deleted = new EventEmitter<CreatureCard>();
   characterModifyForm: FormGroup;
   faTimes = faTimes;
@@ -39,14 +39,13 @@ export class CharacterCardComponent implements OnInit, OnChanges {
     // tslint:disable-next-line: one-variable-per-declaration
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.height = "600px";
     const dialogRef = this.dialog.open(
       DeleteCardConfirmComponent,
       dialogConfig
     );
     dialogRef.afterClosed().subscribe(isDeleted => {
       if (isDeleted) {
-        this.deleted.emit(this.character);
+        this.deleted.emit(this.creature);
       }
     });
   }
@@ -54,17 +53,18 @@ export class CharacterCardComponent implements OnInit, OnChanges {
     console.log(changes);
   }
   onUpdateNotes(e: string) {
-    this.character.Notes = e;
-    this.characterCardService.updateCharacterCard(this.character);
+    this.creature.notes = e;
+    this.characterCardService.updateCharacterCard(this.creature);
   }
   onEditCreatureClick() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      dataKey: this.character
+      dataKey: this.creature
     };
     const dialogEdit = this.dialog.open(
       CharacterQuickaddComponent,
       dialogConfig
     );
+    dialogEdit.componentInstance.editMode = true;
   }
 }
