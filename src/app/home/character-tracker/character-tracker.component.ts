@@ -40,7 +40,6 @@ export class CharacterTrackerComponent implements OnInit {
       if (result !== undefined) {
         this.creatureCards = this.creatureCardService.getCreatureCards();
       }
-      console.log(this.creatureCards);
     });
   }
   onInitiateEncounterClick() {
@@ -65,6 +64,9 @@ export class CharacterTrackerComponent implements OnInit {
   onCreatureDeleted(creature: CreatureCard) {
     this.creatureCardService.removeCharacterCard(creature);
     this.creatureCards = this.creatureCardService.getCreatureCards();
+  }
+  onCreatureEdited() {
+     this.creatureCards = this.creatureCardService.getCreatureCards();
   }
 
   drop(event: CdkDragDrop<string[]>) {

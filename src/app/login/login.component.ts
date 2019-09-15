@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.buttonLoader = false;
-        this.alertify.error(error.error);
+        this.alertify.error(error);
       }, () => {
       }
     );

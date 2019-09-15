@@ -28,7 +28,6 @@ export class CreatureCardService {
   addCreatureCard(creature: CreatureCard) {
     return this.http.post<CreatureCard>(this.baseUrl + '/edit', creature).subscribe(newCreature => {
       var c: CreatureCard = newCreature;
-      console.log(this.creatureCards);
       this.creatureCards.push(c);
       this.sessionService.updateAllCreatureCards(this.creatureCards);
       this.creatureAdded.emit(c);
@@ -36,15 +35,15 @@ export class CreatureCardService {
   }
   editCreatureCard(creature: CreatureCard) {
     return this.http.post<CreatureCard>(this.baseUrl + '/edit', creature).subscribe(editedCreature => {
-      var c: CreatureCard = editedCreature;
-      var creatureToEditInArray = new CreatureCard();
       // find the creature in the array and edit this one.
+
       this.creatureCards.forEach((cc, i) => {
-        if(cc.creatureCardId == c.creatureCardId)
-        this.creatureCards[i] = creature;
+        if (cc.creatureCardId == editedCreature.creatureCardId)
+          this.creatureCards[i] = editedCreature;
       });
       this.sessionService.updateAllCreatureCards(this.creatureCards);
-      this.creatureAdded.emit(c);
+      this.creatureAdded.emit(editedCreature);
+      console.log(this.creatureCards);
     });
   }
 getCreatureAddedEmitter(){
@@ -56,7 +55,7 @@ getCreatureAddedEmitter(){
     });
     this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
-  updateCharacterCard(creatureToUpDate: CreatureCard) {
+  updateCreatureCardNotes(creatureToUpDate: CreatureCard) {
     const index = this.creatureCards.findIndex(
       obj => obj.creatureCardId == creatureToUpDate.creatureCardId
     );

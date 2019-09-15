@@ -22,9 +22,10 @@ import { CharacterQuickaddComponent } from "../character-quickadd/character-quic
   templateUrl: "./character-card.component.html",
   styleUrls: ["./character-card.component.scss"]
 })
-export class CharacterCardComponent implements OnInit, OnChanges {
+export class CharacterCardComponent implements OnInit {
   @Input() creature: CreatureCard;
   @Output() deleted = new EventEmitter<CreatureCard>();
+  @Output() edited = new EventEmitter<CreatureCard>();
   characterModifyForm: FormGroup;
   faTimes = faTimes;
   faPen = faPen;
@@ -49,12 +50,9 @@ export class CharacterCardComponent implements OnInit, OnChanges {
       }
     });
   }
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-  }
   onUpdateNotes(e: string) {
     this.creature.notes = e;
-    this.characterCardService.updateCharacterCard(this.creature);
+    this.characterCardService.updateCreatureCardNotes(this.creature);
   }
   onEditCreatureClick() {
     const dialogConfig = new MatDialogConfig();
@@ -66,5 +64,11 @@ export class CharacterCardComponent implements OnInit, OnChanges {
       dialogConfig
     );
     dialogEdit.componentInstance.editMode = true;
+    dialogEdit.afterClosed().subscribe(isEdited => {
+      if (isEdited) {
+        this.edited.emit(this.creature);
+        console.log(this.creature);
+      }
+    });
   }
 }

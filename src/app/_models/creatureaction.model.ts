@@ -1,5 +1,5 @@
 export interface CreatureAction {
-  ActionId?: number;
-  Name?: number;
-  Description?: string;
+  actionId?: number;
+  name?: number;
+  description?: string;
 }

@@ -77,7 +77,7 @@
       <div class='form-column'>
         <mat-form-field>
           <textarea matInput cdkTextareaAutosize #autosize='cdkTextareaAutosize' cdkAutosizeMinRows='1'
-            placeholder="notes" [(ngModel)]='creature.Notes'
+            placeholder="notes" [(ngModel)]='creature.notes'
             (ngModelChange)="onUpdateNotes($event)">{{creature.notes}}</textarea>
         </mat-form-field>
         <div style='text-align: center;'>

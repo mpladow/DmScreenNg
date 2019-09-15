@@ -1,4 +1,4 @@
-import { CreatureCard } from './../../../_models/creaturecard.model';
+import { CreatureCard } from "./../../../_models/creaturecard.model";
 import { Component, OnInit, Inject } from "@angular/core";
 import {
   MatDialogRef,
@@ -35,7 +35,7 @@ export class CharacterQuickaddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: CreatureCard,
     private fb: FormBuilder,
     private creatureCardservice: CreatureCardService
-  ) { }
+  ) {}
 
   ngOnInit() {
     //get the existing character if editing.
@@ -45,40 +45,37 @@ export class CharacterQuickaddComponent implements OnInit {
         this.creatureForm = this.fb.group({
           CreatureCardId: new FormControl(this.creatureCard.creatureCardId),
           Name: new FormControl(this.creatureCard.name, [Validators.required]),
-          Level: new FormControl(this.creatureCard['level']),
+          Level: new FormControl(this.creatureCard["level"]),
           AC: new FormControl(this.creatureCard.ac),
-          MaxHP: new FormControl(this.creatureCard['maxhp'], [
+          MaxHP: new FormControl(this.creatureCard["maxHP"]),
+          Initiative: new FormControl(this.creatureCard["initiative"], [
             Validators.required
           ]),
-          CurrentHP: 0,
-          Initiative: new FormControl(this.creatureCard['initiative'], [
+          PPerception: new FormControl(this.creatureCard["pPerception"], [
             Validators.required
           ]),
-          PPerception: new FormControl(this.creatureCard['pPerception'], [
+          PInvestigation: new FormControl(this.creatureCard["pInvestigation"], [
             Validators.required
           ]),
-          PInvestigation: new FormControl(this.creatureCard['pInvestigation'], [
+          PInsight: new FormControl(this.creatureCard["pInsight"], [
             Validators.required
           ]),
-          PInsight: new FormControl(this.creatureCard['pInsight'], [
+          Strength: new FormControl(this.creatureCard["strength"], [
             Validators.required
           ]),
-          Strength: new FormControl(this.creatureCard['strength'], [
+          Dexterity: new FormControl(this.creatureCard["dexterity"], [
             Validators.required
           ]),
-          Dexterity: new FormControl(this.creatureCard['dexterity'], [
+          Constitution: new FormControl(this.creatureCard["constitution"], [
             Validators.required
           ]),
-          Constitution: new FormControl(this.creatureCard['constitution'], [
+          Wisdom: new FormControl(this.creatureCard["wisdom"], [
             Validators.required
           ]),
-          Wisdom: new FormControl(this.creatureCard['wisdom'], [
+          Intelligence: new FormControl(this.creatureCard["intelligence"], [
             Validators.required
           ]),
-          Intelligence: new FormControl(this.creatureCard['intelligence'], [
-            Validators.required
-          ]),
-          Charisma: new FormControl(this.creatureCard['charisma'], [
+          Charisma: new FormControl(this.creatureCard["charisma"], [
             Validators.required
           ]),
           Notes: new FormControl(this.creatureCard.notes),
@@ -117,7 +114,6 @@ export class CharacterQuickaddComponent implements OnInit {
   setExistingActions(x) {
     const arr = new FormArray([]);
     if (x !== undefined) {
-
       x.forEach(y => {
         arr.push(
           this.fb.group({
@@ -133,11 +129,11 @@ export class CharacterQuickaddComponent implements OnInit {
     this.dialogRef.close();
   }
   onSaveCharacterClick() {
+    console.log(this.creatureForm);
     if (this.editMode) {
+      this.dialogRef.close(this.creatureForm.value);
       this.creatureCardservice.editCreatureCard(this.creatureForm.value);
-
     } else {
-
       if (this.creatureForm.valid) {
         this.creatureForm.controls.CurrentHP.setValue(
           this.creatureForm.value.MaxHP
@@ -147,7 +143,7 @@ export class CharacterQuickaddComponent implements OnInit {
       }
     }
   }
-  onSaveToDbClick() { }
+  onSaveToDbClick() {}
   addNewAction(control) {
     control.push(
       this.fb.group({

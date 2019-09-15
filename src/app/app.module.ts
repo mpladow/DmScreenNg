@@ -1,3 +1,4 @@
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { CreatureCardService } from 'src/app/_services/creaturecard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -73,11 +74,12 @@ import { NotesComponent } from './home/notes/notes.component';
     ReactiveFormsModule,
     FontAwesomeModule
   ],
-  entryComponents: [CharacterQuickaddComponent,
-  EncounterInitiativeDialogComponent,
-  DeleteConfirmComponent,
-  DeleteCardConfirmComponent
-],
+  entryComponents: [
+    CharacterQuickaddComponent,
+    EncounterInitiativeDialogComponent,
+    DeleteConfirmComponent,
+    DeleteCardConfirmComponent
+  ],
   providers: [
     AlertifyService,
     ResourcesService,
@@ -85,9 +87,9 @@ import { NotesComponent } from './home/notes/notes.component';
     AuthGuard,
     SessionService,
     HelperService,
-    NotesService
-
+    NotesService,
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
