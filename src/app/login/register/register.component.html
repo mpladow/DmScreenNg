@@ -1,7 +1,7 @@
 <div class='container mt-5'>
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Register</mat-card-title>
+      <mat-card-title class='mat-h1'>Register</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class='form-column' [formGroup]="accountForm">
@@ -19,9 +19,11 @@
         <mat-form-field>
           <input matInput formControlName='Password' placeholder='Password' type="password">
         </mat-form-field>
-        <button mat-flat-button color='primary' (click)='onRegisterClick()'>Register</button>
-        <button mat-button type="button" (click)=cancel()>Cancel</button>
       </div>
     </mat-card-content>
+    <div class='buttons-component column'>
+      <button mat-flat-button color='primary' (click)='onRegisterClick()'>Register</button>
+      <button mat-button type="button" (click)=cancel()>Cancel</button>
+    </div>
   </mat-card>
 </div>

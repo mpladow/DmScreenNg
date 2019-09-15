@@ -1,3 +1,4 @@
+
 .form-column {
   display: flex;
   flex-direction: column;
@@ -7,6 +8,12 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  &.column{
+    flex-direction: column;
+  }
+  &.row {
+    flex-direction: row;
+  }
   button {
     margin-bottom: 1em;
     width: 75%;

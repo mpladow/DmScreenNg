@@ -1,0 +1,38 @@
+@import "~@angular/material/theming";
+
+$primary-typography: mat-typography-config(
+  $font-family: '"Roboto", sans-serif'
+);
+$secondary-typography: mat-typography-config(
+  $font-family: '"Roboto Condensed", sans-serif',
+  $body-1: mat-typography-level(14px, 24px, 700)
+);
+
+@include mat-core();
+$custom-theme-primary: mat-palette($mat-red, 900);
+$custom-theme-accent: mat-palette($mat-pink, A200, A100, A400);
+$custom-theme-warn: mat-palette($mat-red);
+$custom-theme: mat-light-theme(
+  $custom-theme-primary,
+  $custom-theme-accent,
+  $custom-theme-warn
+);
+@include angular-material-theme($custom-theme);
+
+@include mat-base-typography($secondary-typography);
+
+body {
+  font-family: mat-font-family($primary-typography);
+}
+.mat-h1,
+.mat-h2,
+.mat-h3,
+.mat-h4 {
+  font-family: mat-font-family($secondary-typography);
+  font-weight: bold;
+}
+button {
+  &.mat-primary {
+    text-transform: uppercase;
+  }
+}

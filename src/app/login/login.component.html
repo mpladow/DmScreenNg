@@ -1,51 +1,40 @@
-<div class='container mt-5 w-75'>
+<div class='container-fluid w-75' style='height: 100vh; display: flex; align-items: center; justify-content: center'>
   <div class='row'>
-    <!-- <mat-card *ngIf='!registerMode'>
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-      <mat-card-subtitle>For DM's only!</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <img mat-card-image src='assets/images/dndampersand.png'>
-      <form class='form-column' [formGroup]='loginForm'>
-        <mat-form-field style='margin-top: 2em;'>
-          <input matInput placeholder='Email' formControlName='Email' type="email">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder='Password' formControlName='Password' type="password">
-        </mat-form-field>
-        <div class='buttons-component'>
-        <div *ngIf='!buttonLoader'>
-          <button mat-flat-button color='primary' (click)='onLoginClick()'>Login</button>
-          <button mat-button (click)='activateRegisterMode()'>Register</button>
-        </div>
-          <mat-spinner *ngIf='buttonLoader'></mat-spinner>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card> -->
-    <div class='col-6'>
-      <img style='width: 90%' src='assets/images/dndampersand.png'>
+
+    <div class='col-6 login-logo' style='position: relative'>
+      <img style='width: 90%; opacity: 0.2' src='assets/images/dndampersand.png'>
+      <div class='title'>
+        <h1 class='mat-h1 mat-display-1 mb-0'>DM Screen 5th Edition</h1>
+        <p style='text-align: right'>v1.0.0</p>
+      </div>
     </div>
     <div class='col-6 align-self-center' *ngIf='!registerMode'>
-      <form class='form-column' [formGroup]='loginForm'>
-        <mat-form-field style='margin-top: 2em;'>
-          <input matInput placeholder='Email' formControlName='Email' type="email">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder='Password' formControlName='Password' type="password">
-        </mat-form-field>
-        <div class='buttons-component'>
-          <div *ngIf='!buttonLoader'>
-            <button mat-flat-button color='primary' (click)='onLoginClick()'>Login</button>
-            <button mat-button (click)='activateRegisterMode()'>Register</button>
-          </div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title><h1 class='mat-h1'>Sign In</h1></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form class='form-column' [formGroup]='loginForm'>
+            <mat-form-field style='margin-top: 2em;'>
+              <input matInput placeholder='Email' formControlName='Email' type="email">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder='Password' formControlName='Password' type="password">
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+        <div class='buttons-component column'>
+          <ng-container *ngIf='!buttonLoader'>
+              <button mat-flat-button color='primary' (click)='onLoginClick()'>Login</button>
+              <button mat-button (click)='activateRegisterMode()'>Register</button>
+          </ng-container>
           <mat-spinner *ngIf='buttonLoader'></mat-spinner>
         </div>
-      </form>
+      </mat-card>
+    </div>
+    <div *ngIf='registerMode' class='col-6'>
+      <app-register (cancelRegister)='cancelRegisterMode($event)'></app-register>
     </div>
   </div>
-  <div *ngIf='registerMode'>
-    <app-register (cancelRegister)='cancelRegisterMode($event)'></app-register>
-  </div>
+
 </div>
