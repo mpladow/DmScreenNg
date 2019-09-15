@@ -1,5 +1,5 @@
-<h1 mat-dialog-title>Roll for initiative...</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title class='mat-h1'>Roll for initiative...</h1>
+<mat-dialog-content>
     <div>
         <div [formGroup]='characterInitiativeForm' class='form-column'>
             <mat-form-field *ngFor='let card of creatureCards'>
@@ -8,8 +8,8 @@
             </mat-form-field>
         </div>
     </div>
-</div>
-<div mat-dialog-actions>
+</mat-dialog-content>
+<mat-dialog-actions>
     <button mat-button (click)="onCancelClick()">Cancel</button>
     <button mat-flat-button cdkFocusInitial color='primary' (click)='onSubmitClick()'>Begin Encounter!</button>
-</div>
+</mat-dialog-actions>

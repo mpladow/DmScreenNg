@@ -6,7 +6,7 @@
             <app-character-card *ngFor='let card of creatureCards'
             [creature]='card'
             (deleted)='onCreatureDeleted($event)'
-            (edited)='onCreatureEdited($event)'
+            (edited)='onCreatureEdited()'
             cdkDrag
             cdkDragLockAxis="x">
         </app-character-card>

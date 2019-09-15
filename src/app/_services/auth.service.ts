@@ -21,12 +21,12 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/login`, model)
     .pipe(
       map((response: any) =>  {
-        const session = response;
-        this.session.session = session;
+        const session: Session = response;
         if (session !== null) {
-          localStorage.setItem('token', session.token);
-          this.decodedToken = this.jwtHelper.decodeToken(session.token);
-          this.session.session.AccountId = this.decodedToken.nameid;
+          this.decodedToken = this.jwtHelper.decodeToken(response.token);
+          session.accountId = this.decodedToken.nameid;
+          localStorage.setItem("session", JSON.stringify(session));
+          localStorage.setItem("token", response.token);
         }
       })
     )

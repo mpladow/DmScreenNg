@@ -34,8 +34,9 @@ export class ScreenComponent implements OnInit {
       this.resourceList = data;
       data.forEach(r => {
         const selectListitem = {
-          value: r.id, viewValue: r.category
-        }
+          value: r.resourceId,
+          viewValue: r.category
+        };
         this.selectResourceItems.push(selectListitem);
       });
       this.ghosts = [];
@@ -48,7 +49,7 @@ export class ScreenComponent implements OnInit {
   addResource() {
     // find resource in the resource list, then add this resource to the accountResourceList
     const resourceFound: Resource = this.resourceList.find(res => {
-      return res.id === parseInt(this.selected);
+      return res.resourceId === parseInt(this.selected);
     })
     this.resourceService.addSessionResource(resourceFound);
     this.accountResourceList = this.resourceService.getCurrentResources();

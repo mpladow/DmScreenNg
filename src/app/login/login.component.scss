@@ -16,9 +16,13 @@
 }
 .login-logo{
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .title{
     position: absolute;
     top: 60%;
-    left: 50%;
+  }
+  img{
   }
 }

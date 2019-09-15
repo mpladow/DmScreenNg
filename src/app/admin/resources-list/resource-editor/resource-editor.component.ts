@@ -36,7 +36,7 @@ export class ResourceEditorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.resource.id = 0;
+    this.resource.resourceId = 0;
     this.resource.html = "";
     this.resource.category = "";
     this.route.params.subscribe(params => {
@@ -46,7 +46,7 @@ export class ResourceEditorComponent implements OnInit {
     if (this.id > 0) {
       this.resourceService.getResource(this.id).subscribe(data => {
         this.resource = data;
-        this.resourceForm.controls['Id'].setValue(data.id);
+        this.resourceForm.controls["Id"].setValue(data.resourceId);
         this.resourceForm.controls['Category'].setValue(data.category);
         this.resourceForm.controls['Html'].setValue(data.html);
       });
@@ -55,7 +55,10 @@ export class ResourceEditorComponent implements OnInit {
   }
   onSubmit() {
     this.isLoading = true;
-    this.resource.id = +this.resourceForm.value['Id'] !== null ? +this.resourceForm.value['Id'] : 0;
+    this.resource.resourceId =
+      +this.resourceForm.value["Id"] !== null
+        ? +this.resourceForm.value["Id"]
+        : 0;
     this.resource.category = this.resourceForm.value['Category'];
     this.resource.html = this.resourceForm.value['Html'];
     this.resourceService.createNewResource(this.resource)

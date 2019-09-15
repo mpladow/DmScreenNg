@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   this.resourceService.getcurrentResourcesFromSession();
   }
   logout() {
+    this.session.saveSession();
     localStorage.removeItem('token');
     localStorage.removeItem('session');
     this.alertify.message('logged out');

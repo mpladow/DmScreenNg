@@ -39,7 +39,7 @@ export class ResourcesService {
   }
   removeSessionResource(id){
     this.resourceslist = this.resourceslist.filter(obj => {
-      return obj.id !== id;
+      return obj.resourceId !== id;
     });
     this.session.updateAllResources(this.resourceslist);
   }

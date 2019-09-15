@@ -5,7 +5,7 @@
       <img style='width: 90%; opacity: 0.2' src='assets/images/dndampersand.png'>
       <div class='title'>
         <h1 class='mat-h1 mat-display-1 mb-0'>DM Screen 5th Edition</h1>
-        <p style='text-align: right'>v1.0.0</p>
+        <p style='font-size: 0.8em; color: #808080; text-align: right'>v1.0.0</p>
       </div>
     </div>
     <div class='col-6 align-self-center' *ngIf='!registerMode'>
@@ -25,14 +25,14 @@
         </mat-card-content>
         <div class='buttons-component column'>
           <ng-container *ngIf='!buttonLoader'>
-              <button mat-flat-button color='primary' (click)='onLoginClick()'>Login</button>
+              <button mat-flat-button color='primary' (click)='onLoginClick()' cdkFocusInitial>Login</button>
               <button mat-button (click)='activateRegisterMode()'>Register</button>
           </ng-container>
           <mat-spinner *ngIf='buttonLoader'></mat-spinner>
         </div>
       </mat-card>
     </div>
-    <div *ngIf='registerMode' class='col-6'>
+    <div *ngIf='registerMode' class='col-6 align-self-center'>
       <app-register (cancelRegister)='cancelRegisterMode($event)'></app-register>
     </div>
   </div>

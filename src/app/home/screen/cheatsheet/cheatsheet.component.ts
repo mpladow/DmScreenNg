@@ -18,7 +18,7 @@ export class CheatsheetComponent implements OnInit {
   ngOnInit() {
   }
   deleteCheatsheet() {
-    this.cheatsheetDeleted.emit(this.Resource.id);
-    console.log(this.Resource.id);
+    this.cheatsheetDeleted.emit(this.Resource.resourceId);
+    console.log(this.Resource.resourceId);
   }
 }
