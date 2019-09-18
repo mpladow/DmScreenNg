@@ -59,9 +59,7 @@ import { NotesComponent } from './home/notes/notes.component';
     ScreenLoaderComponent,
     DeleteConfirmComponent,
     DeleteCardConfirmComponent,
-    TimeCounterComponent,
-    NotesComponent
-  ],
+    TimeCounterComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -87,7 +85,6 @@ import { NotesComponent } from './home/notes/notes.component';
     AuthGuard,
     SessionService,
     HelperService,
-    NotesService,
     ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]

@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.session.getSession();
-  this.resourceService.getcurrentResourcesFromSession();
   }
   logout() {
     this.session.saveSession();

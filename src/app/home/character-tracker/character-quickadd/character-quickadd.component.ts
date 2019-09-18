@@ -131,15 +131,15 @@ export class CharacterQuickaddComponent implements OnInit {
   onSaveCharacterClick() {
     console.log(this.creatureForm);
     if (this.editMode) {
-      this.dialogRef.close(this.creatureForm.value);
       this.creatureCardservice.editCreatureCard(this.creatureForm.value);
+      this.dialogRef.close(this.creatureForm.value);
     } else {
       if (this.creatureForm.valid) {
         this.creatureForm.controls.CurrentHP.setValue(
           this.creatureForm.value.MaxHP
         );
-        this.dialogRef.close(this.creatureForm.value);
         this.creatureCardservice.addCreatureCard(this.creatureForm.value);
+        this.dialogRef.close(this.creatureForm.value);
       }
     }
   }

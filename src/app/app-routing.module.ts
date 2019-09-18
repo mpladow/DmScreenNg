@@ -19,7 +19,6 @@ const routes: Routes = [
       { path: 'resources-list', component: ResourcesListComponent },
       { path: 'resource/:id', component: ResourceEditorComponent },
       { path: 'resource', component: ResourceEditorComponent }
-
     ]
   },
 

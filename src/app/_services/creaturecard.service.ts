@@ -1,39 +1,46 @@
-import { Injectable, ViewChild,EventEmitter } from '@angular/core';
+import { Injectable, ViewChild, EventEmitter, OnInit, Inject, forwardRef, Injector } from '@angular/core';
 import { CreatureCard } from "../_models/creaturecard.model";
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { SessionService } from './session.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: "root"
 })
-export class CreatureCardService {
+export class CreatureCardService implements OnInit {
   creatureCards: CreatureCard[] = [];
   creatureAdded: EventEmitter<CreatureCard> = new EventEmitter();
   baseUrl = environment.apiUrl + '/creaturecards';
+  _creatureCardsSource = new BehaviorSubject<CreatureCard[]>(this.creatureCards);
+  creatureCards$ = this._creatureCardsSource.asObservable();
 
   @ViewChild("autosize", { static: false }) autosize: CdkTextareaAutosize;
-  constructor(private sessionService: SessionService, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
+  ngOnInit() {
+  }
   getCreatureCardsFromSession() {
-    this.creatureCards = this.sessionService.getCreatureCardsList();
+    this._creatureCardsSource.next(this.creatureCards);
+
   }
   getCreatureCards() {
     // if local storage has a value, then populate this array wiht the local storage value
-    this.creatureCards = this.sessionService.getCreatureCardsList();
     return this.creatureCards;
   }
   addCreatureCard(creature: CreatureCard) {
     return this.http.post<CreatureCard>(this.baseUrl + '/edit', creature).subscribe(newCreature => {
       var c: CreatureCard = newCreature;
       this.creatureCards.push(c);
-      this.sessionService.updateAllCreatureCards(this.creatureCards);
       this.creatureAdded.emit(c);
+      this._creatureCardsSource.next(this.creatureCards);
+      // this.sessionService.updateAllCreatureCards(this.creatureCards);
     });
   }
   editCreatureCard(creature: CreatureCard) {
+    console.log(creature);
     return this.http.post<CreatureCard>(this.baseUrl + '/edit', creature).subscribe(editedCreature => {
       // find the creature in the array and edit this one.
 
@@ -41,19 +48,20 @@ export class CreatureCardService {
         if (cc.creatureCardId == editedCreature.creatureCardId)
           this.creatureCards[i] = editedCreature;
       });
-      this.sessionService.updateAllCreatureCards(this.creatureCards);
+      // this.sessionService.updateAllCreatureCards(this.creatureCards);
       this.creatureAdded.emit(editedCreature);
-      console.log(this.creatureCards);
+      this._creatureCardsSource.next(this.creatureCards);
     });
   }
-getCreatureAddedEmitter(){
-  return this.creatureAdded;
-}
+  getCreatureAddedEmitter() {
+    return this.creatureAdded;
+  }
   removeCharacterCard(creature: CreatureCard) {
     this.creatureCards = this.creatureCards.filter(obj => {
       return obj.creatureCardId !== creature.creatureCardId;
     });
-    this.sessionService.updateAllCreatureCards(this.creatureCards);
+    this._creatureCardsSource.next(this.creatureCards);
+    // this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
   updateCreatureCardNotes(creatureToUpDate: CreatureCard) {
     const index = this.creatureCards.findIndex(
@@ -61,7 +69,8 @@ getCreatureAddedEmitter(){
     );
     // update the array, currently can only update notes
     this.creatureCards[index].notes = creatureToUpDate.notes;
-    this.sessionService.updateAllCreatureCards(this.creatureCards);
+    this._creatureCardsSource.next(this.creatureCards);
+    // this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
   updateInitiativeValues(charactersToUpdate) {
     let creatureArray = [];
@@ -76,7 +85,8 @@ getCreatureAddedEmitter(){
       this.creatureCards[index].initiative = c.initiative;
     });
     this.sortByInitiative();
-    this.sessionService.updateAllCreatureCards(this.creatureCards);
+    this._creatureCardsSource.next(this.creatureCards);
+    // this.sessionService.updateAllCreatureCards(this.creatureCards);
   }
 
   loadcreatureCardsFromDb() {

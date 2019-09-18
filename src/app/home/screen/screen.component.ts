@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Resource } from 'src/app/_models/resource.model';
 import { ResourcesService } from 'src/app/_services/resources.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -10,7 +10,7 @@ import { SessionService } from 'src/app/_services/session.service';
   templateUrl: './screen.component.html',
   styleUrls: ['./screen.component.scss']
 })
-export class ScreenComponent implements OnInit {
+export class ScreenComponent implements OnInit, OnDestroy {
 
   selectResourceItems = [];
   selected = '';
@@ -18,18 +18,26 @@ export class ScreenComponent implements OnInit {
   accountResourceList: Resource[] = [];
   ghosts = [];
   faPlus = faPlus;
+  subscription;
 
   constructor(private resourceService: ResourcesService,
     private alertifyService: AlertifyService,
     private sessionService: SessionService) { }
 
   ngOnInit() {
+    this.subscription = this.resourceService.resourcesListSource.subscribe(rl => {
+      //on changs to the service, update the current list
+      this.accountResourceList = rl;
+      //push these changes to the session
+      this.sessionService.updateAllResources(this.accountResourceList);
+
+    })
+    this.resourceService.getCurrentResources();
+
     //get data from the session service.
-    this.sessionService.getSession();
-    this.resourceService.getcurrentResourcesFromSession();
+    // this.sessionService.getSession();
     this.reloadList();
-    this.accountResourceList = this.sessionService.getResourcesList();
-//get the total resources list from the database to generate the select list
+    // this.accountResourceList = this.sessionService.getResourcesList();
     this.resourceService.getResourcesList().subscribe((data: Resource[]) => {
       this.resourceList = data;
       data.forEach(r => {
@@ -43,6 +51,9 @@ export class ScreenComponent implements OnInit {
     }, error => this.alertifyService.error('Error'));
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
   reloadList() {
     this.ghosts = new Array(10); // setup ghost items
   }
@@ -52,11 +63,10 @@ export class ScreenComponent implements OnInit {
       return res.resourceId === parseInt(this.selected);
     })
     this.resourceService.addSessionResource(resourceFound);
-    this.accountResourceList = this.resourceService.getCurrentResources();
+
   }
   onDeleted(id: number) {
     this.resourceService.removeSessionResource(id);
-    this.accountResourceList = this.resourceService.getCurrentResources();
   }
   addNewResource() {
     // let newResource: Resource = {};
