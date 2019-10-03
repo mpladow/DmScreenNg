@@ -4,12 +4,12 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-register-box',
+  templateUrl: './register-box.component.html',
+  styleUrls: ['./register-box.component.scss']
 })
-export class RegisterComponent implements OnInit {
-  @Output() cancelRegister = new EventEmitter();
+export class RegisterBoxComponent implements OnInit {
+  @Output() registerMode:EventEmitter<boolean> = new EventEmitter();
 
   accountForm = new FormGroup({
     Email: new FormControl('', Validators.required),
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     console.log(this.accountForm.value)
     this.authService.register(this.accountForm.value)
     .subscribe(() => {
-      this.cancelRegister.emit(false);
+      this.registerMode.emit(false);
       this.alertify.success('Registration Successful');
     }, error => {
       this.alertify.error(error.error);
@@ -40,6 +40,6 @@ export class RegisterComponent implements OnInit {
   }
 
   cancel() {
-    this.cancelRegister.emit(false);
+    this.registerMode.emit(false);
   }
 }

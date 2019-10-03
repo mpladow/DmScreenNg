@@ -27,7 +27,7 @@ import { CreatureEditorComponent } from './admin/creature-list/creature-editor/c
 import { CreatureListComponent } from './admin/creature-list/creature-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './login/register/register.component';
+import { RegisterBoxComponent } from './login/register-box/register-box.component';
 import { ScreenLoaderComponent } from './home/screen/cheatsheet-loader/screen-loader.component';
 import { DeleteConfirmComponent } from './admin/dialog/delete-confirm/delete-confirm.component';
 import { AuthGuard } from './_guards/auth.guard';
@@ -38,6 +38,7 @@ import { NotesService } from './_services/notes.service';
 
 import { TimeCounterComponent } from './home/time-counter/time-counter.component';
 import { NotesComponent } from './home/notes/notes.component';
+import { LoginBoxComponent } from './login/login-box/login-box.component';
 
 
 @NgModule({
@@ -55,11 +56,12 @@ import { NotesComponent } from './home/notes/notes.component';
     CreatureEditorComponent,
     CreatureListComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterBoxComponent,
     ScreenLoaderComponent,
     DeleteConfirmComponent,
     DeleteCardConfirmComponent,
-    TimeCounterComponent  ],
+    TimeCounterComponent,
+    LoginBoxComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

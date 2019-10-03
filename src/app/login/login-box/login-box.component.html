@@ -1,0 +1,24 @@
+<div class='container'>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title><h1 class='mat-h1'>Sign In</h1></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class='form-column' [formGroup]='loginForm'>
+        <mat-form-field style='margin-top: 2em;'>
+          <input matInput placeholder='Email' formControlName='Email' type="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder='Password' formControlName='Password' type="password">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <div class='buttons-component column'>
+      <ng-container *ngIf='!buttonLoader'>
+          <button mat-flat-button color='primary' (click)='onLoginClick()' cdkFocusInitial>Login</button>
+          <button mat-button (click)='activateRegisterMode()'>Register</button>
+      </ng-container>
+      <mat-spinner *ngIf='buttonLoader'></mat-spinner>
+    </div>
+  </mat-card>
+<div>
