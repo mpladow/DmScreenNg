@@ -7,6 +7,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -72,7 +74,8 @@ import { LoginBoxComponent } from './login/login-box/login-box.component';
     CKEditorModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FlexLayoutModule
   ],
   entryComponents: [
     CharacterQuickaddComponent,

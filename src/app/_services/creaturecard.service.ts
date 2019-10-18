@@ -36,7 +36,6 @@ export class CreatureCardService implements OnInit {
       this.creatureCards.push(c);
       this.creatureAdded.emit(c);
       this._creatureCardsSource.next(this.creatureCards);
-      // this.sessionService.updateAllCreatureCards(this.creatureCards);
     });
   }
   editCreatureCard(creature: CreatureCard) {

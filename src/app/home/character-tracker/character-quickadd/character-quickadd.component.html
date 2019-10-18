@@ -1,154 +1,289 @@
-  <h1 mat-dialog-title class='mat-h1'>{{editMode ? 'Edit Creature' : 'Create Creature'}}</h1>
-  <mat-dialog-content>
-    <div class='container'>
-      <div class="" [formGroup]='creatureForm'>
-        <div class='row'>
-          <input type='hidden' formControlName='CreatureCardId'>
-          <div class='col-10'>
-            <mat-form-field appearance="outline">
-              <mat-label>Character Name</mat-label>
-              <input matInput formControlName='Name' placeholder="input">
-            </mat-form-field>
-          </div>
-          <div class='col-2'>
-            <mat-checkbox (change)='isHostile = !isHostile' formControlName='isHostile'>
-              <mat-label>Is Hostile</mat-label>
-            </mat-checkbox>
-          </div>
-        </div>
-        <div class='row'>
-          <div class='col-4'>
-            <mat-form-field appearance="outline">
-              <mat-label>Initiative</mat-label>
-              <input matInput formControlName='Initiative'>
-            </mat-form-field>
-          </div>
-          <div class='col-4'>
-            <mat-form-field appearance="outline">
-              <mat-label>AC</mat-label>
-              <input matInput formControlName='AC'>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class='row'>
-          <div class='col-4'>
-            <mat-form-field appearance="outline">
-              <mat-label>Passive Perception</mat-label>
-              <input matInput formControlName='PPerception'>
-            </mat-form-field>
-          </div>
-          <div class='col-4'>
-            <mat-form-field appearance="outline">
-              <mat-label>Passive Investigation</mat-label>
-              <input matInput formControlName='PInvestigation'>
-            </mat-form-field>
-          </div>
-          <div class='col-4'>
-            <mat-form-field appearance="outline">
-              <mat-label>Passive Insight</mat-label>
-              <input matInput formControlName='PInsight'>
-            </mat-form-field>
-          </div>
-        </div>
-        <div *ngIf="this.isHostile">
-          <mat-form-field appearance="outline">
-            <mat-label>HP</mat-label>
-            <input matInput formControlName='MaxHP'>
-          </mat-form-field>
-          <div class='row'>
-            <div class='col-2'>
-              <mat-form-field appearance="outline">
-                <mat-label>Str</mat-label>
-                <input matInput formControlName='Strength'>
-              </mat-form-field>
-            </div>
-            <div class='col-2'>
-              <mat-form-field appearance="outline">
-                <mat-label>Dex</mat-label>
-                <input matInput formControlName='Dexterity'>
-              </mat-form-field>
-            </div>
+<!-- <h1 mat-dialog-title class='mat-h1'>{{editMode ? 'Edit Creature' : 'Create Creature'}}</h1>
+<mat-dialog-content>
+  <div class='container' [formGroup]='creatureForm'>
 
-            <div class='col-2'>
-              <mat-form-field appearance="outline">
-                <mat-label>Con</mat-label>
-                <input matInput formControlName='Constitution'>
-              </mat-form-field>
-            </div>
-
-            <div class='col-2'>
-              <mat-form-field appearance="outline">
-                <mat-label>Wis</mat-label>
-                <input matInput formControlName='Wisdom'>
-              </mat-form-field>
-            </div>
-
-            <div class='col-2'>
-              <mat-form-field appearance="outline">
-                <mat-label>Int</mat-label>
-                <input matInput formControlName='Intelligence'>
-              </mat-form-field>
-            </div>
-            <div class='col-2'>
-              <mat-form-field appearance="outline">
-                <mat-label>Cha</mat-label>
-                <input matInput formControlName='Charisma'>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class='row'>
-            <div class='col-12'>
-              <mat-form-field appearance="outline">
-                <mat-label>Notes</mat-label>
-                <input matInput formControlName='Notes'>
-              </mat-form-field>
-            </div>
-          </div>
-          <ng-container *ngIf='this.isHostile' formArrayName='Actions'>
-            <div class='row'>
-              <div class='col-12'>
-                <mat-label>Actions</mat-label>
-                <button class='ml-2' mat-icon-button (click)='addNewAction(actions)' color='primary'>
-                  Add Action
-                  <fa-icon class='ml-1' [icon]='faPlus'></fa-icon>
-                </button>
-              </div>
-            </div>
-            <ng-container *ngFor='let action of actions.controls; let i=index'>
-              <div class='row align-items-center' [formGroupName]='i'>
-                <div class='col-2'>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Name</mat-label>
-                    <input matInput formControlName='Name'>
-                  </mat-form-field>
-                </div>
-                <div class='col-9'>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Description</mat-label>
-                    <textarea matInput formControlName='Description'></textarea>
-                  </mat-form-field>
-                </div>
-                <div class='col-1'>
-                  <button class='mb-1' mat-icon-button (click)='deleteAction(actions,i)' color='primary'>
-                    <fa-icon [icon]='faTimes'></fa-icon>
-                  </button>
-                </div>
-              </div>
-            </ng-container>
-          </ng-container>
-        </div>
-        <div class='row'>
-          <div class='col-2'>
-            <mat-checkbox (change)='saveToDb = !saveToDb'>
-              <mat-label>Save to Database</mat-label>
-            </mat-checkbox>
-          </div>
-        </div>
+    <div class='row'>
+      <input type='hidden' formControlName='CreatureCardId'>
+      <div class='col-10'>
+        <mat-form-field appearance="outline">
+          <mat-label>Character Name</mat-label>
+          <input matInput formControlName='Name' placeholder="input">
+        </mat-form-field>
+      </div>
+      <div class='col-2'>
+        <mat-checkbox (change)='isHostile = !isHostile' formControlName='isHostile'>
+          <mat-label>Is Hostile</mat-label>
+        </mat-checkbox>
       </div>
     </div>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-flat-button color='primary' [disabled]="creatureForm.invalid" (click)="onSaveCharacterClick()"
-      cdkFocusInitial><span>{{editMode ? 'Save Changes' : 'Create'}}</span></button>
-  </mat-dialog-actions>
+    <div class='row'>
+      <div class='col-4'>
+        <mat-form-field appearance="outline">
+          <mat-label>Initiative</mat-label>
+          <input matInput formControlName='Initiative'>
+        </mat-form-field>
+      </div>
+      <div class='col-4'>
+        <mat-form-field appearance="outline">
+          <mat-label>AC</mat-label>
+          <input matInput formControlName='AC'>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-4'>
+        <mat-form-field appearance="outline">
+          <mat-label>Passive Perception</mat-label>
+          <input matInput formControlName='PPerception'>
+        </mat-form-field>
+      </div>
+      <div class='col-4'>
+        <mat-form-field appearance="outline">
+          <mat-label>Passive Investigation</mat-label>
+          <input matInput formControlName='PInvestigation'>
+        </mat-form-field>
+      </div>
+      <div class='col-4'>
+        <mat-form-field appearance="outline">
+          <mat-label>Passive Insight</mat-label>
+          <input matInput formControlName='PInsight'>
+        </mat-form-field>
+      </div>
+    </div>
+    <ng-container *ngIf="this.isHostile">
+      <mat-form-field appearance="outline">
+        <mat-label>HP</mat-label>
+        <input matInput formControlName='MaxHP'>
+      </mat-form-field>
+      <div class='row'>
+        <div class='col-2'>
+          <mat-form-field appearance="outline">
+            <mat-label>Str</mat-label>
+            <input matInput formControlName='Strength'>
+          </mat-form-field>
+        </div>
+        <div class='col-2'>
+          <mat-form-field appearance="outline">
+            <mat-label>Dex</mat-label>
+            <input matInput formControlName='Dexterity'>
+          </mat-form-field>
+        </div>
+
+        <div class='col-2'>
+          <mat-form-field appearance="outline">
+            <mat-label>Con</mat-label>
+            <input matInput formControlName='Constitution'>
+          </mat-form-field>
+        </div>
+
+        <div class='col-2'>
+          <mat-form-field appearance="outline">
+            <mat-label>Wis</mat-label>
+            <input matInput formControlName='Wisdom'>
+          </mat-form-field>
+        </div>
+
+        <div class='col-2'>
+          <mat-form-field appearance="outline">
+            <mat-label>Int</mat-label>
+            <input matInput formControlName='Intelligence'>
+          </mat-form-field>
+        </div>
+        <div class='col-2'>
+          <mat-form-field appearance="outline">
+            <mat-label>Cha</mat-label>
+            <input matInput formControlName='Charisma'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12'>
+          <mat-form-field appearance="outline">
+            <mat-label>Notes</mat-label>
+            <input matInput formControlName='Notes'>
+          </mat-form-field>
+        </div>
+      </div>
+      <ng-container *ngIf='this.isHostile' formArrayName='Actions'>
+        <div class='row'>
+          <div class='col-12'>
+            <mat-label>Actions</mat-label>
+            <button class='ml-2' mat-icon-button (click)='addNewAction(actions)' color='primary'>
+              Add Action
+              <fa-icon class='ml-1' [icon]='faPlus'></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class='row align-items-center' [formGroupName]='i' *ngFor='let action of actions.controls; let i=index'>
+          <div class='col-2'>
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName='Name'>
+            </mat-form-field>
+          </div>
+          <div class='col-9'>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName='Description'></textarea>
+            </mat-form-field>
+          </div>
+          <div class='col-1'>
+            <button class='mb-1' mat-icon-button (click)='deleteAction(actions,i)' color='primary'>
+              <fa-icon [icon]='faTimes'></fa-icon>
+            </button>
+          </div>
+        </div>
+
+      </ng-container>
+    </ng-container>
+    <div class='row'>
+      <div class='col-2'>
+        <mat-checkbox (change)='saveToDb = !saveToDb'>
+          <mat-label>Save to Database</mat-label>
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-flat-button color='primary' [disabled]="creatureForm.invalid" (click)="onSaveCharacterClick()"
+    cdkFocusInitial><span>{{editMode ? 'Save Changes' : 'Create'}}</span></button>
+</mat-dialog-actions> -->
+
+<h1 mat-dialog-title class='mat-h1'>{{editMode ? 'Edit Creature' : 'Create Creature'}}</h1>
+<mat-dialog-content>
+  <div class='' [formGroup]='creatureForm'>
+    <input type='hidden' formControlName='CreatureCardId'>
+    <div fxLayout='row' fxLayoutGap='1em'>
+      <mat-form-field fxFlex='70%' appearance="outline" flex>
+        <mat-label>Character Name</mat-label>
+        <input matInput formControlName='Name' placeholder="input">
+      </mat-form-field>
+      <mat-checkbox fxFlex='30%' (change)='isHostile = !isHostile' formControlName='isHostile' flex>
+        <mat-label class='checkboxMonster'><img style='width:20px; margin-left: .5em;'
+            src='../../../../assets/icons/i-swords.svg'></mat-label>
+      </mat-checkbox>
+
+    </div>
+
+    <div fxLayout='row' fxLayoutGap='1em'>
+      <mat-form-field appearance="outline" fxFlex='50%'>
+        <mat-label>Initiative</mat-label>
+        <input matInput formControlName='Initiative'>
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex='50%'>
+        <mat-label>AC</mat-label>
+        <input matInput formControlName='AC'>
+      </mat-form-field>
+
+    </div>
+    <div fxLayout='row' fxLayoutGap='1em'>
+      <mat-form-field appearance="outline" fxFlex='33%'>
+        <mat-label>Passive Perception</mat-label>
+        <input matInput formControlName='PPerception'>
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex='33%'>
+        <mat-label>Passive Investigation</mat-label>
+        <input matInput formControlName='PInvestigation'>
+      </mat-form-field>
+      <mat-form-field appearance="outline" fxFlex='33%'>
+        <mat-label>Passive Insight</mat-label>
+        <input matInput formControlName='PInsight'>
+      </mat-form-field>
+    </div>
+    <div *ngIf="this.isHostile">
+      <mat-form-field appearance="outline">
+        <mat-label>HP</mat-label>
+        <input matInput formControlName='MaxHP'>
+      </mat-form-field>
+      <div class=''>
+        <div class=''>
+          <mat-form-field appearance="outline">
+            <mat-label>Str</mat-label>
+            <input matInput formControlName='Strength'>
+          </mat-form-field>
+        </div>
+        <div class=''>
+          <mat-form-field appearance="outline">
+            <mat-label>Dex</mat-label>
+            <input matInput formControlName='Dexterity'>
+          </mat-form-field>
+        </div>
+
+        <div class=''>
+          <mat-form-field appearance="outline">
+            <mat-label>Con</mat-label>
+            <input matInput formControlName='Constitution'>
+          </mat-form-field>
+        </div>
+
+        <div class=''>
+          <mat-form-field appearance="outline">
+            <mat-label>Wis</mat-label>
+            <input matInput formControlName='Wisdom'>
+          </mat-form-field>
+        </div>
+
+        <div class=''>
+          <mat-form-field appearance="outline">
+            <mat-label>Int</mat-label>
+            <input matInput formControlName='Intelligence'>
+          </mat-form-field>
+        </div>
+        <div class=''>
+          <mat-form-field appearance="outline">
+            <mat-label>Cha</mat-label>
+            <input matInput formControlName='Charisma'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class=''>
+        <div class=''>
+          <mat-form-field appearance="outline">
+            <mat-label>Notes</mat-label>
+            <input matInput formControlName='Notes'>
+          </mat-form-field>
+        </div>
+      </div>
+      <div *ngIf='this.isHostile' formArrayName='Actions'>
+        <mat-label>Actions</mat-label>
+
+        <div class='align-items-center' [formGroupName]='i' *ngFor='let action of actions.controls; let i=index'
+          fxLayout='row' fxLayoutGap='1em'>
+
+          <mat-form-field appearance="outline" fxFlex='20%'>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName='Name'>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline" fxFlex='70%'>
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName='Description'></textarea>
+          </mat-form-field>
+
+          <button class='mb-1' mat-icon-button (click)='deleteAction(actions,i)' color='primary' fxFlex='10%'>
+            <fa-icon [icon]='faTimes'></fa-icon>
+          </button>
+        </div>
+      </div>
+      <button class='ml-2' mat-icon-button (click)='addNewAction(actions)' color='primary'>
+        Add Action
+        <fa-icon class='ml-1' [icon]='faPlus'></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- <div>
+    <mat-checkbox (change)='saveToDb = !saveToDb'>
+      <mat-label>Save to Database</mat-label>
+    </mat-checkbox>
+  </div> -->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-flat-button color='primary' [disabled]="creatureForm.invalid" (click)="onSaveCharacterClick()"
+    cdkFocusInitial><span>{{editMode ? 'Save Changes' : 'Create'}}</span></button>
+</mat-dialog-actions>

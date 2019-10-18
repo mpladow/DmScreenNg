@@ -69,8 +69,8 @@ export class CharacterTrackerComponent implements OnInit, OnDestroy {
   onCreatureDeleted(creature: CreatureCard) {
     this.creatureCardService.removeCharacterCard(creature);
     // this.creatureCards = this.creatureCardService.getCreatureCards();
-    this.sessionService.updateAllCreatureCards(this.creatureCards);
     this.creatureCards = this.creatureCardService.getCreatureCards();
+    this.sessionService.updateAllCreatureCards(this.creatureCards);
 
 
   }

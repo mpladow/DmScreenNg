@@ -42,7 +42,8 @@ export class LoginBoxComponent implements OnInit {
       },
       error => {
         this.buttonLoader = false;
-        this.alertify.error(error);
+        if (error.status == 401)
+        this.alertify.error("Your username/password is incorrect.");
       }, () => {
       }
     );
