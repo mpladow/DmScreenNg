@@ -13,16 +13,22 @@ import { PageScrollService, PageScrollInstance } from "ngx-page-scroll-core";
   templateUrl: "./manual.component.html",
   styleUrls: ["./manual.component.scss"]
 })
-export class ManualComponent {
+export class ManualComponent implements OnInit {
   @ViewChild("container", { static: false }) private container: ElementRef;
 
   constructor(
     private pageScrollService: PageScrollService,
     @Inject(DOCUMENT) private document: any
   ) {}
-
+ ngOnInit(){
+    // this.pageScrollService.scroll({
+    //   document: this.document,
+    //   scrollTarget: ".theEnd"
+    // });
+ }
   public scrollToSection(el: HTMLElement) {
-    el.scrollIntoView();
+    // el.scrollIntoView();
+
   }
   // if the position of the top of a heading is less than the position of the top of container
   // then set the active class to the heading of the next section heading.

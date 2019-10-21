@@ -3,13 +3,13 @@
   <div class="framed">
     <div class="table-column-left">
       <ul class="contents-table sticky">
-        <li><a (click)="scrollToSection(section_one)" class='active'>Section One</a></li>
-        <li><a (click)="scrollToSection(section_two)">Section Two</a></li>
+        <li><a pageScroll href='#section_one' (click)="scrollToSection(section_one)" class='active'>Section One</a></li>
+        <li><a pageScroll href='#section_two' (click)="scrollToSection(section_two)">Section Two</a></li>
       </ul>
     </div>
 
     <div class="table-column-right">
-      <div #section_one>
+      <div #section_one id='section_one'>
         <h1>Section One</h1>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at velit diam. Class aptent taciti sociosqu ad
         litora
@@ -97,7 +97,7 @@
         dolor. Cras eleifend arcu vitae laoreet interdum.
       </div>
 
-      <div #section_two>
+      <div #section_two id='section_two'>
         <h1>Section Two</h1>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at velit diam. Class aptent taciti sociosqu ad
         litora
