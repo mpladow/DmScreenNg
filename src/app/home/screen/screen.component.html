@@ -1,4 +1,11 @@
-<div class="fixed-bottom">
+<mat-tab-group>
+  <mat-tab label="Cheatsheet">
+    <app-manual></app-manual>
+  </mat-tab>
+  <mat-tab label="Notes"> Content 2 </mat-tab>
+  <mat-tab label="Maps"> Content 3 </mat-tab>
+</mat-tab-group>
+<!-- <div class="fixed-bottom">
   <div class="overflow-row">
     <app-cheatsheet style='position: relative' *ngFor="let resource of accountResourceList;" [Resource]=resource (cheatsheetDeleted)='onDeleted($event)'></app-cheatsheet>
     <app-screen-loader *ngFor='let ghost of ghosts'></app-screen-loader>
@@ -13,8 +20,7 @@
             </mat-select>
           </mat-form-field>
           <button mat-button color='primary' (click)='addResource()'>Add</button>
-
       </div>
     </div>
   </div>
-</div>
+</div> -->

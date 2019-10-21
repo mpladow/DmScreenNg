@@ -9,8 +9,6 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -41,6 +39,8 @@ import { NotesService } from './_services/notes.service';
 import { TimeCounterComponent } from './home/time-counter/time-counter.component';
 import { NotesComponent } from './home/notes/notes.component';
 import { LoginBoxComponent } from './login/login-box/login-box.component';
+import { ManualComponent } from './home/screen/manual/manual.component';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 
 
 @NgModule({
@@ -63,7 +63,9 @@ import { LoginBoxComponent } from './login/login-box/login-box.component';
     DeleteConfirmComponent,
     DeleteCardConfirmComponent,
     TimeCounterComponent,
-    LoginBoxComponent  ],
+    LoginBoxComponent,
+    ManualComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -75,8 +77,9 @@ import { LoginBoxComponent } from './login/login-box/login-box.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    FlexLayoutModule
-  ],
+    FlexLayoutModule,
+    NgxPageScrollCoreModule
+    ],
   entryComponents: [
     CharacterQuickaddComponent,
     EncounterInitiativeDialogComponent,

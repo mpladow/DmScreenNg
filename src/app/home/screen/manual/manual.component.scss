@@ -1,0 +1,62 @@
+.contents-table {
+  // Do not use margin here. It will be overwritten.
+  position: absolute; // <-- must have.
+  padding: 2rem;
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  flex-direction: column;
+    display: flex;
+    li{
+      cursor: pointer;
+    }
+    a{
+
+      &.active{
+        background-color: #000000;
+        color: #fff;
+      }
+    }
+
+  &.sticky {
+    position: fixed; // <-- must have.
+  }
+  a {
+    border-radius: 4px;
+    display: block;
+    padding: 0.3rem 0.6rem;
+    color: #444;
+    text-decoration: none;
+    &.active {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+
+.table-column-left {
+ width: 20%;
+ position: fixed;
+}
+.table-column-right {
+width: 80%;
+margin-left: 20%;
+}
+
+// .framed makes the text scrollable.
+// If you already have a scrollable container, that is not a requirement.
+.framed {
+  position: relative;
+  overflow-y: auto;
+  border: 1px solid #e2e2e2;
+  border-radius: 2px;
+  padding: 25px;
+  width: 50%;
+
+}
+.columnify{
+  height: 80vh;
+    display: flex;
+  flex-direction: row;
+  flex-basis: 50%;
+}
