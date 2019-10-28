@@ -27,7 +27,7 @@ export class ManualComponent implements OnInit {
     // });
  }
   public scrollToSection(el: HTMLElement) {
-    // el.scrollIntoView();
+    el.scrollIntoView();
 
   }
   // if the position of the top of a heading is less than the position of the top of container

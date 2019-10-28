@@ -41,6 +41,8 @@ import { NotesComponent } from './home/notes/notes.component';
 import { LoginBoxComponent } from './login/login-box/login-box.component';
 import { ManualComponent } from './home/screen/manual/manual.component';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { ManualListComponent } from './admin/manual-list/manual-list.component';
+import { ManualEditorComponent } from './admin/manual-list/manual-editor/manual-editor.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
     DeleteCardConfirmComponent,
     TimeCounterComponent,
     LoginBoxComponent,
-    ManualComponent
+    ManualComponent,
+    ManualListComponent,
+    ManualEditorComponent
   ],
   imports: [
     BrowserModule,

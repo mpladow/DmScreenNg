@@ -1,3 +1,5 @@
+import { ManualEditorComponent } from './admin/manual-list/manual-editor/manual-editor.component';
+import { ManualListComponent } from './admin/manual-list/manual-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -9,21 +11,23 @@ import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    runGuardsAndResolvers: 'always',
+    path: "",
+    runGuardsAndResolvers: "always",
     canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: HomeComponent },
-      { path: '', component: HomeComponent },
-      { path: 'resources-list', component: ResourcesListComponent },
-      { path: 'resource/:id', component: ResourceEditorComponent },
-      { path: 'resource', component: ResourceEditorComponent }
+      { path: "home", component: HomeComponent },
+      { path: "", component: HomeComponent },
+      { path: "resources-list", component: ResourcesListComponent },
+      { path: "resource/:id", component: ResourceEditorComponent },
+      { path: "resource", component: ResourceEditorComponent },
+      { path: "manual-list", component: ManualListComponent },
+      { path: "manual/:id", component: ManualEditorComponent },
+      { path: "manual", component: ManualEditorComponent }
     ]
   },
 
-  { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
-
+  { path: "login", component: LoginComponent },
+  { path: "**", redirectTo: "", pathMatch: "full" }
 ];
 
 @NgModule({
