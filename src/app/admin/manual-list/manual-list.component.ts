@@ -27,7 +27,7 @@ export class ManualListComponent implements OnInit {
   }
   onEditClick(e) {
     console.log(e);
-    this.router.navigate([`/manual/${e.id}`]);
+    this.router.navigate([`/manual/${e.manualItemId}`]);
   }
   onDeleteClick(e) {
     const dialogConfig = new MatDialogConfig();

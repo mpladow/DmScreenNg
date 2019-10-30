@@ -1,0 +1,16 @@
+.mat-card {
+    margin: 12px;
+  }
+  .form-vertical {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    form {
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .ck-content .ck-editor__editable  {
+    margin: 0 auto;
+  }

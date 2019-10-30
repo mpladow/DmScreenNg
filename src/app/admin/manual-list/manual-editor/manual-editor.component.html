@@ -1,1 +1,39 @@
-<p>manual-editor works!</p>
+<div class="container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class='mat-h1'>{{this.manualId >= 0? 'Edit': 'New'}} Manual Item</mat-card-title>
+        <mat-card-subtitle>Enter the details of your Manual panel.</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="form-vertical">
+          <form [formGroup]="manualItemForm">
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="Category">
+                  <mat-option *ngFor="let category of categories" [value]="category">
+                    {{category}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Subcategory" formControlName="SubCategory">
+              </mat-form-field>
+            <label class="form-label">Content</label>
+            <ckeditor [editor]="Editor" formControlName="Html" [config]="
+                      { height: '400px'}"></ckeditor>
+            <div class=form-vertical>
+            </div>
+          </form>
+          <div class='buttons-component'>
+            <div *ngIf='!isLoading'>
+              <button mat-raised-button color="primary" (click)='onSubmit()'>Save</button>
+              <button mat-button color="primary">Clear</button>
+              <button (click)="onReturnClick()" mat-button>Back to Manual list</button>
+            </div>
+            <mat-spinner *ngIf='isLoading'></mat-spinner>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
