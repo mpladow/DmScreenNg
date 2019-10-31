@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ResourcesService } from 'src/app/_services/resources.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { CreatureCardService } from 'src/app/_services/creaturecard.service';
+import { CreatureAction } from 'src/app/_models/creatureaction.model';
 
 
 @Component({
@@ -22,43 +23,43 @@ export class CreatureEditorComponent implements OnInit {
   public Editor = ClassicEditor;
   public creature: CreatureCard = {};
   creatureForm = new FormGroup({
-    CreatureCardId: new FormControl(this.creature.creatureCardId),
-    Name: new FormControl(this.creature.name, [Validators.required]),
-    Level: new FormControl(this.creature["level"]),
-    AC: new FormControl(this.creature.ac),
-    MaxHP: new FormControl(this.creature["maxHP"]),
-    Initiative: new FormControl(this.creature["initiative"], [
+    CreatureCardId: new FormControl(''),
+    Name: new FormControl('', [Validators.required]),
+    Level: new FormControl(''),
+    AC: new FormControl(''),
+    MaxHP: new FormControl(''),
+    Initiative: new FormControl('', [
       Validators.required
     ]),
-    PPerception: new FormControl(this.creature["pPerception"], [
+    PPerception: new FormControl('', [
       Validators.required
     ]),
-    PInvestigation: new FormControl(this.creature["pInvestigation"], [
+    PInvestigation: new FormControl('', [
       Validators.required
     ]),
-    PInsight: new FormControl(this.creature["pInsight"], [
+    PInsight: new FormControl('', [
       Validators.required
     ]),
-    Strength: new FormControl(this.creature["strength"], [
+    Strength: new FormControl('', [
       Validators.required
     ]),
-    Dexterity: new FormControl(this.creature["dexterity"], [
+    Dexterity: new FormControl('', [
       Validators.required
     ]),
-    Constitution: new FormControl(this.creature["constitution"], [
+    Constitution: new FormControl('', [
       Validators.required
     ]),
-    Wisdom: new FormControl(this.creature["wisdom"], [
+    Wisdom: new FormControl('', [
       Validators.required
     ]),
-    Intelligence: new FormControl(this.creature["intelligence"], [
+    Intelligence: new FormControl('', [
       Validators.required
     ]),
-    Charisma: new FormControl(this.creature["charisma"], [
+    Charisma: new FormControl('', [
       Validators.required
     ]),
-    Notes: new FormControl(this.creature.notes),
-    isHostile: new FormControl(this.creature.isHostile),
+    Notes: new FormControl(''),
+    isHostile: new FormControl(''),
     Actions: new FormArray([])
 
   });
@@ -74,13 +75,13 @@ export class CreatureEditorComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe(params => {
-      this.creatureForm.value['creatureCardId'] = params['creatureCardId'] > 0 ? params['creatureCardId'] : 0;
-      this.id = params['creatureCardId'];
+      this.creatureForm.value['creatureCardId'] = params['id'] > 0 ? params['id'] : 0;
+      this.id = params['id'];
     });
     if (this.id > 0) {
       this.creatureCardService.getCard(this.id).subscribe(data => {
         this.creature = data;
-        this.creatureForm.controls["Id"].setValue(data.creatureCardId);
+        this.creatureForm.controls["CreatureCardId"].setValue(data.creatureCardId);
         this.creatureForm.controls['Name'].setValue(data.name);
         this.creatureForm.controls['AC'].setValue(data.ac);
         this.creatureForm.controls['MaxHP'].setValue(data.ac);
@@ -97,7 +98,7 @@ export class CreatureEditorComponent implements OnInit {
         this.creatureForm.controls['Charisma'].setValue(data.charisma);
         this.creatureForm.controls['Notes'].setValue(data.notes);
         this.creatureForm.controls['isHostile'].setValue(data.isHostile);
-        this.creatureForm.controls['Actions'] = this._setExistingActions(data.actions);
+        this.creatureForm.controls['Actions'].setValue(this._setExistingActions(data.actions));
       });
     }
 
@@ -116,14 +117,14 @@ export class CreatureEditorComponent implements OnInit {
   onResourceListClick() {
     this.router.navigate([`/creature-list`]);
   }
-  _setExistingActions(x) {
+  _setExistingActions(x:CreatureAction[]) {
     const arr = new FormArray([]);
-    if (x !== undefined) {
+    if (x !== undefined || x !== null || x.length !== 0) {
       x.forEach(y => {
         arr.push(
           this.fb.group({
-            Name: y.Name,
-            Description: y.Description
+            Name: y.name,
+            Description: y.description
           })
         );
       });

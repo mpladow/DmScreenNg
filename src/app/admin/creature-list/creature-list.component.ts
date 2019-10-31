@@ -42,8 +42,6 @@ export class CreatureListComponent implements OnInit {
       if (isDeleted) {
         this.onRefresh();
         this.alertify.success('You have deleted this creature');
-      } else {
-        this.alertify.error('An error has occurred');
       }
     })
 
