@@ -7,7 +7,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +30,6 @@ import { RegisterBoxComponent } from './login/register-box/register-box.componen
 import { ScreenLoaderComponent } from './home/screen/cheatsheet-loader/screen-loader.component';
 import { DeleteConfirmComponent } from './admin/dialog/delete-confirm/delete-confirm.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { DeleteCardConfirmComponent } from './home/character-tracker/character-card/delete-card-confirm/delete-card-confirm.component';
 import { SessionService } from './_services/session.service';
 import { HelperService } from './_services/helper.service';
 import { NotesService } from './_services/notes.service';
@@ -40,7 +38,9 @@ import { TimeCounterComponent } from './home/time-counter/time-counter.component
 import { NotesComponent } from './home/notes/notes.component';
 import { LoginBoxComponent } from './login/login-box/login-box.component';
 import { ManualComponent } from './home/screen/manual/manual.component';
-import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { EncounterQuickaddComponent } from './home/character-tracker/encounter-quickadd/encounter-quickadd.component';
+import { DeleteCardConfirmComponent } from './home/character-tracker/character-card/delete-card-confirm/delete-card-confirm.component';
+import { DeleteCreatureConfirmComponent } from './admin/dialog/delete-creature-confirm/delete-creature-confirm.component';
 
 
 @NgModule({
@@ -64,7 +64,10 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
     DeleteCardConfirmComponent,
     TimeCounterComponent,
     LoginBoxComponent,
-    ManualComponent
+    ManualComponent,
+    EncounterQuickaddComponent,
+    DeleteCreatureConfirmComponent
+
   ],
   imports: [
     BrowserModule,
@@ -76,15 +79,14 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
     CKEditorModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
-    FlexLayoutModule,
-    NgxPageScrollCoreModule
+    FontAwesomeModule
     ],
   entryComponents: [
     CharacterQuickaddComponent,
     EncounterInitiativeDialogComponent,
     DeleteConfirmComponent,
-    DeleteCardConfirmComponent
+    DeleteCardConfirmComponent,
+    DeleteCreatureConfirmComponent
   ],
   providers: [
     AlertifyService,

@@ -22,9 +22,21 @@ export class CreatureCardService implements OnInit {
 
   ngOnInit() {
   }
+  // get the entire list of creature cards in the db
+  get(){
+    return this.http.get<CreatureCard[]>(this.baseUrl);
+  }
+  getCard(id: number){
+    return this.http.get<CreatureCard>(this.baseUrl+`/${id}`);
+  }
+  create(creatureCard: CreatureCard){
+    return this.http.post<CreatureCard>(this.baseUrl + '/edit', creatureCard);
+  }
+  delete(id: number){
+    return this.http.delete(this.baseUrl+`/${id}`);
+  }
   getCreatureCardsFromSession() {
     this._creatureCardsSource.next(this.creatureCards);
-
   }
   getCreatureCards() {
     // if local storage has a value, then populate this array wiht the local storage value

@@ -1,1 +1,35 @@
-<p>It works</p>>
+<div class='container' style='padding-top: 1em'>
+  <mat-card>
+      <mat-card-title class='mat-h1'>Creature List</mat-card-title>
+      <mat-card-content>
+          <mat-table [dataSource]="creatures" class="mat-elevation-z2">
+              <!-- Position Column -->
+              <ng-container matColumnDef="creatureCardId">
+                  <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.creatureCardId}} </mat-cell>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                  <mat-cell mat-cell *matCellDef="let element">
+                      <button mat-button (click)='onEditClick(element)'>Edit</button>
+                      <button mat-button color='warn' (click)='onDeleteClick(element)'>Delete</button>
+                  </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color='primary' routerLink='/creature'>+ New Creature</button>
+        <button mat-flat-button routerLink='/home'>Return To DM Screen</button>
+
+      </mat-card-actions>
+  </mat-card>
+</div>
