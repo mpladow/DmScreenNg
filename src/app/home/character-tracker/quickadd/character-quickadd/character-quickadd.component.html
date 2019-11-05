@@ -193,12 +193,12 @@
         <input matInput formControlName='PInsight'>
       </mat-form-field>
     </div>
-    <div *ngIf="this.isHostile">
-      <mat-form-field appearance="outline">
-        <mat-label>HP</mat-label>
-        <input matInput formControlName='MaxHP'>
-      </mat-form-field>
-      <div class=''>
+
+    <mat-form-field appearance="outline">
+      <mat-label>HP</mat-label>
+      <input matInput formControlName='MaxHP'>
+    </mat-form-field>
+    <!-- <div class=''>
         <div class=''>
           <mat-form-field appearance="outline">
             <mat-label>Str</mat-label>
@@ -238,42 +238,41 @@
             <input matInput formControlName='Charisma'>
           </mat-form-field>
         </div>
-      </div>
-      <div class=''>
-        <div class=''>
-          <mat-form-field appearance="outline">
-            <mat-label>Notes</mat-label>
-            <input matInput formControlName='Notes'>
-          </mat-form-field>
-        </div>
-      </div>
-      <div *ngIf='this.isHostile' formArrayName='Actions'>
-        <mat-label>Actions</mat-label>
+      </div> -->
+    <div class=''>
+      <mat-form-field appearance="outline">
+        <mat-label>Notes</mat-label>
+        <input matInput formControlName='Notes'>
+      </mat-form-field>
+    </div>
 
-        <div class='align-items-center' [formGroupName]='i' *ngFor='let action of actions.controls; let i=index'
-          fxLayout='row' fxLayoutGap='1em'>
+    <div *ngIf='this.isHostile' formArrayName='Actions'>
+      <mat-label>Actions</mat-label>
 
-          <mat-form-field appearance="outline" fxFlex='20%'>
-            <mat-label>Name</mat-label>
-            <input matInput formControlName='Name'>
-          </mat-form-field>
+      <div class='align-items-center' [formGroupName]='i' *ngFor='let action of actions.controls; let i=index'
+        fxLayout='row' fxLayoutGap='1em'>
+
+        <mat-form-field appearance="outline" fxFlex='20%'>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName='Name'>
+        </mat-form-field>
 
 
-          <mat-form-field appearance="outline" fxFlex='70%'>
-            <mat-label>Description</mat-label>
-            <textarea matInput formControlName='Description'></textarea>
-          </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex='70%'>
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName='Description'></textarea>
+        </mat-form-field>
 
-          <button class='mb-1' mat-icon-button (click)='deleteAction(actions,i)' color='primary' fxFlex='10%'>
-            <fa-icon [icon]='faTimes'></fa-icon>
-          </button>
-        </div>
+        <button class='mb-1' mat-icon-button (click)='deleteAction(actions,i)' color='primary' fxFlex='10%'>
+          <fa-icon [icon]='faTimes'></fa-icon>
+        </button>
       </div>
       <button class='ml-2' mat-icon-button (click)='addNewAction(actions)' color='primary'>
         Add Action
         <fa-icon class='ml-1' [icon]='faPlus'></fa-icon>
       </button>
     </div>
+
   </div>
 
   <!-- <div>

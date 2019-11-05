@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CreatureCard } from 'src/app/_models/creaturecard.model';
-import { CharacterQuickaddComponent } from '../character-quickadd/character-quickadd.component';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators, FormGroupName } from '@angular/forms';
 import { CreatureCardService } from "src/app/_services/creaturecard.service";
 

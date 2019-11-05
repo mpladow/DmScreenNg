@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CreatureCard } from 'src/app/_models/creaturecard.model';
-import { CharacterQuickaddComponent } from './character-quickadd/character-quickadd.component';
+import { CharacterQuickaddComponent } from './quickadd/character-quickadd/character-quickadd.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { EncounterInitiativeDialogComponent } from './encounter-initiative-dialog/encounter-initiative-dialog.component';
 import { CreatureCardService } from 'src/app/_services/creaturecard.service';
 import { SessionService } from 'src/app/_services/session.service';
 import { createReadStream } from 'fs';
+import { QuickaddComponent } from './quickadd/quickadd.component';
 
 @Component({
   selector: "app-character-tracker",
@@ -41,7 +42,7 @@ export class CharacterTrackerComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     const dialogRef = this.dialog.open(
-      CharacterQuickaddComponent,
+      QuickaddComponent,
       dialogConfig
     );
   }

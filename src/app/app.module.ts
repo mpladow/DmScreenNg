@@ -20,7 +20,7 @@ import { ResourceEditorComponent } from './admin/resources-list/resource-editor/
 import { MaterialModule } from './material';
 import { AlertifyService } from './_services/alertify.service';
 import { ResourcesService } from './_services/resources.service';
-import { CharacterQuickaddComponent } from './home/character-tracker/character-quickadd/character-quickadd.component';
+import { CharacterQuickaddComponent } from './home/character-tracker/quickadd/character-quickadd/character-quickadd.component';
 import { EncounterInitiativeDialogComponent } from './home/character-tracker/encounter-initiative-dialog/encounter-initiative-dialog.component';
 import { CreatureEditorComponent } from './admin/creature-list/creature-editor/creature-editor.component';
 import { CreatureListComponent } from './admin/creature-list/creature-list.component';
@@ -38,9 +38,11 @@ import { TimeCounterComponent } from './home/time-counter/time-counter.component
 import { NotesComponent } from './home/notes/notes.component';
 import { LoginBoxComponent } from './login/login-box/login-box.component';
 import { ManualComponent } from './home/screen/manual/manual.component';
-import { EncounterQuickaddComponent } from './home/character-tracker/encounter-quickadd/encounter-quickadd.component';
+import { EncounterQuickaddComponent } from './home/character-tracker/quickadd/encounter-quickadd/encounter-quickadd.component';
 import { DeleteCardConfirmComponent } from './home/character-tracker/character-card/delete-card-confirm/delete-card-confirm.component';
 import { DeleteCreatureConfirmComponent } from './admin/dialog/delete-creature-confirm/delete-creature-confirm.component';
+import { QuickaddComponent } from './home/character-tracker/quickadd/quickadd.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -66,8 +68,8 @@ import { DeleteCreatureConfirmComponent } from './admin/dialog/delete-creature-c
     LoginBoxComponent,
     ManualComponent,
     EncounterQuickaddComponent,
-    DeleteCreatureConfirmComponent
-
+    DeleteCreatureConfirmComponent,
+    QuickaddComponent
   ],
   imports: [
     BrowserModule,
@@ -79,14 +81,16 @@ import { DeleteCreatureConfirmComponent } from './admin/dialog/delete-creature-c
     CKEditorModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
-    ],
+    FontAwesomeModule,
+    FlexLayoutModule
+  ],
   entryComponents: [
     CharacterQuickaddComponent,
     EncounterInitiativeDialogComponent,
     DeleteConfirmComponent,
     DeleteCardConfirmComponent,
-    DeleteCreatureConfirmComponent
+    DeleteCreatureConfirmComponent,
+    QuickaddComponent
   ],
   providers: [
     AlertifyService,

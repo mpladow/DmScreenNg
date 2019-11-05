@@ -1,0 +1,31 @@
+.mat-form-field {
+  display: block;
+}
+.form-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  input{
+    margin-right: 1em;
+    margin-left: 1em;
+  }
+}
+.form-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .mat-form-field{
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+}
+.flex-container{
+  &.v {
+    flex-direction: column;
+  }
+  &.h {
+    flex-direction: row;
+  }
+  display: flex;
+
+}

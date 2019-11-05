@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CharacterQuickaddComponent } from 'src/app/home/character-tracker/character-quickadd/character-quickadd.component';
-import { FormBuilder } from '@angular/forms';
+import { CharacterQuickaddComponent } from 'src/app/home/character-tracker/quickadd/character-quickadd/character-quickadd.component';
 import { CreatureCardService } from "src/app/_services/creaturecard.service";
 import { ResourcesService } from 'src/app/_services/resources.service';
 

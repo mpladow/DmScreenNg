@@ -1,0 +1,18 @@
+<mat-dialog-content>
+  <p>Search for the encounter you wish to add.</p>
+  <form fxLayout='column'>
+    <mat-form-field>
+      <input matInput placeholder='Search for creature...'>
+    </mat-form-field>
+  </form>
+  <div>
+    <mat-selection-list>
+      <mat-list-option *ngFor="let creature of creatures" [ngClass]="{'hostile': creature.isHostile=='true'}"
+>
+        <h3 matLine> {{creature.name}} </h3>
+        <p matLine> {{creature.isHostile? 'hostile' : 'friendly'}} </p>
+        <p matLine class="demo-2"> {{creature.MaxHP}} </p>
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+</mat-dialog-content>

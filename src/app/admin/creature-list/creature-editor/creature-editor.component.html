@@ -13,7 +13,7 @@
               <mat-label>Character Name</mat-label>
               <input matInput formControlName='Name' placeholder="input">
             </mat-form-field>
-            <mat-checkbox fxFlex='30%' (change)='isHostile = !isHostile' formControlName='isHostile' flex>
+            <mat-checkbox fxFlex='30%' (change)='isHostile = !isHostile' formControlName='IsHostile' flex>
               <mat-label class='checkboxMonster'><img style='width:20px; margin-left: .5em;'
                   src='../../../../assets/icons/i-swords.svg'></mat-label>
             </mat-checkbox>
@@ -45,61 +45,18 @@
               <input matInput formControlName='PInsight'>
             </mat-form-field>
           </div>
-          <div *ngIf="this.isHostile">
+          <mat-form-field appearance="outline">
+            <mat-label>MaxHP</mat-label>
+            <input matInput formControlName='MaxHP'>
+          </mat-form-field>
+          <div class=''>
             <mat-form-field appearance="outline">
-              <mat-label>HP</mat-label>
-              <input matInput formControlName='MaxHP'>
+              <mat-label>Notes</mat-label>
+              <input matInput formControlName='Notes'>
             </mat-form-field>
-            <div class=''>
-              <div class=''>
-                <mat-form-field appearance="outline">
-                  <mat-label>Str</mat-label>
-                  <input matInput formControlName='Strength'>
-                </mat-form-field>
-              </div>
-              <div class=''>
-                <mat-form-field appearance="outline">
-                  <mat-label>Dex</mat-label>
-                  <input matInput formControlName='Dexterity'>
-                </mat-form-field>
-              </div>
-
-              <div class=''>
-                <mat-form-field appearance="outline">
-                  <mat-label>Con</mat-label>
-                  <input matInput formControlName='Constitution'>
-                </mat-form-field>
-              </div>
-
-              <div class=''>
-                <mat-form-field appearance="outline">
-                  <mat-label>Wis</mat-label>
-                  <input matInput formControlName='Wisdom'>
-                </mat-form-field>
-              </div>
-
-              <div class=''>
-                <mat-form-field appearance="outline">
-                  <mat-label>Int</mat-label>
-                  <input matInput formControlName='Intelligence'>
-                </mat-form-field>
-              </div>
-              <div class=''>
-                <mat-form-field appearance="outline">
-                  <mat-label>Cha</mat-label>
-                  <input matInput formControlName='Charisma'>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class=''>
-              <div class=''>
-                <mat-form-field appearance="outline">
-                  <mat-label>Notes</mat-label>
-                  <input matInput formControlName='Notes'>
-                </mat-form-field>
-              </div>
-            </div>
-            <div *ngIf='this.isHostile' formArrayName='Actions'>
+          </div>
+          <ng-container *ngIf='isHostile'>
+            <div formArrayName='Actions'>
               <mat-label>Actions</mat-label>
 
               <div class='align-items-center' [formGroupName]='i' *ngFor='let action of actions.controls; let i=index'
@@ -120,12 +77,12 @@
                   <fa-icon [icon]='faTimes'></fa-icon>
                 </button>
               </div>
+              <button class='ml-2' mat-icon-button (click)='addNewAction(actions)' color='primary'>
+                Add Action
+                <fa-icon class='ml-1' [icon]='faPlus'></fa-icon>
+              </button>
             </div>
-            <button class='ml-2' mat-icon-button (click)='addNewAction(actions)' color='primary'>
-              Add Action
-              <fa-icon class='ml-1' [icon]='faPlus'></fa-icon>
-            </button>
-          </div>
+          </ng-container>
 
         </form>
         <div class='buttons-component'>

@@ -2,16 +2,16 @@
   <mat-card>
       <mat-card-title class='mat-h1'>Creature List</mat-card-title>
       <mat-card-content>
-          <mat-table [dataSource]="creatures" class="mat-elevation-z2">
+          <mat-table [dataSource]="dataSource" class="mat-elevation-z2" matSort>
               <!-- Position Column -->
               <ng-container matColumnDef="creatureCardId">
-                  <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
                   <mat-cell *matCellDef="let element"> {{element.creatureCardId}} </mat-cell>
               </ng-container>
 
               <!-- Name Column -->
               <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
                   <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
               </ng-container>
 
@@ -25,6 +25,7 @@
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
               <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
+            <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
       </mat-card-content>
       <mat-card-actions>
         <button mat-flat-button color='primary' routerLink='/creature'>+ New Creature</button>
