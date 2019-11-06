@@ -43,6 +43,7 @@ import { DeleteCardConfirmComponent } from './home/character-tracker/character-c
 import { DeleteCreatureConfirmComponent } from './admin/dialog/delete-creature-confirm/delete-creature-confirm.component';
 import { QuickaddComponent } from './home/character-tracker/quickadd/quickadd.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DialogConfirmAddCreatureComponent } from './home/character-tracker/quickadd/dialog-confirm-add-creature/dialog-confirm-add-creature.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ManualComponent,
     EncounterQuickaddComponent,
     DeleteCreatureConfirmComponent,
-    QuickaddComponent
+    QuickaddComponent,
+    DialogConfirmAddCreatureComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DeleteConfirmComponent,
     DeleteCardConfirmComponent,
     DeleteCreatureConfirmComponent,
-    QuickaddComponent
+    QuickaddComponent,
+    DialogConfirmAddCreatureComponent
   ],
   providers: [
     AlertifyService,

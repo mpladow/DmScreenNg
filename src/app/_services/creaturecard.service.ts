@@ -50,6 +50,11 @@ export class CreatureCardService implements OnInit {
       this._creatureCardsSource.next(this.creatureCards);
     });
   }
+  addExistingCreatureCard(creature: CreatureCard) {
+    this.creatureCards.push(creature);
+    this.creatureAdded.emit(creature);
+    this._creatureCardsSource.next(this.creatureCards);
+  }
   editCreatureCard(creature: CreatureCard) {
     console.log(creature);
     return this.http.post<CreatureCard>(this.baseUrl + '/edit', creature).subscribe(editedCreature => {
