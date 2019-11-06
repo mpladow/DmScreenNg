@@ -1,4 +1,3 @@
-import { CreatureCard } from "./../../../_models/creaturecard.model";
 import { Component, OnInit, Inject } from "@angular/core";
 import {
   MatDialogRef,
@@ -14,6 +13,7 @@ import {
 } from "@angular/forms";
 import { CreatureCardService } from "src/app/_services/creaturecard.service";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { CreatureCard } from 'src/app/_models/creaturecard.model';
 
 @Component({
   selector: "app-character-quickadd",

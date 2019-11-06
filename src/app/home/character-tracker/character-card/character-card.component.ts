@@ -15,7 +15,7 @@ import { faPlus, faTimes, faPen } from "@fortawesome/free-solid-svg-icons";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { DeleteConfirmComponent } from "src/app/admin/dialog/delete-confirm/delete-confirm.component";
 import { DeleteCardConfirmComponent } from "./delete-card-confirm/delete-card-confirm.component";
-import { CharacterQuickaddComponent } from "../character-quickadd/character-quickadd.component";
+import { CharacterQuickaddComponent } from "../quickadd/character-quickadd/character-quickadd.component";
 
 @Component({
   selector: "app-character-card",

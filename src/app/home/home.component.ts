@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ResourcesService } from '../_services/resources.service';
 import { Resource } from '../_models/resource.model';
 import { MatDialog } from '@angular/material/dialog';
-import { CharacterQuickaddComponent } from './character-tracker/character-quickadd/character-quickadd.component';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';

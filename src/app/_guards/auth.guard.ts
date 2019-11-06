@@ -14,10 +14,10 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     let canLogIn = false;
-    if (this.authService.isLoggedIn()){
+    if (this.authService.isLoggedIn()) {
       canLogIn = true;
     } else {
-      this.alertify.error("You shall not pass!");
+      this.alertify.error("You cannot access this page!");
       this.router.navigate(['/login']);
     }
     return canLogIn;

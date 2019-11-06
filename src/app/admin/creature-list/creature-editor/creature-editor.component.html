@@ -1,1 +1,99 @@
-<p>creature-editor works!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class='mat-h1'>{{this.id >= 0? 'Edit': 'New'}} Creature</mat-card-title>
+      <mat-card-subtitle>Enter the details of your hostile creature.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="form-vertical">
+        <form [formGroup]="creatureForm">
+          <input type='hidden' formControlName='CreatureCardId'>
+          <div fxLayout='row' fxLayoutGap='1em'>
+            <mat-form-field fxFlex='70%' appearance="outline" flex>
+              <mat-label>Character Name</mat-label>
+              <input matInput formControlName='Name' placeholder="input">
+            </mat-form-field>
+            <mat-checkbox fxFlex='30%' (change)='isHostile = !isHostile' formControlName='IsHostile' flex>
+              <mat-label class='checkboxMonster'><img style='width:20px; margin-left: .5em;'
+                  src='../../../../assets/icons/i-swords.svg'></mat-label>
+            </mat-checkbox>
+
+          </div>
+
+          <div fxLayout='row' fxLayoutGap='1em'>
+            <mat-form-field appearance="outline" fxFlex='50%'>
+              <mat-label>Initiative</mat-label>
+              <input matInput formControlName='Initiative'>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex='50%'>
+              <mat-label>AC</mat-label>
+              <input matInput formControlName='AC'>
+            </mat-form-field>
+
+          </div>
+          <div fxLayout='row' fxLayoutGap='1em'>
+            <mat-form-field appearance="outline" fxFlex='33%'>
+              <mat-label>Passive Perception</mat-label>
+              <input matInput formControlName='PPerception'>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex='33%'>
+              <mat-label>Passive Investigation</mat-label>
+              <input matInput formControlName='PInvestigation'>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex='33%'>
+              <mat-label>Passive Insight</mat-label>
+              <input matInput formControlName='PInsight'>
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>MaxHP</mat-label>
+            <input matInput formControlName='MaxHP'>
+          </mat-form-field>
+          <div class=''>
+            <mat-form-field appearance="outline">
+              <mat-label>Notes</mat-label>
+              <input matInput formControlName='Notes'>
+            </mat-form-field>
+          </div>
+          <ng-container *ngIf='isHostile'>
+            <div formArrayName='Actions'>
+              <mat-label>Actions</mat-label>
+
+              <div class='align-items-center' [formGroupName]='i' *ngFor='let action of actions.controls; let i=index'
+                fxLayout='row' fxLayoutGap='1em'>
+
+                <mat-form-field appearance="outline" fxFlex='20%'>
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName='Name'>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline" fxFlex='70%'>
+                  <mat-label>Description</mat-label>
+                  <textarea matInput formControlName='Description'></textarea>
+                </mat-form-field>
+
+                <button class='mb-1' mat-icon-button (click)='deleteAction(actions,i)' color='primary' fxFlex='10%'>
+                  <fa-icon [icon]='faTimes'></fa-icon>
+                </button>
+              </div>
+              <button class='ml-2' mat-icon-button (click)='addNewAction(actions)' color='primary'>
+                Add Action
+                <fa-icon class='ml-1' [icon]='faPlus'></fa-icon>
+              </button>
+            </div>
+          </ng-container>
+
+        </form>
+        <div class='buttons-component'>
+          <div *ngIf='!isLoading'>
+            <button mat-raised-button color="primary" (click)='onSubmit()'>Save</button>
+            <button mat-button color="primary">Clear</button>
+            <button (click)="onResourceListClick()" mat-button>Back to Resource list</button>
+          </div>
+          <mat-spinner *ngIf='isLoading'></mat-spinner>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -6,7 +6,6 @@ import {
   Inject
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
-import { PageScrollService, PageScrollInstance } from "ngx-page-scroll-core";
 
 @Component({
   selector: "app-manual",
@@ -17,7 +16,6 @@ export class ManualComponent implements OnInit {
   @ViewChild("container", { static: false }) private container: ElementRef;
 
   constructor(
-    private pageScrollService: PageScrollService,
     @Inject(DOCUMENT) private document: any
   ) {}
  ngOnInit(){

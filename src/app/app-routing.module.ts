@@ -5,6 +5,8 @@ import { ResourcesListComponent } from './admin/resources-list/resources-list.co
 import { ResourceEditorComponent } from './admin/resources-list/resource-editor/resource-editor.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { CreatureListComponent } from './admin/creature-list/creature-list.component';
+import { CreatureEditorComponent } from './admin/creature-list/creature-editor/creature-editor.component';
 
 
 const routes: Routes = [
@@ -17,7 +19,10 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'resources-list', component: ResourcesListComponent },
       { path: 'resource/:id', component: ResourceEditorComponent },
-      { path: 'resource', component: ResourceEditorComponent }
+      { path: 'resource', component: ResourceEditorComponent },
+      { path: 'creature-list', component: CreatureListComponent },
+      { path: 'creature', component: CreatureEditorComponent },
+      { path: 'creature/:id', component: CreatureEditorComponent }
     ]
   },
 
