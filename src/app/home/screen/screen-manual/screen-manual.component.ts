@@ -8,11 +8,11 @@ import {
 import { DOCUMENT } from "@angular/common";
 
 @Component({
-  selector: "app-manual",
-  templateUrl: "./manual.component.html",
-  styleUrls: ["./manual.component.scss"]
+  selector: "app-screen-manual",
+  templateUrl: './screen-manual.component.html',
+  styleUrls: ["./screen-manual.component.scss"]
 })
-export class ManualComponent implements OnInit {
+export class ScreenManualComponent implements OnInit {
   @ViewChild("container", { static: false }) private container: ElementRef;
 
   constructor(

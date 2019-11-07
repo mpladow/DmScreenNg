@@ -37,13 +37,15 @@ import { NotesService } from './_services/notes.service';
 import { TimeCounterComponent } from './home/time-counter/time-counter.component';
 import { NotesComponent } from './home/notes/notes.component';
 import { LoginBoxComponent } from './login/login-box/login-box.component';
-import { ManualComponent } from './home/screen/manual/manual.component';
+import { ScreenManualComponent } from './home/screen/screen-manual/screen-manual.component';
 import { EncounterQuickaddComponent } from './home/character-tracker/quickadd/encounter-quickadd/encounter-quickadd.component';
 import { DeleteCardConfirmComponent } from './home/character-tracker/character-card/delete-card-confirm/delete-card-confirm.component';
 import { DeleteCreatureConfirmComponent } from './admin/dialog/delete-creature-confirm/delete-creature-confirm.component';
 import { QuickaddComponent } from './home/character-tracker/quickadd/quickadd.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DialogConfirmAddCreatureComponent } from './home/character-tracker/quickadd/dialog-confirm-add-creature/dialog-confirm-add-creature.component';
+import { ScreenDocumentsComponent } from './home/screen/screen-documents/screen-documents.component';
+import { ScreenResourcepusherComponent } from './home/screen/screen-resourcepusher/screen-resourcepusher.component';
 
 
 @NgModule({
@@ -67,11 +69,13 @@ import { DialogConfirmAddCreatureComponent } from './home/character-tracker/quic
     DeleteCardConfirmComponent,
     TimeCounterComponent,
     LoginBoxComponent,
-    ManualComponent,
+    ScreenManualComponent,
     EncounterQuickaddComponent,
     DeleteCreatureConfirmComponent,
     QuickaddComponent,
-    DialogConfirmAddCreatureComponent
+    DialogConfirmAddCreatureComponent,
+    ScreenDocumentsComponent,
+    ScreenResourcepusherComponent
   ],
   imports: [
     BrowserModule,
